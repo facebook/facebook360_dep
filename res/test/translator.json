@@ -1,0 +1,329 @@
+{
+  "AlignColorsTest": [
+    {
+      "datasets": [
+        "color_full_alt",
+        "rig_calibrated_alt",
+        "rig_colors"
+      ],
+      "rig": "rig_calibrated_alt.json",
+      "error_test": false,
+      "truth": "color_full_alt_aligned",
+      "type": "cpu"
+    }
+  ],
+
+  "CalibrationTest": [
+    {
+      "datasets": [
+        "color_full",
+        "rig_calibrated"
+      ],
+      "rig": "rig_calibrated.json",
+      "error_test": false,
+      "metrics": [
+        {
+          "name": "calibration_median_error",
+          "expected_result": 0.4,
+          "absolute_tolerance": 0.125
+        }
+      ],
+      "type": "cpu"
+    },
+    {
+      "datasets": [
+        "rotated",
+        "rig_calibrated"
+      ],
+      "rig": "rig_calibrated.json",
+      "error_test": true,
+      "error_string": "Too few matches in camera",
+      "error_location": "Calibration.ERROR",
+      "type": "cpu"
+    },
+    {
+      "datasets": [
+        "color_full",
+        "shuffled_D15741665",
+        "rig_calibrated"
+      ],
+      "rig": "rig_calibrated.json",
+      "error_test": true,
+      "error_string": "Warning: Final pass median error too high",
+      "error_location": "GeometricCalibration.INFO",
+      "type": "cpu"
+    },
+    {
+      "datasets": [
+        "blank",
+        "rig_calibrated"
+      ],
+      "rig": "rig_calibrated.json",
+      "error_test": true,
+      "error_string": "Too few features found in camera",
+      "error_location": "Calibration.ERROR",
+      "type": "cpu"
+    }
+  ],
+
+  "CalibrationLibMainTest": [
+    {
+      "datasets": [
+        "color_full",
+        "rig_calibrated"
+      ],
+      "rig": "rig_calibrated.json",
+      "error_test": false,
+      "metrics": [
+        {
+          "name": "calibration_median_error",
+          "expected_result": 0.4,
+          "absolute_tolerance": 0.125
+        }
+      ],
+      "type": "cpu"
+    }
+  ],
+
+  "ConvertToBinaryTest": [
+    {
+      "datasets": [
+        "color_full",
+        "disparity",
+        "rig_calibrated"
+      ],
+      "rig": "rig_calibrated.json",
+      "error_test": false,
+      "truth": "fused_D15720650_2",
+      "type": "cpu"
+    }
+  ],
+
+  "DerpCLITest": [
+    {
+      "datasets": [
+          "color",
+          "background_disp_D15321339",
+          "foreground_masks",
+          "rig_calibrated"
+      ],
+      "rig": "rig_calibrated.json",
+      "error_test": false,
+      "metrics": [
+        {
+          "name": "total_rephoto_error",
+          "expected_result": 90.0,
+          "relative_tolerance": 0.05
+        }
+      ],
+      "type": "gpu"
+    }
+  ],
+
+  "ExportPointCloudTest": [
+    {
+      "datasets": [
+        "color",
+        "disparity",
+        "rig_calibrated"
+      ],
+      "rig": "rig_calibrated.json",
+      "error_test": false,
+      "truth": "point_cloud",
+      "type": "cpu"
+    }
+  ],
+
+  "ImportPointCloudTest": [
+    {
+      "datasets": [
+        "point_cloud",
+        "rig_calibrated"
+      ],
+      "rig": "rig_calibrated.json",
+      "error_test": false,
+      "truth": "projected_disparity",
+      "type": "cpu"
+    }
+  ],
+
+  "GenerateCameraOverlapsTest": [
+    {
+      "datasets": [
+          "color",
+          "rig_calibrated"
+      ],
+      "rig": "rig_calibrated.json",
+      "error_test": false,
+      "truth": "overlaps",
+      "type": "cpu"
+    }
+  ],
+
+  "GenerateForegroundMasksTest": [
+    {
+      "datasets": [
+          "background_color",
+          "color",
+          "rig_calibrated"
+      ],
+      "rig": "rig_calibrated.json",
+      "error_test": false,
+      "truth": "foreground_masks",
+      "type": "cpu"
+    }
+  ],
+
+  "LayerDisparitiesTest": [
+    {
+      "datasets": [
+          "background_disparity",
+          "disparity",
+          "rig_calibrated"
+      ],
+      "rig": "rig_calibrated.json",
+      "error_test": false,
+      "truth": "merged_disparities",
+      "type": "cpu"
+    }
+  ],
+
+  "ProjectEquirectsToCamerasTest": [
+    {
+      "datasets": [
+        "equirect_foreground_masks",
+        "rig_calibrated"
+      ],
+      "error_test": false,
+      "rig": "rig_calibrated.json",
+      "truth": "equirect_projections",
+      "type": "cpu"
+    }
+  ],
+
+  "RawToRgbTest": [
+    {
+      "datasets": [
+        "isp",
+        "raw_frame"
+      ],
+      "error_test": false,
+      "rig": "None",
+      "truth": "processed_frame",
+      "type": "cpu"
+    }
+  ],
+
+  "RigAlignerTest": [
+    {
+      "datasets": [
+        "rig_random",
+        "rig_calibrated"
+      ],
+      "rig": "rig_random.json",
+      "error_test": false,
+      "metrics": [
+        {
+          "name": "final cost",
+          "expected_result": 0.5,
+          "absolute_tolerance": 0.1
+        }
+      ],
+      "type": "cpu"
+    }
+  ],
+
+  "RigAnalyzerTest": [
+    {
+      "datasets": [
+        "rig_calibrated"
+      ],
+      "rig": "rig_calibrated.json",
+      "error_test": false,
+      "truth": "rig_analysis",
+      "type": "cpu"
+    }
+  ],
+
+  "RigCompareTest": [
+    {
+      "datasets": [
+        "rig_random",
+        "rig_calibrated"
+      ],
+      "rig": "rig_random.json",
+      "error_test": false,
+      "metrics": [
+        {
+          "name": "position diff",
+          "expected_result": 99.9727,
+          "absolute_tolerance": 0.0001
+        },
+        {
+          "name": "forward diff (radians)",
+          "expected_result": 1.90908,
+          "absolute_tolerance": 0.0001
+        },
+        {
+          "name": "up diff (radians)",
+          "expected_result": 1.87473,
+          "absolute_tolerance": 0.0001
+        },
+        {
+          "name": "principal diff",
+          "expected_result": 0,
+          "absolute_tolerance": 0.0001
+        },
+        {
+          "name": "focal diff",
+          "expected_result": 0,
+          "absolute_tolerance": 0.0001
+        }
+      ],
+      "type": "cpu"
+    }
+  ],
+
+  "RigSimulatorTest": [
+    {
+      "datasets": [
+        "rig_calibrated",
+        "skybox"
+      ],
+      "rig": "rig_calibrated.json",
+      "error_test": false,
+      "truth": "rig_simulations",
+      "type": "cpu"
+    }
+  ],
+
+  "SimpleMeshRendererTest": [
+    {
+      "datasets": [
+        "color",
+        "disparity",
+        "rig_calibrated"
+      ],
+      "rig": "rig_calibrated.json",
+      "error_test": false,
+      "truth": "meshes",
+      "type": "gpu"
+    }
+  ],
+
+  "UpsampleDisparityTest": [
+    {
+      "datasets": [
+        "background_disp_D15321339",
+        "color",
+        "disparity",
+        "foreground_masks",
+        "rig_calibrated"
+      ],
+      "rig": "rig_calibrated.json",
+      "error_test": false,
+      "truth": "disparity_upsample_D15518859",
+      "type": "cpu"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+# ---------------------- Test defined I/O flags below --------------------- #
+--dest_mono
+--dest_mono_depth
+--dest_left
+--dest_right
+--dest_stereo
+--dest_cam_images
+--mode
+--rig_in
+--rig_out
+--skybox_path
+# ---------------------- Test constants flags below ----------------------- #

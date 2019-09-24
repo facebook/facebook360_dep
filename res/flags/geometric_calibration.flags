@@ -1,0 +1,6 @@
+--alsologtostderr=1
+--stderrthreshold=0
+--log_dir=/path/to/output/log
+--matches=/path/to/vid/matches.json
+--rig_in=/path/to/vid/rig.json
+--rig_out=/path/to/output/rig_calibrated.json

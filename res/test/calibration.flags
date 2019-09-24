@@ -1,0 +1,10 @@
+# ---------------------- Test defined I/O flags below --------------------- #
+--color
+--matches
+--rig_in
+--rig_out
+--frame
+# ---------------------- Test constants flags below ----------------------- #
+--enable_timing=false
+--log_verbose=false
+--pass_count=5

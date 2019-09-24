@@ -1,0 +1,21 @@
+language: python
+
+python:
+  - 3.6
+
+jobs:
+  include:
+    - name: "Docs: Doxygen"
+      install:
+        - sudo apt-get install -y doxygen
+      script:
+        - cd source && doxygen .doxyfile
+        - cd ..
+        - cd scripts && doxygen .doxyfile
+    - name: "App: Testing suite"
+      services:
+        - docker
+      install:
+        - docker build -t facebook360_dep .
+      script:
+        - docker run -d facebook360_dep /bin/bash -c "python3.7 scripts/test/run_tests.py --type=cpu --binary_dir=build/bin/ --dataset_root=s3://facebook360-dep-sample-data/complex-single-frame/"

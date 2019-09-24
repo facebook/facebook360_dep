@@ -1,0 +1,8 @@
+# ---------------------- General application flags below --------------------- #
+--frame
+--output
+--rig
+--color
+# --------------------- Application specific flags below --------------------- #
+--scale=0.25
+--cameras=cam0

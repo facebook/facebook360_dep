@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: facebook360-dep
+  labels:
+    app: facebook360-dep
+spec:
+  replicas: <WORKER_COUNT>
+  selector:
+    matchLabels:
+      app: facebook360-dep-worker
+  template:
+    metadata:
+      labels:
+        app: facebook360-dep-worker
+    spec:
+      containers:
+      - name: worker
+        image: <REPO_NAME>
+        imagePullPolicy: Always
+        command: ["/bin/sh"]
+        args: ["-c", "python3 /app/facebook360_dep/scripts/render/worker.py --master=<MASTER_IP>"]
+        securityContext:
+          privileged: true
+          capabilities:
+            add:
+              - SYS_ADMIN
+        env:
+          - name: AWS_ACCESS_KEY_ID
+            valueFrom:
+              secretKeyRef:
+                name: aws-storage-key
+                key: AWS_ACCESS_KEY_ID
+          - name: AWS_SECRET_ACCESS_KEY
+            valueFrom:
+              secretKeyRef:
+                name: aws-storage-key
+                key: AWS_SECRET_ACCESS_KEY
+          - name: GLOG_logtostderr
+            value: '1'
+          - name: GLOG_minloglevel
+            value: '0'
+          - name: GLOG_v
+            value: '2'

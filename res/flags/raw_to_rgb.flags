@@ -1,0 +1,6 @@
+--alsologtostderr=1
+--stderrthreshold=0
+--log_dir=/path/to/logs
+--input_image_path=/path/to/video/000000.raw
+--isp_config_path=/path/to/video/isp.json
+--output_image_path=/path/to/video/000000.png

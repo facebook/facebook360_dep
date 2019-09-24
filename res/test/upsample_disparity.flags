@@ -1,0 +1,15 @@
+# ---------------------- Test defined I/O flags below --------------------- #
+--rig
+--disparity
+--color
+--foreground_masks_in
+--foreground_masks_out
+--output
+--first
+--last
+--background_disp
+# ---------------------- Test constants flags below ----------------------- #
+--resolution=2048
+--height=1318
+--output_formats=png
+--sigma=.0625

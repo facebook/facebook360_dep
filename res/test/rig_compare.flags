@@ -1,0 +1,5 @@
+# ---------------------- Test defined I/O flags below --------------------- #
+--rig
+--reference
+# ---------------------- Test constants flags below ----------------------- #
+--skip_align=True

@@ -1,0 +1,30 @@
+{
+  "cameras" : [
+    {
+      "id" : "cam1",
+      "origin" : [0.2, 0, 0],
+      "right" : [0, -1, 0],
+      "up" : [0, 0, 1],
+      "forward" : [1, 0, 0],
+      "principal" : [1024, 1024],
+      "focal" : [1270, -1270],
+      "resolution" : [2048, 2048],
+      "type" : "RECTILINEAR",
+      "distortion" : [0, 0, 0],
+      "version" : 1
+    },
+    {
+      "id" : "cam2",
+      "origin" : [-0.2, 0, 0],
+      "right" : [0, -1, 0],
+      "up" : [0, 0, 1],
+      "forward" : [1, 0, 0],
+      "principal" : [1024, 1024],
+      "focal" : [1270, -1270],
+      "resolution" : [2048, 2048],
+      "type" : "RECTILINEAR",
+      "distortion" : [0, 0, 0],
+      "version" : 1
+    }
+  ]
+}

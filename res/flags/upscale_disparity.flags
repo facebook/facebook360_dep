@@ -1,0 +1,10 @@
+--alsologtostderr=1
+--stderrthreshold=0
+--log_dir=/path/to/output/log
+--color=/path/to/vid/color
+--disparity=/path/to/output/disparity
+--foreground_masks=/path/to/vid/foreground_masks
+--first=000000
+--last=000000
+--output=/path/to/output
+--rig=/path/to/vid/rig_calibrated.json

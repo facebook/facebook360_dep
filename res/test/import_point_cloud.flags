@@ -1,0 +1,7 @@
+# ---------------------- Test defined I/O flags below --------------------- #
+--output
+--rig
+--point_cloud
+# ---------------------- Test constants flags below ----------------------- #
+--width=256
+--threads=1

@@ -1,0 +1,8 @@
+# ---------------------- Test defined I/O flags below --------------------- #
+--first
+--last
+--rig
+--color
+--background_color
+--foreground_masks
+# ---------------------- Test constants flags below ----------------------- #

@@ -1,0 +1,2081 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1687</width>
+    <height>1052</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="toolTipDuration">
+   <number>-1</number>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_32">
+   <item row="0" column="0">
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="font">
+      <font>
+       <family>.SF NS Text</family>
+      </font>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+     <property name="lineWidth">
+      <number>0</number>
+     </property>
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1663</width>
+        <height>1028</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="2,1">
+         <item>
+          <widget class="QTabWidget" name="w_steps">
+           <property name="font">
+            <font>
+             <family>.SF NS Text</family>
+            </font>
+           </property>
+           <property name="currentIndex">
+            <number>2</number>
+           </property>
+           <widget class="QWidget" name="t_calibrate">
+            <attribute name="title">
+             <string>1. Calibration</string>
+            </attribute>
+            <layout class="QGridLayout" name="gridLayout_8">
+             <item row="0" column="0">
+              <widget class="QGroupBox" name="gb_calibrate_rig">
+               <property name="font">
+                <font>
+                 <family>.SF NS Text</family>
+                </font>
+               </property>
+               <property name="title">
+                <string>Rig</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_5">
+                <item row="0" column="0">
+                 <layout class="QGridLayout" name="gridLayout_22" columnstretch="0,1">
+                  <item row="0" column="1">
+                   <widget class="QComboBox" name="dd_calibrate_rig_rigs_res">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_calibrate_rig_rigs_res">
+                    <property name="text">
+                     <string>Uncalibrated rig</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QGroupBox" name="gb_calibrate_calibrate">
+               <property name="font">
+                <font>
+                 <family>.SF NS Text</family>
+                </font>
+               </property>
+               <property name="title">
+                <string>Calibrate</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_11">
+                <item row="0" column="0">
+                 <layout class="QGridLayout" name="gridLayout_6">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_calibrate_calibrate_color">
+                    <property name="text">
+                     <string>Color</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QComboBox" name="dd_calibrate_calibrate_color">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <widget class="QLabel" name="label_calibrate_calibrate_frame">
+                    <property name="text">
+                     <string>Frame</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="3">
+                   <widget class="ComboBoxAutocomplete" name="dd_calibrate_calibrate_frame">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item row="1" column="0">
+                 <layout class="QHBoxLayout" name="horizontalLayout_22" stretch="1,1,1,1,1">
+                  <item>
+                   <spacer name="horizontalSpacer_8">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="btn_calibrate_calibrate_run">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>Run</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="btn_calibrate_calibrate_cancel">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                    <property name="toolTipDuration">
+                     <number>5</number>
+                    </property>
+                    <property name="text">
+                     <string>Cancel</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="btn_calibrate_calibrate_logs">
+                    <property name="text">
+                     <string>Logs</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer_9">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QWidget" name="widget_3" native="true">
+               <property name="font">
+                <font>
+                 <family>.SF NS Text</family>
+                </font>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_71">
+                <item row="0" column="0">
+                 <layout class="QVBoxLayout" name="verticalLayout_6" stretch="0">
+                  <item>
+                   <widget class="QTabWidget" name="w_calibrate_preview">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                    <property name="currentIndex">
+                     <number>0</number>
+                    </property>
+                    <widget class="QWidget" name="tab_calibrate_flagfile">
+                     <attribute name="title">
+                      <string>Flag file</string>
+                     </attribute>
+                     <layout class="QGridLayout" name="gridLayout_67">
+                      <item row="2" column="0">
+                       <widget class="QPushButton" name="btn_calibrate_flagfile_save">
+                        <property name="font">
+                         <font>
+                          <family>.SF NS Text</family>
+                         </font>
+                        </property>
+                        <property name="text">
+                         <string>Save</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="0">
+                       <widget class="QPlainTextEdit" name="text_calibrate_flagfile_edit">
+                        <property name="font">
+                         <font>
+                          <family>.SF NS Text</family>
+                         </font>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="0">
+                       <layout class="QHBoxLayout" name="horizontalLayout_11" stretch="1,0">
+                        <item>
+                         <widget class="QLabel" name="label_calibrate_flagfile_path">
+                          <property name="toolTip">
+                           <string/>
+                          </property>
+                          <property name="text">
+                           <string>Flag file</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_calibrate_flagfile_tooltip">
+                          <property name="font">
+                           <font>
+                            <family>.SF NS Text</family>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>[?]</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                     </layout>
+                    </widget>
+                    <widget class="QWidget" name="tab_calibrate_log">
+                     <attribute name="title">
+                      <string>Logs</string>
+                     </attribute>
+                     <layout class="QGridLayout" name="gridLayout_70">
+                      <item row="1" column="0">
+                       <widget class="QPushButton" name="btn_calibrate_log_clear">
+                        <property name="text">
+                         <string>Clear</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="0">
+                       <widget class="QPlainTextEdit" name="text_calibrate_log">
+                        <property name="font">
+                         <font>
+                          <family>.SF NS Text</family>
+                         </font>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="t_bg">
+            <attribute name="title">
+             <string>2. Background</string>
+            </attribute>
+            <layout class="QGridLayout" name="gridLayout_2">
+             <item row="0" column="0">
+              <widget class="QGroupBox" name="gb_bg_options">
+               <property name="font">
+                <font>
+                 <family>.SF NS Text</family>
+                </font>
+               </property>
+               <property name="title">
+                <string>Options</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_47">
+                <item row="0" column="0">
+                 <layout class="QGridLayout" name="gridLayout_49" columnstretch="3,0">
+                  <item row="0" column="1">
+                   <widget class="QCheckBox" name="cb_bg_options_partial_360">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>Partial coverage</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <layout class="QHBoxLayout" name="horizontalLayout_13" stretch="0,0">
+                    <item>
+                     <widget class="QLabel" name="label_bg_options_res">
+                      <property name="text">
+                       <string>Depth resolution (per camera)</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="val_bg_options_res"/>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QGroupBox" name="gb_bg_bg">
+               <property name="toolTip">
+                <string extracomment="DerpCLI"/>
+               </property>
+               <property name="accessibleName">
+                <string/>
+               </property>
+               <property name="title">
+                <string>Background</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_42">
+                <item row="0" column="0">
+                 <layout class="QGridLayout" name="gridLayout_76">
+                  <item row="0" column="3">
+                   <widget class="ComboBoxAutocomplete" name="dd_bg_bg_camera">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <widget class="QLabel" name="label_bg_bg_camera">
+                    <property name="text">
+                     <string>Test camera</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="ComboBoxAutocomplete" name="dd_bg_bg_frame_bg">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_bg_bg_frame_bg">
+                    <property name="text">
+                     <string>Frame</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QCheckBox" name="cb_bg_recompute">
+                  <property name="font">
+                   <font>
+                    <family>.SF NS Text</family>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Re-compute</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <layout class="QGridLayout" name="gridLayout_40" columnstretch="1,1,1,1,1">
+                  <item row="0" column="1">
+                   <widget class="QPushButton" name="btn_bg_bg_run">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                    <property name="toolTipDuration">
+                     <number>5</number>
+                    </property>
+                    <property name="text">
+                     <string>Run</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <widget class="QPushButton" name="btn_bg_bg_cancel">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                    <property name="toolTipDuration">
+                     <number>5</number>
+                    </property>
+                    <property name="text">
+                     <string>Cancel</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <spacer name="horizontalSpacer_6">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item row="0" column="3">
+                   <widget class="QPushButton" name="btn_bg_bg_logs">
+                    <property name="text">
+                     <string>Logs</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="4">
+                   <spacer name="horizontalSpacer_7">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QWidget" name="widget_5" native="true">
+               <property name="font">
+                <font>
+                 <family>.SF NS Text</family>
+                </font>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_87">
+                <item row="0" column="0">
+                 <layout class="QVBoxLayout" name="verticalLayout_12" stretch="2">
+                  <item>
+                   <widget class="QTabWidget" name="w_bg_preview">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                    <property name="currentIndex">
+                     <number>0</number>
+                    </property>
+                    <widget class="QWidget" name="tab_bg_flagfile">
+                     <attribute name="title">
+                      <string>Flag file</string>
+                     </attribute>
+                     <layout class="QGridLayout" name="gridLayout_89">
+                      <item row="0" column="0">
+                       <layout class="QHBoxLayout" name="horizontalLayout_14" stretch="1,0">
+                        <item>
+                         <widget class="QLabel" name="label_bg_flagfile_path">
+                          <property name="toolTip">
+                           <string/>
+                          </property>
+                          <property name="text">
+                           <string>Flag file</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_bg_flagfile_tooltip">
+                          <property name="font">
+                           <font>
+                            <family>.SF NS Text</family>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>[?]</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                      <item row="1" column="0">
+                       <widget class="QPlainTextEdit" name="text_bg_flagfile_edit">
+                        <property name="font">
+                         <font>
+                          <family>.SF NS Text</family>
+                         </font>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="2" column="0">
+                       <widget class="QPushButton" name="btn_bg_flagfile_save">
+                        <property name="font">
+                         <font>
+                          <family>.SF NS Text</family>
+                         </font>
+                        </property>
+                        <property name="text">
+                         <string>Save</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                    <widget class="QWidget" name="tab_bg_threshs_color_variance">
+                     <attribute name="title">
+                      <string>Color Thresholds</string>
+                     </attribute>
+                     <layout class="QGridLayout" name="gridLayout_90">
+                      <item row="0" column="0">
+                       <layout class="QGridLayout" name="grid_bg_threshs_color_variance" rowstretch="0,1,0">
+                        <item row="0" column="0">
+                         <layout class="QHBoxLayout" name="horizontalLayout_15" stretch="1,0">
+                          <item>
+                           <widget class="QLabel" name="label_bg_threshs_filename_color_variance">
+                            <property name="font">
+                             <font>
+                              <family>Al Bayan</family>
+                             </font>
+                            </property>
+                            <property name="text">
+                             <string>Filename</string>
+                            </property>
+                            <property name="alignment">
+                             <set>Qt::AlignCenter</set>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QLabel" name="label_bg_threshs_tooltip_color_variance">
+                            <property name="text">
+                             <string>[?]</string>
+                            </property>
+                            <property name="alignment">
+                             <set>Qt::AlignCenter</set>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </item>
+                        <item row="1" column="0">
+                         <widget class="ImageWidget" name="w_bg_threshs_image_color_variance" native="true">
+                          <layout class="QGridLayout" name="gridLayout_92">
+                           <item row="0" column="0">
+                            <widget class="ImageViewer" name="w_bg_image_viewer_color_variance" native="true"/>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                        <item row="2" column="0">
+                         <layout class="QGridLayout" name="gridLayout_93">
+                          <item row="0" column="0">
+                           <widget class="QLabel" name="label_bg_threshs_1_name_color_variance">
+                            <property name="text">
+                             <string/>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="0" column="1">
+                           <widget class="QSlider" name="hs_bg_threshs_1_color_variance">
+                            <property name="orientation">
+                             <enum>Qt::Horizontal</enum>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="0" column="2">
+                           <widget class="QLabel" name="label_bg_threshs_1_color_variance">
+                            <property name="text">
+                             <string/>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="1" column="0">
+                           <widget class="QLabel" name="label_bg_threshs_2_name_color_variance">
+                            <property name="text">
+                             <string/>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="1" column="1">
+                           <widget class="QSlider" name="hs_bg_threshs_2_color_variance">
+                            <property name="orientation">
+                             <enum>Qt::Horizontal</enum>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="1" column="2">
+                           <widget class="QLabel" name="label_bg_threshs_2_color_variance">
+                            <property name="text">
+                             <string/>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </item>
+                       </layout>
+                      </item>
+                     </layout>
+                    </widget>
+                    <widget class="QWidget" name="tab_bg_log">
+                     <attribute name="title">
+                      <string>Logs</string>
+                     </attribute>
+                     <layout class="QGridLayout" name="gridLayout_94">
+                      <item row="0" column="0">
+                       <widget class="QPlainTextEdit" name="text_bg_log">
+                        <property name="font">
+                         <font>
+                          <family>.SF NS Text</family>
+                         </font>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="0">
+                       <widget class="QPushButton" name="btn_bg_log_clear">
+                        <property name="text">
+                         <string>Clear</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="t_depth">
+            <attribute name="title">
+             <string>3. Depth estimation</string>
+            </attribute>
+            <layout class="QGridLayout" name="gridLayout_24">
+             <item row="0" column="0">
+              <widget class="QGroupBox" name="gb_depth_options">
+               <property name="font">
+                <font>
+                 <family>.SF NS Text</family>
+                </font>
+               </property>
+               <property name="title">
+                <string>Options</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_36">
+                <item row="0" column="0">
+                 <layout class="QGridLayout" name="gridLayout_4" columnstretch="3,1,1">
+                  <item row="0" column="0">
+                   <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0,0">
+                    <item>
+                     <widget class="QLabel" name="label_depth_options_res">
+                      <property name="text">
+                       <string>Depth resolution (per camera)</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="val_depth_options_res"/>
+                    </item>
+                   </layout>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QCheckBox" name="cb_depth_options_partial_360">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>Partial coverage</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <widget class="QCheckBox" name="cb_depth_options_use_bg">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>Use background</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QGroupBox" name="gb_depth_farm">
+               <property name="font">
+                <font>
+                 <family>.SF NS Text</family>
+                </font>
+               </property>
+               <property name="title">
+                <string>Farm</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_16">
+                <item row="0" column="0">
+                 <widget class="QWidget" name="w_depth_farm_lan" native="true">
+                  <layout class="QGridLayout" name="gridLayout_15">
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item row="0" column="0">
+                    <layout class="QGridLayout" name="gridLayout_97">
+                     <item row="0" column="1">
+                      <layout class="QHBoxLayout" name="horizontalLayout_25">
+                       <item>
+                        <widget class="QLabel" name="label_depth_farm_workers">
+                         <property name="text">
+                          <string>Workers</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="ComboBoxCheckable" name="dd_depth_farm_workers">
+                         <property name="font">
+                          <font>
+                           <family>.SF NS Text</family>
+                          </font>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label_depth_farm_lan">
+                       <property name="text">
+                        <string>LAN</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QWidget" name="w_depth_farm_s3" native="true">
+                  <layout class="QGridLayout" name="gridLayout_14">
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item row="0" column="0">
+                    <layout class="QGridLayout" name="gridLayout_12">
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label_depth_farm_aws">
+                       <property name="text">
+                        <string>AWS</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <layout class="QGridLayout" name="gridLayout_10">
+                       <item row="0" column="0">
+                        <widget class="QLabel" name="label_depth_farm_num_workers">
+                         <property name="text">
+                          <string>Number of workers</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="1">
+                        <widget class="QSpinBox" name="spin_depth_farm_num_workers">
+                         <property name="minimum">
+                          <number>1</number>
+                         </property>
+                         <property name="maximum">
+                          <number>999</number>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item row="0" column="2">
+                      <widget class="QComboBox" name="dd_depth_farm_ec2"/>
+                     </item>
+                     <item row="0" column="4">
+                      <widget class="QPushButton" name="btn_depth_farm_terminate_cluster">
+                       <property name="text">
+                        <string>Terminate Cluster</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="3">
+                      <widget class="QPushButton" name="btn_depth_farm_ec2_dashboard">
+                       <property name="text">
+                        <string>EC2 Dashboard</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QGroupBox" name="gb_depth_video">
+               <property name="title">
+                <string>Video</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_21">
+                <item row="1" column="0">
+                 <layout class="QGridLayout" name="gridLayout_17" columnstretch="0,0,0,0">
+                  <item row="0" column="1">
+                   <widget class="ComboBoxAutocomplete" name="dd_depth_video_first">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="3">
+                   <widget class="ComboBoxAutocomplete" name="dd_depth_video_last">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <widget class="QLabel" name="label_depth_video_last">
+                    <property name="text">
+                     <string>Last</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_depth_video_first">
+                    <property name="text">
+                     <string>First</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QCheckBox" name="cb_depth_recompute">
+                  <property name="font">
+                   <font>
+                    <family>.SF NS Text</family>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Re-compute</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="0">
+                 <layout class="QGridLayout" name="gridLayout_13" columnstretch="1,1,1,1,1">
+                  <item row="0" column="1">
+                   <widget class="QPushButton" name="btn_depth_video_run">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                    <property name="toolTipDuration">
+                     <number>5</number>
+                    </property>
+                    <property name="text">
+                     <string>Run</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <widget class="QPushButton" name="btn_depth_video_cancel">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                    <property name="toolTipDuration">
+                     <number>5</number>
+                    </property>
+                    <property name="text">
+                     <string>Cancel</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="3">
+                   <widget class="QPushButton" name="btn_depth_video_logs">
+                    <property name="text">
+                     <string>Logs</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <spacer name="horizontalSpacer_4">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item row="0" column="4">
+                   <spacer name="horizontalSpacer_5">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </item>
+                <item row="0" column="0">
+                 <layout class="QGridLayout" name="gridLayout_57">
+                  <item row="0" column="3">
+                   <widget class="ComboBoxAutocomplete" name="dd_depth_video_camera">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <widget class="QLabel" name="label_depth_video_camera">
+                    <property name="text">
+                     <string>Test camera</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="ComboBoxAutocomplete" name="dd_depth_video_frame_bg">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_depth_video_frame_bg">
+                    <property name="text">
+                     <string>Background frame</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QWidget" name="widget_2" native="true">
+               <property name="font">
+                <font>
+                 <family>.SF NS Text</family>
+                </font>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_31">
+                <item row="0" column="0">
+                 <layout class="QVBoxLayout" name="verticalLayout_2" stretch="2">
+                  <item>
+                   <widget class="QTabWidget" name="w_depth_preview">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                    <property name="currentIndex">
+                     <number>0</number>
+                    </property>
+                    <widget class="QWidget" name="tab_depth_flagfile">
+                     <attribute name="title">
+                      <string>Flag file</string>
+                     </attribute>
+                     <layout class="QGridLayout" name="gridLayout">
+                      <item row="0" column="0">
+                       <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,0">
+                        <item>
+                         <widget class="QLabel" name="label_depth_flagfile_path">
+                          <property name="toolTip">
+                           <string/>
+                          </property>
+                          <property name="text">
+                           <string>Flag file</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_depth_flagfile_tooltip">
+                          <property name="font">
+                           <font>
+                            <family>.SF NS Text</family>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>[?]</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                      <item row="1" column="0">
+                       <widget class="QPlainTextEdit" name="text_depth_flagfile_edit">
+                        <property name="font">
+                         <font>
+                          <family>.SF NS Text</family>
+                         </font>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="2" column="0">
+                       <widget class="QPushButton" name="btn_depth_flagfile_save">
+                        <property name="font">
+                         <font>
+                          <family>.SF NS Text</family>
+                         </font>
+                        </property>
+                        <property name="text">
+                         <string>Save</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                    <widget class="QWidget" name="tab_depth_threshs_color_variance">
+                     <attribute name="title">
+                      <string>Color Thresholds</string>
+                     </attribute>
+                     <layout class="QGridLayout" name="gridLayout_65">
+                      <item row="0" column="0">
+                       <layout class="QGridLayout" name="grid_depth_threshs_color_variance" rowstretch="0,1,0">
+                        <item row="0" column="0">
+                         <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="1,0">
+                          <item>
+                           <widget class="QLabel" name="label_depth_threshs_filename_color_variance">
+                            <property name="font">
+                             <font>
+                              <family>Al Bayan</family>
+                             </font>
+                            </property>
+                            <property name="text">
+                             <string>Filename</string>
+                            </property>
+                            <property name="alignment">
+                             <set>Qt::AlignCenter</set>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QLabel" name="label_depth_threshs_tooltip_color_variance">
+                            <property name="text">
+                             <string>[?]</string>
+                            </property>
+                            <property name="alignment">
+                             <set>Qt::AlignCenter</set>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </item>
+                        <item row="1" column="0">
+                         <widget class="ImageWidget" name="w_depth_threshs_image_color_variance" native="true">
+                          <layout class="QGridLayout" name="gridLayout_46">
+                           <item row="0" column="0">
+                            <widget class="ImageViewer" name="w_depth_image_viewer_color_variance" native="true"/>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                        <item row="2" column="0">
+                         <layout class="QGridLayout" name="gridLayout_7">
+                          <item row="0" column="0">
+                           <widget class="QLabel" name="label_depth_threshs_1_name_color_variance">
+                            <property name="text">
+                             <string/>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="0" column="1">
+                           <widget class="QSlider" name="hs_depth_threshs_1_color_variance">
+                            <property name="orientation">
+                             <enum>Qt::Horizontal</enum>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="0" column="2">
+                           <widget class="QLabel" name="label_depth_threshs_1_color_variance">
+                            <property name="text">
+                             <string/>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="1" column="0">
+                           <widget class="QLabel" name="label_depth_threshs_2_name_color_variance">
+                            <property name="text">
+                             <string/>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="1" column="1">
+                           <widget class="QSlider" name="hs_depth_threshs_2_color_variance">
+                            <property name="orientation">
+                             <enum>Qt::Horizontal</enum>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="1" column="2">
+                           <widget class="QLabel" name="label_depth_threshs_2_color_variance">
+                            <property name="text">
+                             <string/>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </item>
+                       </layout>
+                      </item>
+                     </layout>
+                    </widget>
+                    <widget class="QWidget" name="tab_depth_threshs_fg_mask">
+                     <attribute name="title">
+                      <string>Mask Thresholds</string>
+                     </attribute>
+                     <layout class="QGridLayout" name="gridLayout_38">
+                      <item row="0" column="0">
+                       <layout class="QGridLayout" name="grid_depth_threshs_fg_mask" rowstretch="0,1,0">
+                        <item row="0" column="0">
+                         <layout class="QHBoxLayout" name="horizontalLayout_20" stretch="1,0">
+                          <item>
+                           <widget class="QLabel" name="label_depth_threshs_filename_fg_mask">
+                            <property name="font">
+                             <font>
+                              <family>Al Bayan</family>
+                             </font>
+                            </property>
+                            <property name="text">
+                             <string>Filename</string>
+                            </property>
+                            <property name="alignment">
+                             <set>Qt::AlignCenter</set>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QLabel" name="label_depth_threshs_tooltip_fg_mask">
+                            <property name="text">
+                             <string>[?]</string>
+                            </property>
+                            <property name="alignment">
+                             <set>Qt::AlignCenter</set>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </item>
+                        <item row="1" column="0">
+                         <widget class="ImageWidget" name="w_depth_threshs_image_fg_mask" native="true">
+                          <layout class="QGridLayout" name="gridLayout_105">
+                           <item row="0" column="0">
+                            <widget class="ImageViewer" name="w_depth_image_viewer_fg_mask" native="true"/>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                        <item row="2" column="0">
+                         <layout class="QGridLayout" name="gridLayout_106">
+                          <item row="0" column="0">
+                           <widget class="QLabel" name="label_depth_threshs_1_name_fg_mask">
+                            <property name="text">
+                             <string/>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="0" column="1">
+                           <widget class="QSlider" name="hs_depth_threshs_1_fg_mask">
+                            <property name="orientation">
+                             <enum>Qt::Horizontal</enum>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="0" column="2">
+                           <widget class="QLabel" name="label_depth_threshs_1_fg_mask">
+                            <property name="text">
+                             <string/>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="1" column="0">
+                           <widget class="QLabel" name="label_depth_threshs_2_name_fg_mask">
+                            <property name="text">
+                             <string/>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="1" column="1">
+                           <widget class="QSlider" name="hs_depth_threshs_2_fg_mask">
+                            <property name="orientation">
+                             <enum>Qt::Horizontal</enum>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="1" column="2">
+                           <widget class="QLabel" name="label_depth_threshs_2_fg_mask">
+                            <property name="text">
+                             <string/>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="2" column="0">
+                           <widget class="QLabel" name="label_depth_threshs_3_name_fg_mask">
+                            <property name="text">
+                             <string/>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="2" column="1">
+                           <widget class="QSlider" name="hs_depth_threshs_3_fg_mask">
+                            <property name="orientation">
+                             <enum>Qt::Horizontal</enum>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="2" column="2">
+                           <widget class="QLabel" name="label_depth_threshs_3_fg_mask">
+                            <property name="text">
+                             <string/>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </item>
+                       </layout>
+                      </item>
+                     </layout>
+                    </widget>
+                    <widget class="QWidget" name="tab_depth_log">
+                     <attribute name="title">
+                      <string>Logs</string>
+                     </attribute>
+                     <layout class="QGridLayout" name="gridLayout_20">
+                      <item row="0" column="0">
+                       <widget class="QPlainTextEdit" name="text_depth_log">
+                        <property name="font">
+                         <font>
+                          <family>.SF NS Text</family>
+                         </font>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="0">
+                       <widget class="QPushButton" name="btn_depth_log_clear">
+                        <property name="text">
+                         <string>Clear</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="t_export">
+            <attribute name="title">
+             <string>4. Export</string>
+            </attribute>
+            <layout class="QGridLayout" name="gridLayout_9">
+             <item row="0" column="0">
+              <widget class="QGroupBox" name="gb_export_options">
+               <property name="font">
+                <font>
+                 <family>.SF NS Text</family>
+                </font>
+               </property>
+               <property name="title">
+                <string>Options</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_26">
+                <item row="0" column="0">
+                 <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="0,0">
+                  <item>
+                   <widget class="QLabel" name="label_export_options_res">
+                    <property name="text">
+                     <string>Output resolution</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="val_export_options_res"/>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QGroupBox" name="gb_export_farm">
+               <property name="font">
+                <font>
+                 <family>.SF NS Text</family>
+                </font>
+               </property>
+               <property name="title">
+                <string>Farm</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_25">
+                <item row="0" column="0">
+                 <widget class="QWidget" name="w_export_farm_lan" native="true">
+                  <layout class="QGridLayout" name="gridLayout_23">
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item row="0" column="0">
+                    <layout class="QGridLayout" name="gridLayout_99">
+                     <item row="0" column="1">
+                      <layout class="QHBoxLayout" name="horizontalLayout_26">
+                       <item>
+                        <widget class="QLabel" name="label_export_farm_workers">
+                         <property name="text">
+                          <string>Workers</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="ComboBoxCheckable" name="dd_export_farm_workers">
+                         <property name="font">
+                          <font>
+                           <family>.SF NS Text</family>
+                          </font>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label_export_farm_lan">
+                       <property name="text">
+                        <string>LAN</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QWidget" name="w_export_farm_s3" native="true">
+                  <layout class="QGridLayout" name="gridLayout_18">
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item row="0" column="0">
+                    <layout class="QGridLayout" name="gridLayout_28">
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label_export_farm_aws">
+                       <property name="text">
+                        <string>AWS</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <layout class="QGridLayout" name="gridLayout_30">
+                       <item row="0" column="0">
+                        <widget class="QLabel" name="label_export_farm_num_workers">
+                         <property name="text">
+                          <string>Number of workers</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="1">
+                        <widget class="QSpinBox" name="spin_export_farm_num_workers">
+                         <property name="minimum">
+                          <number>1</number>
+                         </property>
+                         <property name="maximum">
+                          <number>999</number>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item row="0" column="2">
+                      <widget class="QComboBox" name="dd_export_farm_ec2"/>
+                     </item>
+                     <item row="0" column="4">
+                      <widget class="QPushButton" name="btn_export_farm_terminate_cluster">
+                       <property name="text">
+                        <string>Terminate Cluster</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="3">
+                      <widget class="QPushButton" name="btn_export_farm_ec2_dashboard">
+                       <property name="text">
+                        <string>EC2 Dashboard</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QGroupBox" name="gb_export_data">
+               <property name="title">
+                <string>Export</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_29">
+                <item row="0" column="0">
+                 <layout class="QGridLayout" name="gridLayout_27">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_export_data_data_color">
+                    <property name="text">
+                     <string>Type</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QComboBox" name="dd_export_data_type">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <widget class="QLabel" name="label_export_data_format">
+                    <property name="text">
+                     <string>Format</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="3">
+                   <widget class="QComboBox" name="dd_export_data_format">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="4">
+                   <widget class="QLabel" name="label_export_data_file_type">
+                    <property name="text">
+                     <string>File type</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="5">
+                   <widget class="QComboBox" name="dd_export_data_file_type">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_export_data_first">
+                    <property name="text">
+                     <string>First</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="ComboBoxAutocomplete" name="dd_export_data_first">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="2">
+                   <widget class="QLabel" name="label_export_data_last">
+                    <property name="text">
+                     <string>Last</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="3">
+                   <widget class="ComboBoxAutocomplete" name="dd_export_data_last">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item row="1" column="0">
+                 <layout class="QHBoxLayout" name="horizontalLayout_3">
+                  <item>
+                   <widget class="QCheckBox" name="cb_export_recompute">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>Re-compute</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="cb_export_alpha_blend">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>Alpha blend</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </item>
+                <item row="2" column="0">
+                 <layout class="QGridLayout" name="gridLayout_44" columnstretch="1,1,1,1,1">
+                  <item row="0" column="2">
+                   <widget class="QPushButton" name="btn_export_data_cancel">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                    <property name="toolTipDuration">
+                     <number>5</number>
+                    </property>
+                    <property name="text">
+                     <string>Cancel</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QPushButton" name="btn_export_data_run">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                    <property name="toolTipDuration">
+                     <number>5</number>
+                    </property>
+                    <property name="text">
+                     <string>Run</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <spacer name="horizontalSpacer_2">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item row="0" column="3">
+                   <widget class="QPushButton" name="btn_export_data_logs">
+                    <property name="text">
+                     <string>Logs</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QPushButton" name="btn_export_data_download_meshes">
+                    <property name="text">
+                     <string>Download Meshes</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="2">
+                   <widget class="QPushButton" name="btn_export_data_smr_view">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                    <property name="toolTipDuration">
+                     <number>5</number>
+                    </property>
+                    <property name="text">
+                     <string>6DoF Preview</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="3">
+                   <widget class="QPushButton" name="btn_export_data_rift_view">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                    <property name="toolTipDuration">
+                     <number>5</number>
+                    </property>
+                    <property name="text">
+                     <string>View in VR</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="4">
+                   <spacer name="horizontalSpacer_3">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QWidget" name="widget" native="true">
+               <property name="font">
+                <font>
+                 <family>.SF NS Text</family>
+                </font>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_69">
+                <item row="0" column="0">
+                 <layout class="QVBoxLayout" name="verticalLayout_7" stretch="4">
+                  <item>
+                   <widget class="QTabWidget" name="w_export_preview">
+                    <property name="font">
+                     <font>
+                      <family>.SF NS Text</family>
+                     </font>
+                    </property>
+                    <property name="currentIndex">
+                     <number>0</number>
+                    </property>
+                    <widget class="QWidget" name="tab_export_flagfile">
+                     <attribute name="title">
+                      <string>Flag file</string>
+                     </attribute>
+                     <layout class="QGridLayout" name="gridLayout_41">
+                      <item row="2" column="0">
+                       <widget class="QPushButton" name="btn_export_flagfile_save">
+                        <property name="font">
+                         <font>
+                          <family>.SF NS Text</family>
+                         </font>
+                        </property>
+                        <property name="text">
+                         <string>Save</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="0">
+                       <widget class="QPlainTextEdit" name="text_export_flagfile_edit">
+                        <property name="font">
+                         <font>
+                          <family>.SF NS Text</family>
+                         </font>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="0">
+                       <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="1,0">
+                        <item>
+                         <widget class="QLabel" name="label_export_flagfile_path">
+                          <property name="toolTip">
+                           <string/>
+                          </property>
+                          <property name="text">
+                           <string>Flag file</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="label_export_flagfile_tooltip">
+                          <property name="font">
+                           <font>
+                            <family>.SF NS Text</family>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>[?]</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                     </layout>
+                    </widget>
+                    <widget class="QWidget" name="tab_export_log">
+                     <attribute name="title">
+                      <string>Logs</string>
+                     </attribute>
+                     <layout class="QGridLayout" name="gridLayout_35">
+                      <item row="0" column="0">
+                       <widget class="QPlainTextEdit" name="text_export_log">
+                        <property name="font">
+                         <font>
+                          <family>.SF NS Text</family>
+                         </font>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="0">
+                       <widget class="QPushButton" name="btn_export_log_clear">
+                        <property name="text">
+                         <string>Clear</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout">
+           <item>
+            <widget class="QGroupBox" name="gb_file_explorer">
+             <property name="title">
+              <string>File Explorer</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <property name="checkable">
+              <bool>false</bool>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_19" rowstretch="0,0,0">
+              <item row="1" column="0">
+               <layout class="QVBoxLayout" name="verticalLayout_16" stretch="1,10">
+                <item>
+                 <widget class="QLabel" name="label_preview_path">
+                  <property name="text">
+                   <string>Image Preview</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_preview_image">
+                  <property name="frameShape">
+                   <enum>QFrame::NoFrame</enum>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="0" column="0">
+               <widget class="QTreeView" name="tree_file_explorer">
+                <property name="font">
+                 <font>
+                  <family>.SF NS Text</family>
+                 </font>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <layout class="QHBoxLayout" name="horizontalLayout_2">
+                <item>
+                 <spacer name="horizontalSpacer_10">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_clock">
+                  <property name="text">
+                   <string>Uptime</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLCDNumber" name="lcd_clock">
+                  <property name="frameShape">
+                   <enum>QFrame::NoFrame</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Plain</enum>
+                  </property>
+                  <property name="lineWidth">
+                   <number>0</number>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ComboBoxAutocomplete</class>
+   <extends>QComboBox</extends>
+   <header>combobox_autocomplete</header>
+  </customwidget>
+  <customwidget>
+   <class>ImageWidget</class>
+   <extends>QWidget</extends>
+   <header>widget_image_thresholds</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ImageViewer</class>
+   <extends>QWidget</extends>
+   <header>image_viewer</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ComboBoxCheckable</class>
+   <extends>QComboBox</extends>
+   <header>combobox_checkable</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+ <slots>
+  <slot>browseSlot()</slot>
+ </slots>
+</ui>

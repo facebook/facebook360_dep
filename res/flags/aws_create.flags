@@ -1,0 +1,7 @@
+--alsologtostderr=1
+--stderrthreshold=0
+--log_dir=/path/to/logs
+--csv_path=/path/to/credentials.csv
+--ec2_file=/path/to/ec2_info.txt
+--key_dir=/path/to/aws_keys
+--key_name=ec2-keypair

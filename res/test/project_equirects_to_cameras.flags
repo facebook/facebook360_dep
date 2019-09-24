@@ -1,0 +1,8 @@
+# ---------------------- Test defined I/O flags below --------------------- #
+--eqr_masks
+--rig
+--first
+--last
+--output
+# ---------------------- Test constants flags below ----------------------- #
+--cameras=cam2

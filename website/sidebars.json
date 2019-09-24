@@ -1,0 +1,8 @@
+{
+  "docs": {
+    "Introduction": ["install", "ui", "rift", "data"],
+    "Tutorial": ["rig", "calibration", "render", "workflow"],
+    "API": ["api"],
+    "Help": ["faqs", "roadmap"]
+  }
+}

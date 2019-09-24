@@ -1,0 +1,7 @@
+# ---------------------- Test defined I/O flags below --------------------- #
+--output
+--color
+--disparity
+--rig
+--frame
+# ---------------------- Test constants flags below ----------------------- #

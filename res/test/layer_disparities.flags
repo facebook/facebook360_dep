@@ -1,0 +1,8 @@
+# ---------------------- Test defined I/O flags below --------------------- #
+--rig
+--background_disp
+--foreground_disp
+--output
+--first
+--last
+# ---------------------- Test constants flags below ----------------------- #

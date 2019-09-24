@@ -1,0 +1,12 @@
+# ---------------------- Test defined I/O flags below --------------------- #
+--input_root
+--output_root
+--rig
+--first
+--last
+--color
+# ---------------------- Test constants flags below ----------------------- #
+--do_bilateral_filter=1
+--do_median_filter=1
+--save_debug_images=1
+--output_formats=png,pfm

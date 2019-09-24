@@ -1,0 +1,14 @@
+# ---------------------- Test defined I/O flags below --------------------- #
+--color
+--rig
+--first
+--last
+--disparity
+--bin
+--fused
+# ---------------------- Test constants flags below ----------------------- #
+--output_formats=idx,vtx,bc7,rgba
+--depth_scale=0.3
+--tear_ratio=0.95
+--triangles=50000
+--fuse_strip=1

@@ -1,0 +1,10 @@
+--alsologtostderr=1
+--stderrthreshold=0
+--log_dir=/path/to/output/log
+--frame=001700
+--input_root=/path/to/vid/
+--last=001700
+--level=1
+--output_root=/path/to/output
+--radius=1
+--rig=/path/to/vid/rig.json

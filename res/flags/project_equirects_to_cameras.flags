@@ -1,0 +1,9 @@
+--alsologtostderr=1
+--stderrthreshold=0
+--log_dir=/path/to/logs
+--depth=1000
+--eqr_masks=/path/to/video/eqr_masks
+--file_type=png--first=000000
+--last=000000
+--output=/path/to/video/output
+--rig=/path/to/video/rigs/rig.json

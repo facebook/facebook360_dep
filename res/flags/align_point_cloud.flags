@@ -1,0 +1,8 @@
+--alsologtostderr=1
+--stderrthreshold=0
+--log_dir=/path/to/logs
+--color=/path/to/background/color
+--output_rig=/path/to/rigs/rig_aligned.json
+--point_cloud=/path/to/lidar/points.pts
+--rig_in=/path/to/rigs/rig.json
+--rig_out=/path/to/rigs/rig_aligned.json

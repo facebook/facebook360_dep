@@ -1,0 +1,8 @@
+--alsologtostderr=1
+--stderrthreshold=0
+--log_dir=/path/to/logs
+--color=/path/to/video/color
+--disparity=/path/to/video/output/disparity
+--frame=000000
+--output=/path/to/video/output/cloud.xyz
+--rig=/path/to/video/rigs/rig_calibrated.json

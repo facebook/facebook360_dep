@@ -1,0 +1,6 @@
+--alsologtostderr=1
+--stderrthreshold=0
+--log_dir=/path/to/logs
+--catalog=/path/to/video/fused/fused.json
+--disks=/path/to/video/fused/fused_0.bin
+--rig=/path/to/video/fused/rig.json

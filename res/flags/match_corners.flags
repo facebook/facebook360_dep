@@ -1,0 +1,6 @@
+--alsologtostderr=1
+--stderrthreshold=0
+--log_dir=/path/to/logs
+--color=/path/to/video/color
+--matches=/path/to/video/output/matches.json
+--rig_in=/path/to/rigs/rig.json

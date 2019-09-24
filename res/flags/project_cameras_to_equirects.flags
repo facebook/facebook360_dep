@@ -1,0 +1,11 @@
+--alsologtostderr=1
+--stderrthreshold=0
+--log_dir=/path/to/logs
+--color=/path/to/video/color
+--depth=1000
+--eqr_width=8192
+--file_type=png
+--first=000000
+--last=000000
+--output=/path/to/video/output
+--rig=/path/to/video/rigs/rig.json

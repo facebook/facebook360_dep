@@ -1,0 +1,13 @@
+*.flags
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Makefile
+bin/
+build/
+cmake_install.cmake
+lib/
+source/thirdparty/bc7_compressor/ISPCTextureCompressor/*
+xcode/
+website/node_modules
+windows/build

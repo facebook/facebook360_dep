@@ -1,0 +1,9 @@
+# ---------------------- Test defined I/O flags below --------------------- #
+--rig
+--output_obj
+--output_equirect
+--output_camera
+--output_camera_id
+--output_cross_section
+# ---------------------- Test constants flags below ----------------------- #
+--rearrange=tetra

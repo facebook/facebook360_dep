@@ -1,0 +1,7 @@
+# ---------------------- Test defined I/O flags below --------------------- #
+--frame
+--rig_in
+--matches
+--color
+# ---------------------- Test constants flags below ----------------------- #
+--enable_timing=True

@@ -1,0 +1,15 @@
+--alsologtostderr=1
+--stderrthreshold=0
+--log_dir=/path/to/logs
+--first=000000
+--input_root=/path/to/vid
+--last=000000
+--master=127.0.0.1
+--output_root=/path/to/video/output
+--rig=/path/to/video/rigs/rig_calibrated.json
+--run_convert_to_binary=True
+--run_depth_estimation=True
+--run_fusion=True
+--run_generate_foreground_masks=True
+--run_precompute_resizes=True
+--workers=127.0.0.1

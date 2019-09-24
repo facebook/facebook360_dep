@@ -1,0 +1,9 @@
+--alsologtostderr=1
+--stderrthreshold=0
+--log_dir=/path/to/logs
+--calibrated_rig=/path/to/video/rigs/rig_calibrated.json
+--color=/path/to/video/color
+--output=/path/to/video/output
+--rig_blue=/path/to/video/rigs/rig_blue.json
+--rig_green=/path/to/video/rigs/rig_green.json
+--rig_red=/path/to/video/rigs/rig_red.json

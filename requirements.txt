@@ -1,0 +1,10 @@
+absl-py
+awscli
+boto3
+colorama
+docker
+imageio
+netifaces
+opencv-python
+pyvidia
+watchdog

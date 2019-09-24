@@ -1,0 +1,10 @@
+# ---------------------- Test defined I/O flags below --------------------- #
+--first
+--last
+--output
+--color
+--calibrated_rig
+--rig_blue
+--rig_green
+--rig_red
+# ---------------------- Test constants flags below ----------------------- #

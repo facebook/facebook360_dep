@@ -1,0 +1,5 @@
+# ---------------------- Test defined I/O flags below --------------------- #
+--input_image_path
+--output_image_path
+--isp_config_path
+# ---------------------- Test constants flags below ----------------------- #
