@@ -1,0 +1,299 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>API · facebook360_dep</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;We automatically generate our API documentation with Doxygen:&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="API · facebook360_dep"/><meta property="og:type" content="website"/><meta property="og:url" content="https://facebook.github.io/"/><meta property="og:description" content="&lt;p&gt;We automatically generate our API documentation with Doxygen:&lt;/p&gt;
+"/><meta property="og:image" content="https://facebook.github.io/img/favicon.ico"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://facebook.github.io/img/favicon.ico"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.ico" alt="facebook360_dep"/><h2 class="headerTitleWithLogo">facebook360_dep</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/install" target="_self">Docs</a></li><li class="siteNavGroupActive"><a href="/docs/rig" target="_self">Tutorial</a></li><li class="siteNavGroupActive siteNavItemActive"><a href="/docs/api" target="_self">API Reference</a></li><li class="siteNavGroupActive"><a href="/docs/roadmap" target="_self">Roadmap</a></li><li class="siteNavGroupActive"><a href="/docs/faqs" target="_self">Help</a></li><li class=""><a href="https://github.com/facebook/facebook360_dep" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>API</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Introduction</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/install">Get Started</a></li><li class="navListItem"><a class="navItem" href="/docs/ui">User Interface</a></li><li class="navListItem"><a class="navItem" href="/docs/rift">Rift Viewer</a></li><li class="navListItem"><a class="navItem" href="/docs/data">Data</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Tutorial</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/rig">Rig</a></li><li class="navListItem"><a class="navItem" href="/docs/calibration">Calibration</a></li><li class="navListItem"><a class="navItem" href="/docs/render">Render</a></li><li class="navListItem"><a class="navItem" href="/docs/workflow">Workflows</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/docs/api">API</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Help</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/faqs">FAQs</a></li><li class="navListItem"><a class="navItem" href="/docs/roadmap">Roadmap</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">API</h1></header><article><div><span><p>We automatically generate our API documentation with Doxygen:</p>
+<ul>
+<li><a href="/scripts/html/">Scripts (Python)</a></li>
+<li><a href="/source/html/">Source (C++)</a></li>
+</ul>
+<p>For quick reference, here is a list of the binaries in our repository and descriptions of
+their uses along with an example.</p>
+<h2><a class="anchor" aria-hidden="true" id="aligncolors"></a><a href="#aligncolors" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>AlignColors</h2>
+<p>Aligns colors using separate (calibrated) color rigs.</p>
+<pre><code class="hljs">./AlignColors \
+-<span class="ruby">-first=<span class="hljs-number">000000</span> \
+</span>-<span class="ruby">-last=<span class="hljs-number">000000</span> \
+</span>-<span class="ruby">-output=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/output \
+</span></span>-<span class="ruby"><span class="hljs-regexp">-color=/path</span><span class="hljs-regexp">/to/video</span><span class="hljs-regexp">/color \
+</span></span>-<span class="ruby"><span class="hljs-regexp">-calibrated_rig=/path</span><span class="hljs-regexp">/to/rigs</span><span class="hljs-regexp">/rig_calibrated.json \
+</span></span>-<span class="ruby"><span class="hljs-regexp">-rig_blue=/path</span><span class="hljs-regexp">/to/rigs</span><span class="hljs-regexp">/rig_blue.json \
+</span></span>-<span class="ruby"><span class="hljs-regexp">-rig_green=/path</span><span class="hljs-regexp">/to/rigs</span><span class="hljs-regexp">/rig_green.json \
+</span></span>-<span class="ruby"><span class="hljs-regexp">-rig_red=/path</span><span class="hljs-regexp">/to/rigs</span><span class="hljs-regexp">/rig_red.json
+</span></span></code></pre>
+<h2><a class="anchor" aria-hidden="true" id="alignpointcloud"></a><a href="#alignpointcloud" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>AlignPointCloud</h2>
+<p>Aligns point cloud to camera rig. The transformation includes translation, rotation and scaling.</p>
+<pre><code class="hljs">./AlignPointCloud \
+-<span class="ruby">-color=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/background/color</span> \
+</span>-<span class="ruby">-point_cloud=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/lidar/points</span>.pts \
+</span>-<span class="ruby">-rig_in=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/rigs/rig</span>.json \
+</span>-<span class="ruby">-rig_out=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/rigs/rig</span>_aligned.json
+</span></code></pre>
+<h2><a class="anchor" aria-hidden="true" id="calibration"></a><a href="#calibration" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Calibration</h2>
+<p>Calibrates an uncalibrated rig by feature matching and performing geometric calibration
+on a sample frame.</p>
+<pre><code class="hljs">./Calibration \
+-<span class="ruby">-color=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/video/color</span> \
+</span>-<span class="ruby">-matches=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/output/matches</span>.json \
+</span>-<span class="ruby">-rig_in=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/rigs/rig</span>.json \
+</span>-<span class="ruby">-rig_out=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/rigs/rig</span>_calibrated.json \
+</span>-<span class="ruby">-frame=<span class="hljs-number">000000</span>
+</span></code></pre>
+<h2><a class="anchor" aria-hidden="true" id="calibrationlibmain"></a><a href="#calibrationlibmain" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>CalibrationLibMain</h2>
+<p>Calibrates an uncalibrated rig by feature matching and performing geometric calibration
+on a sample frame. Unlike Calibration, this app takes fixed command line arguments.</p>
+<pre><code class="hljs">./CalibrationLibMain \
+/<span class="hljs-type">path</span>/<span class="hljs-keyword">to</span>/rigs/rig_calibrated.json \
+/<span class="hljs-type">path</span>/<span class="hljs-keyword">to</span>/output/matches.json \
+/<span class="hljs-type">path</span>/<span class="hljs-keyword">to</span>/rigs/rig.json \
+/<span class="hljs-type">path</span>/<span class="hljs-keyword">to</span>/video/color
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="computerephotographyerrors"></a><a href="#computerephotographyerrors" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ComputeRephotographyErrors</h2>
+<p>Computes rephotography error for a set of frames. Rephotography error for a single frame is
+computed by generating cubemaps for both the reference and the rendered data, translating the
+cubemap origin to the center of the reference camera, and computing the MSSIM for each camera.</p>
+<pre><code class="hljs">./ComputeRephotographyErrors \
+-<span class="ruby">-first=<span class="hljs-number">000000</span> \
+</span>-<span class="ruby">-last=<span class="hljs-number">000000</span> \
+</span>-<span class="ruby">-output=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/output \
+</span></span>-<span class="ruby"><span class="hljs-regexp">-rig=/path</span><span class="hljs-regexp">/to/rigs</span><span class="hljs-regexp">/rig.json \
+</span></span>-<span class="ruby"><span class="hljs-regexp">-color=/path</span><span class="hljs-regexp">/to/video</span><span class="hljs-regexp">/color \
+</span></span>-<span class="ruby"><span class="hljs-regexp">-disparity=/path</span><span class="hljs-regexp">/to/output</span><span class="hljs-regexp">/disparity
+</span></span></code></pre>
+<h2><a class="anchor" aria-hidden="true" id="converttobinary"></a><a href="#converttobinary" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ConvertToBinary</h2>
+<p>Expects all files to be in the format <code>&lt;dir&gt;/&lt;camera&gt;/&lt;frame&gt;.extension</code></p>
+<p>If <color> is specified:
+Read .png files and save them as .rgba files in <bin> folder
+If <disparity> is specified:
+Read .pfm files and save them as .vtx and .idx files in <bin> folder</p>
+<p><bin> folder is created for each frame if it does not exist</p>
+<p>If <rgba> is specified:
+Convert color image into an RGBA binary stream</p>
+<p>If <obj> is specified:
+Read .vtx and .idx files from <bin> and save .obj files to <obj> folder</p>
+<pre><code class="hljs">./ConvertToBinary \
+-<span class="ruby">-color=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/video/color</span> \
+</span>-<span class="ruby">-rig=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/rigs/rig</span>.json \
+</span>-<span class="ruby">-first=<span class="hljs-number">000000</span> \
+</span>-<span class="ruby">-last=<span class="hljs-number">000000</span> \
+</span>-<span class="ruby">-disparity=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/output/disparity</span> \
+</span>-<span class="ruby">-bin=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/output/bin</span> \
+</span>-<span class="ruby">-fused=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/output/fused</span>
+</span></code></pre>
+<h2><a class="anchor" aria-hidden="true" id="createobjfromdisparityequirect"></a><a href="#createobjfromdisparityequirect" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>CreateObjFromDisparityEquirect</h2>
+<p>Creates an OBJ (optionally with texturing) from a disparity equirect.</p>
+<pre><code class="hljs">./CreateObjFromDisparityEquirect \
+-<span class="ruby">-input_png_color=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/equirects/color</span>.png \
+</span>-<span class="ruby">-input_png_disp=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/equirects/disparity</span>.png \
+</span>-<span class="ruby">-output_obj=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/output/test</span>.obj
+</span></code></pre>
+<h2><a class="anchor" aria-hidden="true" id="derpcli"></a><a href="#derpcli" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>DerpCLI</h2>
+<p>Runs depth estimation on a set of frames. We assume the inputs have already been resized into
+the appropriate pyramid level widths before execution. See scripts/render/config.py to see
+the assumed widths.</p>
+<pre><code class="hljs">./DerpCLI \
+-<span class="ruby">-input_root=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/ \
+</span></span>-<span class="ruby"><span class="hljs-regexp">-output_root=/path</span><span class="hljs-regexp">/to/output</span> \
+</span>-<span class="ruby">-rig=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/rigs/rig</span>.json \
+</span>-<span class="ruby">-first=<span class="hljs-number">000000</span> \
+</span>-<span class="ruby">-last=<span class="hljs-number">000000</span>
+</span></code></pre>
+<h2><a class="anchor" aria-hidden="true" id="generatecameraoverlaps"></a><a href="#generatecameraoverlaps" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>GenerateCameraOverlaps</h2>
+<p>Generates a series of images of the rig cameras projected into destination cameras over
+a series of fixed depths.</p>
+<pre><code class="hljs">./GenerateCameraOverlaps \
+--frame=<span class="hljs-number">000000</span> \
+--output=/path/to/output \
+--rig=/path/to/rigs/rig<span class="hljs-selector-class">.json</span> \
+--<span class="hljs-attribute">color</span>=/path/to/video/color
+
+A typical extension of this is creating <span class="hljs-selector-tag">a</span> <span class="hljs-selector-tag">video</span> over the series of depth generated, <span class="hljs-selector-tag">i</span><span class="hljs-selector-class">.e</span>.:
+
+ffmpeg -framerate <span class="hljs-number">10</span> -pattern_type glob \
+-<span class="hljs-selector-tag">i</span> <span class="hljs-string">'/path/to/output/overlaps/cam0/*.png'</span> -c:v libx264 -pix_fmt yuv420p \
+-vf <span class="hljs-string">"scale=trunc(iw/2)*2:trunc(ih/2)*2"</span> /path/to/output/overlaps/cam0<span class="hljs-selector-class">.mp4</span> -y
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="generateequirect"></a><a href="#generateequirect" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>GenerateEquirect</h2>
+<p>Generates an equirect from a set of color images at a uniformly spaced range of depths.</p>
+<pre><code class="hljs">./GenerateEquirect \
+<span class="hljs-attribute">--color</span>=/path/to/video/color \
+<span class="hljs-attribute">--output</span>=/path/to/output \
+<span class="hljs-attribute">--rig</span>=/path/to/rigs/rig.json \
+<span class="hljs-attribute">--frame</span>=000000 \
+<span class="hljs-attribute">--depth_min</span>=1.0 \
+<span class="hljs-attribute">--depth_max</span>=1000.0 \
+<span class="hljs-attribute">--num_depths</span>=50
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="generateforegroundmasks"></a><a href="#generateforegroundmasks" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>GenerateForegroundMasks</h2>
+<p>Generates foreground masks for a series of frames assuming a fixed background. Various
+parameters can be tweaked to improve the mask accuracy.</p>
+<pre><code class="hljs">./GenerateForegroundMasks \
+-<span class="ruby">-first=<span class="hljs-number">000000</span> \
+</span>-<span class="ruby">-last=<span class="hljs-number">000000</span> \
+</span>-<span class="ruby">-rig=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/rigs/rig</span>.json \
+</span>-<span class="ruby">-color=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/video/color</span> \
+</span>-<span class="ruby">-background_color=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/background/color</span> \
+</span>-<span class="ruby">-foreground_masks=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/video/output</span>
+</span></code></pre>
+<h2><a class="anchor" aria-hidden="true" id="generatekeypointprojections"></a><a href="#generatekeypointprojections" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>GenerateKeypointProjections</h2>
+<p>Reprojects a grid of keypoints to another camera at different depths.</p>
+<pre><code class="hljs">./GenerateKeypointProjections \
+-<span class="ruby">-rig=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/rigs/rig</span>.json \
+</span>-<span class="ruby">-output_dir=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/output
+</span></span></code></pre>
+<h2><a class="anchor" aria-hidden="true" id="geometriccalibration"></a><a href="#geometriccalibration" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>GeometricCalibration</h2>
+<p>Performs geometric calibration on a sample frame. The results of the feature matcher should
+be available before execution.</p>
+<pre><code class="hljs">./GeometricCalibration \
+-<span class="ruby">-color=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/video/color</span> \
+</span>-<span class="ruby">-matches=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/output/matches</span>.json \
+</span>-<span class="ruby">-rig_in=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/rigs/rig</span>.json \
+</span>-<span class="ruby">-rig_out=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/rigs/rig</span>_calibrated.json \
+</span>-<span class="ruby">-frame=<span class="hljs-number">000000</span>
+</span></code></pre>
+<h2><a class="anchor" aria-hidden="true" id="geometricconsistency"></a><a href="#geometricconsistency" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>GeometricConsistency</h2>
+<p>Compute initial depth for every camera
+Repeat pass_count times:
+Clean away depths that are implausible
+Recompute depths using clean depths to estimate occlusions</p>
+<pre><code class="hljs">GeometricConsistency \
+<span class="hljs-params">--color</span> <span class="hljs-string">/path/to/color</span> \
+<span class="hljs-params">--output</span> <span class="hljs-string">/path/to/output</span> \
+<span class="hljs-params">--rig</span> <span class="hljs-string">/path/to/rigs/rig.json</span> \
+<span class="hljs-params">--first</span> 000000 \
+<span class="hljs-params">--last</span> 000000
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="glviewer"></a><a href="#glviewer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>GlViewer</h2>
+<p>OpenGL-based viewer for binary 6dof data files.</p>
+<p>Keyboard navigation:
+w, a, s, d as well as [, and ] will rotate the view.
+Hold down shift to move the viewpoint instead.
+z, and x move forward and backward.</p>
+<p>Mouse navigation:
+Drag the mouse to rotate. hold down shift to unlock the vertical axis.
+Right button drag the mouse to pan. hold down shift to unlock the vertical axis.</p>
+<p>Misc:
+Hit 'r' to reset the view to what was on the command line.
+Hit 'p' to dump the current view parameters in the command line format.</p>
+<pre><code class="hljs">./GlViewer \
+-<span class="ruby">-rig=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/output/fused</span><span class="hljs-regexp">/rig_calibrated.json \
+</span></span>-<span class="ruby"><span class="hljs-regexp">-catalog=/path</span><span class="hljs-regexp">/to/output</span><span class="hljs-regexp">/fused/fused</span>.json \
+</span>-<span class="ruby">-disks=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/output/fused</span><span class="hljs-regexp">/fused_0.bin
+</span></span></code></pre>
+<h2><a class="anchor" aria-hidden="true" id="layerdisparities"></a><a href="#layerdisparities" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>LayerDisparities</h2>
+<p>Layers foreground disparity atop background disparity assuming nans to correspond to locations
+without valid disparities.</p>
+<pre><code class="hljs">./LayerDisparities \
+-<span class="ruby">-rig=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/rigs/rig</span>.json \
+</span>-<span class="ruby">-background_disp=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/background/disparity</span> \
+</span>-<span class="ruby">-foreground_disp=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/output/disparity</span> \
+</span>-<span class="ruby">-output=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/output \
+</span></span>-<span class="ruby"><span class="hljs-regexp">-first=000000 \
+</span></span>-<span class="ruby"><span class="hljs-regexp">-last=000000
+</span></span></code></pre>
+<h2><a class="anchor" aria-hidden="true" id="matchcornersmain"></a><a href="#matchcornersmain" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>MatchCornersMain</h2>
+<p>Performs feature matching on a sample frame.</p>
+<pre><code class="hljs">./MatchCorners \
+-<span class="ruby">-color=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/video/color</span> \
+</span>-<span class="ruby">-matches=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/output/matches</span>.json \
+</span>-<span class="ruby">-rig_in=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/rigs/rig</span>.json \
+</span>-<span class="ruby">-frame=<span class="hljs-number">000000</span>
+</span></code></pre>
+<h2><a class="anchor" aria-hidden="true" id="rawtorgb"></a><a href="#rawtorgb" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>RawToRgb</h2>
+<p>Converts a RAW image to RGB using a given ISP configuration.</p>
+<pre><code class="hljs">./RawToRgb \
+-<span class="ruby">-input_image_path=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/video/color</span><span class="hljs-regexp">/000000.raw \
+</span></span>-<span class="ruby"><span class="hljs-regexp">-output_image_path=/path</span><span class="hljs-regexp">/to/video</span><span class="hljs-regexp">/color/</span><span class="hljs-number">000000</span>.png \
+</span>-<span class="ruby">-isp_config_path=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/video/isp</span>.json
+</span></code></pre>
+<h2><a class="anchor" aria-hidden="true" id="rigaligner"></a><a href="#rigaligner" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>RigAligner</h2>
+<p>Aligns the scale, position, and orientation of the input rig to a reference rig via rescaling,
+translating, and rotating respectively. These can be selectively locked.</p>
+<pre><code class="hljs">./RigAligner \
+-<span class="ruby">-rig_in=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/rigs/rig</span>.json \
+</span>-<span class="ruby">-rig_reference=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/rigs/reference</span>.json \
+</span>-<span class="ruby">-rig_out=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/rigs/aligned</span>.json
+</span></code></pre>
+<h2><a class="anchor" aria-hidden="true" id="riganalyzer"></a><a href="#riganalyzer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>RigAnalyzer</h2>
+<p>Miscellaneous analysis utilities for a rig. Various output formats are supported to
+visualize the rig setup (e.g. equirect projection).</p>
+<pre><code class="hljs">./RigAnalyzer \
+-<span class="ruby">-rig=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/rigs/rig</span>.json \
+</span>-<span class="ruby">-output_equirect=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/output/equirect</span>.png
+</span></code></pre>
+<h2><a class="anchor" aria-hidden="true" id="rigcompare"></a><a href="#rigcompare" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>RigCompare</h2>
+<p>Performs a camera-to-camera compare between an input rig and a reference rig.</p>
+<pre><code class="hljs">./RigCompare \
+-<span class="ruby">-rig=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/rigs/rig</span>.json \
+</span>-<span class="ruby">-reference=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/rigs/reference</span>.json
+</span></code></pre>
+<h2><a class="anchor" aria-hidden="true" id="rigsimulator"></a><a href="#rigsimulator" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>RigSimulator</h2>
+<p>Render an artificial scene as seen by the specified rig.</p>
+<pre><code class="hljs">./RigSimulator \
+<span class="hljs-attribute">--mode</span>=pinhole_ring \
+<span class="hljs-attribute">--skybox_path</span>=/path/to/skybox.png
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="temporalbilateralfilter"></a><a href="#temporalbilateralfilter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>TemporalBilateralFilter</h2>
+<p>Runs temporal filter across disparity frames using corresponding color frames as guides.</p>
+<pre><code class="hljs">./TemporalBilateralFilter \
+-<span class="ruby">-input_root=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/ \
+</span></span>-<span class="ruby"><span class="hljs-regexp">-output_root=/path</span><span class="hljs-regexp">/to/output</span> \
+</span>-<span class="ruby">-rig=<span class="hljs-regexp">/path/to</span><span class="hljs-regexp">/rigs/rig</span>.json \
+</span>-<span class="ruby">-first=<span class="hljs-number">000000</span> \
+</span>-<span class="ruby">-last=<span class="hljs-number">000000</span>
+</span></code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/workflow"><span class="arrow-prev">← </span><span>Workflows</span></a><a class="docs-next button" href="/docs/faqs"><span>FAQs</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#aligncolors">AlignColors</a></li><li><a href="#alignpointcloud">AlignPointCloud</a></li><li><a href="#calibration">Calibration</a></li><li><a href="#calibrationlibmain">CalibrationLibMain</a></li><li><a href="#computerephotographyerrors">ComputeRephotographyErrors</a></li><li><a href="#converttobinary">ConvertToBinary</a></li><li><a href="#createobjfromdisparityequirect">CreateObjFromDisparityEquirect</a></li><li><a href="#derpcli">DerpCLI</a></li><li><a href="#generatecameraoverlaps">GenerateCameraOverlaps</a></li><li><a href="#generateequirect">GenerateEquirect</a></li><li><a href="#generateforegroundmasks">GenerateForegroundMasks</a></li><li><a href="#generatekeypointprojections">GenerateKeypointProjections</a></li><li><a href="#geometriccalibration">GeometricCalibration</a></li><li><a href="#geometricconsistency">GeometricConsistency</a></li><li><a href="#glviewer">GlViewer</a></li><li><a href="#layerdisparities">LayerDisparities</a></li><li><a href="#matchcornersmain">MatchCornersMain</a></li><li><a href="#rawtorgb">RawToRgb</a></li><li><a href="#rigaligner">RigAligner</a></li><li><a href="#riganalyzer">RigAnalyzer</a></li><li><a href="#rigcompare">RigCompare</a></li><li><a href="#rigsimulator">RigSimulator</a></li><li><a href="#temporalbilateralfilter">TemporalBilateralFilter</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/favicon.ico" alt="facebook360_dep" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/install.html">Getting Started</a><a href="/docs/en/api.html">API Reference</a><a href="/docs/en/calibration.html">Tutorial</a></div><div><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2019 Facebook Inc.</section></footer></div></body></html>

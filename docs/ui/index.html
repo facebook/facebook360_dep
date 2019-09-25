@@ -1,0 +1,157 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>User Interface · facebook360_dep</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;In Mac/Windows Docker Desktop must be running, and enough CPUs and Memory should be given to the Docker Engine via Preferences -&amp;gt; Advanced.&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="User Interface · facebook360_dep"/><meta property="og:type" content="website"/><meta property="og:url" content="https://facebook.github.io/"/><meta property="og:description" content="&lt;p&gt;In Mac/Windows Docker Desktop must be running, and enough CPUs and Memory should be given to the Docker Engine via Preferences -&amp;gt; Advanced.&lt;/p&gt;
+"/><meta property="og:image" content="https://facebook.github.io/img/favicon.ico"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://facebook.github.io/img/favicon.ico"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.ico" alt="facebook360_dep"/><h2 class="headerTitleWithLogo">facebook360_dep</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/install" target="_self">Docs</a></li><li class="siteNavGroupActive"><a href="/docs/rig" target="_self">Tutorial</a></li><li class="siteNavGroupActive"><a href="/docs/api" target="_self">API Reference</a></li><li class="siteNavGroupActive"><a href="/docs/roadmap" target="_self">Roadmap</a></li><li class="siteNavGroupActive"><a href="/docs/faqs" target="_self">Help</a></li><li class=""><a href="https://github.com/facebook/facebook360_dep" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Introduction</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Introduction</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/install">Get Started</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/ui">User Interface</a></li><li class="navListItem"><a class="navItem" href="/docs/rift">Rift Viewer</a></li><li class="navListItem"><a class="navItem" href="/docs/data">Data</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Tutorial</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/rig">Rig</a></li><li class="navListItem"><a class="navItem" href="/docs/calibration">Calibration</a></li><li class="navListItem"><a class="navItem" href="/docs/render">Render</a></li><li class="navListItem"><a class="navItem" href="/docs/workflow">Workflows</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/api">API</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Help</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/faqs">FAQs</a></li><li class="navListItem"><a class="navItem" href="/docs/roadmap">Roadmap</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">User Interface</h1></header><article><div><span><p>In Mac/Windows Docker Desktop must be running, and enough CPUs and Memory should be given to the Docker Engine via Preferences -&gt; Advanced.
+Whenever the UI is run from a new terminal, the virtualenv in which all the Python dependencies were installed must be reactivated:</p>
+<ul>
+<li>Mac/Linux: <code>source ~/.venv/bin/activate</code></li>
+<li>Windows: <code>~/.venv/Scripts/activate</code></li>
+</ul>
+<p>For Linux/Mac, it is easiest to have this added to <code>~/.bashrc</code>.</p>
+<h2><a class="anchor" aria-hidden="true" id="local-rendering-setup"></a><a href="#local-rendering-setup" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Local rendering setup</h2>
+<p>The data to render must be in a directory with the following file structure:</p>
+<pre><code class="hljs">&lt;PROJECT&gt;
+├── <span class="hljs-attribute">background</span>
+│   └── <span class="hljs-attribute">color</span>
+│       ├── cam0
+│       │   └── <span class="hljs-number">000000</span><span class="hljs-selector-class">.tif</span>
+│       ├── ...
+│       └── camN
+│           └── <span class="hljs-number">000000</span><span class="hljs-selector-class">.tif</span>
+├── rigs
+│   └── rig<span class="hljs-selector-class">.json</span>
+└── <span class="hljs-selector-tag">video</span>
+    └── <span class="hljs-attribute">color</span>
+        ├── cam0
+        │   ├── <span class="hljs-number">000001</span><span class="hljs-selector-class">.tif</span>
+        │   ├── ...
+        │   └── <span class="hljs-number">000999</span><span class="hljs-selector-class">.tif</span>
+        ├── ...
+        └── camN
+            ├── <span class="hljs-number">000001</span><span class="hljs-selector-class">.tif</span>
+            ├── ...
+            └── <span class="hljs-number">000999</span><span class="hljs-selector-class">.tif</span>
+</code></pre>
+<ul>
+<li><code>background</code>/<code>video</code>: background and color frames for each camera respectively. Note that <code>background</code> is optional, and frame images can have any supported file format.</li>
+<li><code>rigs</code>: contains the uncalibrated rig json file that comes with the captured data.</li>
+</ul>
+<p>To start a local render, make a copy of the file <code>res/flags/run.flags</code> and update the copy to set the following path:</p>
+<pre><code class="hljs"><span class="hljs-attr">--project_root</span>=&lt;PROJECT&gt;
+</code></pre>
+<p>where <code>&lt;PROJECT&gt;</code> is the path to the project root.</p>
+<p>NOTE for Windows users: all the paths in the flags file should have forward slashes (&quot;/&quot;) instead of backslashes (&quot;\&quot;).</p>
+<h2><a class="anchor" aria-hidden="true" id="cloud-aws-rendering-setup"></a><a href="#cloud-aws-rendering-setup" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Cloud (AWS) rendering setup</h2>
+<p>For cloud rendering we use Amazon Web Services (AWS). The UI will spawn EC2 instances, so whoever runs the software must be aware of the on-demand costs and the EC2 service limits for any instance type that is planned on being used:</p>
+<p><a href="https://aws.amazon.com/ec2/pricing/on-demand/">https://aws.amazon.com/ec2/pricing/on-demand/</a>
+<a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-resource-limits.html">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-resource-limits.html</a></p>
+<p>The data to render must be in an Amazon S3 bucket with the following file structure:</p>
+<pre><code class="hljs">&lt;PROJECT&gt;
+├── <span class="hljs-attribute">background</span>
+│   └── <span class="hljs-attribute">color</span>
+│       └── <span class="hljs-number">000000</span><span class="hljs-selector-class">.tar</span>
+├── rigs
+│   └── rig<span class="hljs-selector-class">.json</span>
+└── <span class="hljs-selector-tag">video</span>
+    └── <span class="hljs-attribute">color</span>
+        ├── <span class="hljs-number">000000</span><span class="hljs-selector-class">.tar</span>
+        ├── ...
+        └── <span class="hljs-number">000999</span><span class="hljs-selector-class">.tar</span>
+</code></pre>
+<ul>
+<li><code>000000.tar</code>: archived version of <code>cam[0..N]/000000.tif</code>. Archived files are used to minimize the network requests and improve the I/O.</li>
+</ul>
+<p>Before opening the GUI, the <code>&lt;PROJECT&gt;</code> directory should be in an S3 bucket, and an AWS access key must be created.
+This is a .csv file containing the user's AWS access key ID and secret access key:
+<a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html">https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html</a></p>
+<p>To render on AWS, make a copy of the file <code>res/flags/run.flags</code> and update the copy to set the following flags:</p>
+<pre><code class="hljs"><span class="hljs-attr">--project_root</span>=&lt;S3_PROJECT&gt;
+<span class="hljs-attr">--csv_path</span>=&lt;AWS_CREDENTIALS&gt;
+<span class="hljs-attr">--cache</span>=&lt;LOCAL_CACHE_DIR&gt;
+</code></pre>
+<p>where <code>&lt;S3_PROJECT&gt;</code> is the path to the project root in S3, e.g, <code>s3://&lt;bucket_name&gt;/&lt;some_path&gt;/&lt;PROJECT&gt;</code>, and <code>&lt;AWS_CREDENTIALS&gt;</code> is the .csv file from AWS.</p>
+<p><code>&lt;LOCAL_CACHE_DIR&gt;</code> is an absolute path to a local directory used to store sample frames from <code>&lt;S3_PROJECT&gt;</code> for local processing. Following the previous example, if <code>&lt;LOCAL_CACHE_DIR&gt;</code> is <code>C:/Users/foo/data</code> it will generate the directory <code>C:/Users/foo/data/&lt;some_path&gt;/&lt;PROJECT&gt;</code>. Note that write access is required in
+the directory specified in <code>&lt;LOCAL_CACHE_DIR&gt;</code>.</p>
+<h1><a class="anchor" aria-hidden="true" id="running-the-ui"></a><a href="#running-the-ui" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Running the UI</h1>
+<p>To run the UI, open a Terminal and run:</p>
+<ul>
+<li>Mac/Linux</li>
+</ul>
+<pre><code class="hljs"><span class="hljs-keyword">cd</span> <span class="hljs-symbol">&lt;FACEBOOK360_DEP_ROOT&gt;</span>
+<span class="hljs-keyword">python3</span> -<span class="hljs-keyword">u</span> scripts/render/run.<span class="hljs-keyword">py</span> --flagfile <span class="hljs-keyword">res</span>/flags/<span class="hljs-symbol">&lt;FLAGS_FILE&gt;</span>.flags
+</code></pre>
+<ul>
+<li>Windows</li>
+</ul>
+<pre><code class="hljs"><span class="hljs-keyword">cd</span> <span class="hljs-symbol">&lt;FACEBOOK360_DEP_ROOT&gt;</span>
+<span class="hljs-keyword">python</span> -<span class="hljs-keyword">u</span> scripts/render/run.<span class="hljs-keyword">py</span> --flagfile <span class="hljs-keyword">res</span>/flags/<span class="hljs-symbol">&lt;FLAGS_FILE&gt;</span>.flags
+</code></pre>
+<p>Note that the first run can take ~20 minutes to compile the Docker image. Successive runs will only compile incremental changes.</p>
+<p>In order to export non-6DoF content (e.g. equirectangular images), Docker needs access to a GPU in the host. This is currently only supported when running the UI from a Linux host with an NVIDIA GPU, or when using AWS cloud rendering (note that this will require GPU instances, which tend to be more expensive).
+If the host is not Linux but has a GPU, even if not NVIDIA, we provide the option to visualize fused 6DoF frames if the facebook360_dep code has been compiled locally (check README_build.md).
+An extra flag is needed in the flags file:</p>
+<pre><code class="hljs"><span class="hljs-attr">--local_bin</span>=&lt;LOCAL_BIN_DIR&gt;
+</code></pre>
+<p>where <code>&lt;LOCAL_BIN_DIR&gt;</code> is an absolute path pointing at the <code>bin</code> directory of the compiled code in the host.</p>
+<h2><a class="anchor" aria-hidden="true" id="advanced-flags"></a><a href="#advanced-flags" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Advanced flags</h2>
+<ul>
+<li><code>--verbose=True</code>: prints debugging messages about the progress. Default: <em>False</em></li>
+<li><code>--s3_ignore_fullsize_color</code>: when <code>project_root</code> is an S3 path it does not try to download full-size images. Useful when not wanting to calibrate. Default: <em>False</em></li>
+<li><code>--s3_sample_frame</code>: when <code>project_root</code> is an S3 path it downloads this frame for local testing, e.g. &quot;000326&quot;. If empty it defaults to the first available frame. Default: <em>(empty)</em></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/install"><span class="arrow-prev">← </span><span>Get Started</span></a><a class="docs-next button" href="/docs/rift"><span>Rift Viewer</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#local-rendering-setup">Local rendering setup</a></li><li><a href="#cloud-aws-rendering-setup">Cloud (AWS) rendering setup</a></li><li><a href="#advanced-flags">Advanced flags</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/favicon.ico" alt="facebook360_dep" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/install.html">Getting Started</a><a href="/docs/en/api.html">API Reference</a><a href="/docs/en/calibration.html">Tutorial</a></div><div><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2019 Facebook Inc.</section></footer></div></body></html>

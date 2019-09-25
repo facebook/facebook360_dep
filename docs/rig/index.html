@@ -1,0 +1,165 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Rig · facebook360_dep</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;The Facebook360 Depth Estimation Pipeline needs to know the parameters of&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Rig · facebook360_dep"/><meta property="og:type" content="website"/><meta property="og:url" content="https://facebook.github.io/"/><meta property="og:description" content="&lt;p&gt;The Facebook360 Depth Estimation Pipeline needs to know the parameters of&lt;/p&gt;
+"/><meta property="og:image" content="https://facebook.github.io/img/favicon.ico"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://facebook.github.io/img/favicon.ico"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.ico" alt="facebook360_dep"/><h2 class="headerTitleWithLogo">facebook360_dep</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/install" target="_self">Docs</a></li><li class="siteNavGroupActive siteNavItemActive"><a href="/docs/rig" target="_self">Tutorial</a></li><li class="siteNavGroupActive"><a href="/docs/api" target="_self">API Reference</a></li><li class="siteNavGroupActive"><a href="/docs/roadmap" target="_self">Roadmap</a></li><li class="siteNavGroupActive"><a href="/docs/faqs" target="_self">Help</a></li><li class=""><a href="https://github.com/facebook/facebook360_dep" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Tutorial</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Introduction</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/install">Get Started</a></li><li class="navListItem"><a class="navItem" href="/docs/ui">User Interface</a></li><li class="navListItem"><a class="navItem" href="/docs/rift">Rift Viewer</a></li><li class="navListItem"><a class="navItem" href="/docs/data">Data</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Tutorial</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/docs/rig">Rig</a></li><li class="navListItem"><a class="navItem" href="/docs/calibration">Calibration</a></li><li class="navListItem"><a class="navItem" href="/docs/render">Render</a></li><li class="navListItem"><a class="navItem" href="/docs/workflow">Workflows</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/api">API</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Help</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/faqs">FAQs</a></li><li class="navListItem"><a class="navItem" href="/docs/roadmap">Roadmap</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Rig</h1></header><article><div><span><p>The Facebook360 Depth Estimation Pipeline needs to know the parameters of
+each camera in the rig. This is the starting point of all renders. There parameters include camera position,
+orientation, lens type, resolution, field-of-view, etc. These parameters are
+stored in a JSON-format rig file.</p>
+<p>For example, a approximate parameters - e.g. derived from a CAD model - are
+provided to geometric calibration along with calibration images to produce a
+final, accurate version that matches the physical rig. The accurate version
+is provided to the rendering software to produce the final output.</p>
+<h2><a class="anchor" aria-hidden="true" id="quick-walkthrough"></a><a href="#quick-walkthrough" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Quick Walkthrough</h2>
+<p>This file is example of the rig geometry format:
+facebook360_dep/res/config/camera_rig.json</p>
+<p>It is a json file (<a href="http://www.json.org/">http://www.json.org/</a>) containing an array named &quot;cameras&quot;
+that contains one element per camera in the rig</p>
+<p>Here is an example a camera element:</p>
+<pre><code class="hljs">  {
+    <span class="hljs-attr">"group"</span> : <span class="hljs-string">"side camera"</span>,
+    <span class="hljs-attr">"id"</span> : <span class="hljs-string">"cam1"</span>,
+    <span class="hljs-attr">"origin"</span> : [<span class="hljs-number">0.2</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>],
+    <span class="hljs-attr">"right"</span> : [<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">0</span>],
+    <span class="hljs-attr">"up"</span> : [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>],
+    <span class="hljs-attr">"forward"</span> : [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>],
+    <span class="hljs-attr">"principal"</span> : [<span class="hljs-number">1024</span>, <span class="hljs-number">1024</span>],
+    <span class="hljs-attr">"focal"</span> : [<span class="hljs-number">1270</span>, <span class="hljs-number">-1270</span>],
+    <span class="hljs-attr">"resolution"</span> : [<span class="hljs-number">2048</span>, <span class="hljs-number">2048</span>],
+    <span class="hljs-attr">"type"</span> : <span class="hljs-string">"RECTILINEAR"</span>,
+    <span class="hljs-attr">"distortion"</span> : [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>],
+    <span class="hljs-attr">"version"</span> : <span class="hljs-number">1</span>
+  }
+</code></pre>
+<p>&quot;group&quot; is the group to which the camera belongs. All cameras in a group are
+assumed to have the same distortion, so two cameras should only belong to the
+same group if they have the same lens. Furthermore, cameras with the word &quot;side&quot;
+in their group are treated as side cameras for rendering purposes.</p>
+<p>&quot;id&quot; is the name of the camera. The rendering pipeline sorts the cameras according
+to serial number and then names their output &quot;cam0&quot;, &quot;cam1&quot;, &quot;cam2&quot;. This means
+that the order of the camera serial numbers much match the names in the json.</p>
+<p>&quot;origin&quot; is the position of the camera relative to the center of the rig, in meters.</p>
+<p>&quot;right&quot;, &quot;up&quot;, and &quot;forward&quot; specify the orientation of the camera. All three
+must be unit vectors and each must be orthogonal to the other two.</p>
+<p>&quot;principal&quot; is the pixel coordinate of the optical axis of the camera. It is
+around this point that radial distortion is applied. This point is usually near
+the center of the sensor, i.e. half the resolution.</p>
+<p>&quot;focal&quot; is the number of pixels per radian at the principal point. Note that
+focal is usually one value followed by the same value, but negative. That the
+values are the same indicates that the pixels are square. As a curiousity, the
+second value is negative because pixels are traditionally numbered from top to
+bottom, whereas coordinate systems traditionally grow from bottom to top.</p>
+<p>An f-theta (fisheye) lens aims to keep the pixels per radian constant across the
+sensor, so this number is pretty straightforward to compute. if - for example -
+the specification says &quot;185 degree horizontal field of view&quot; and the sensor is
+2448 pixels wide, then the horizontal focal can be computed like so:</p>
+<pre><code class="hljs">  <span class="hljs-number">185</span> degrees * pi/<span class="hljs-number">180</span> radians/degree = <span class="hljs-number">3.22886</span> radians
+  <span class="hljs-number">2448</span> pixels / <span class="hljs-number">3.22886</span> radians = <span class="hljs-number">758.162</span> pixels/radian, so
+  <span class="hljs-string">"focal"</span> : [<span class="hljs-number">758.162</span>, <span class="hljs-number">-758.162</span>]
+</code></pre>
+<p>For a rectilinear (non-fisheye) lens, the math is a little more complicated:</p>
+<pre><code class="hljs">  focal = resolution/<span class="hljs-number">2</span> / tan(fov/<span class="hljs-number">2</span>)
+</code></pre>
+<p>As an example, assume the specification says &quot;135 degree horizontal fov&quot; and the
+sensor is 3264 pixels wide:</p>
+<pre><code class="hljs">  <span class="hljs-number">135</span> degrees * pi/<span class="hljs-number">180</span> radians/degree = <span class="hljs-number">2.35619</span> radians
+  <span class="hljs-number">3264</span>/<span class="hljs-number">2</span> pixels / tan(<span class="hljs-number">2.35619</span>/<span class="hljs-number">2</span> radians) = <span class="hljs-number">676.001</span> pixels/radian, so
+  <span class="hljs-string">"focal"</span> : [<span class="hljs-number">676.001</span>, <span class="hljs-number">-676.001</span>]
+</code></pre>
+<p>Note that this number can be approximate, geometric calibration will dial it in</p>
+<p>&quot;resolution&quot; is the resolution of the camera, in pixels</p>
+<p>&quot;type&quot; is either RECTILINEAR or FTHETA. These correspond to regular versus
+fisheye lenses</p>
+<p>&quot;distortion&quot; provides the coefficients for a function describing how the lens
+deviates from a perfect RECTILINEAR or FTHETA lens. Zeros means the lens is
+perfect. Again, it is ok to assume a perfect lens and let geometric calibration
+figure out the correct value</p>
+<p>&quot;version&quot; needs to be 1</p>
+<h2><a class="anchor" aria-hidden="true" id="example"></a><a href="#example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h2>
+<p>Here is another example, one of the bottom cameras</p>
+<pre><code class="hljs">{
+  <span class="hljs-attr">"id"</span> : <span class="hljs-string">"cam16"</span>,
+  <span class="hljs-attr">"origin"</span> : [<span class="hljs-number">-0.10</span>, <span class="hljs-number">0</span>, <span class="hljs-number">-0.131</span>],
+  <span class="hljs-attr">"principal"</span> : [<span class="hljs-number">1024</span>, <span class="hljs-number">1024</span>],
+  <span class="hljs-attr">"right"</span> : [<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>],
+  <span class="hljs-attr">"up"</span> : [<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">0</span>],
+  <span class="hljs-attr">"forward"</span> : [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">-1</span>],
+  <span class="hljs-attr">"focal"</span> : [<span class="hljs-number">483.76220324</span>, <span class="hljs-number">-483.76220324</span>],
+  <span class="hljs-attr">"resolution"</span> : [<span class="hljs-number">2048</span>, <span class="hljs-number">2048</span>],
+  <span class="hljs-attr">"type"</span> : <span class="hljs-string">"FTHETA"</span>,
+  <span class="hljs-attr">"distortion"</span> : [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>],
+  <span class="hljs-attr">"fov"</span> : <span class="hljs-number">1.61443</span>,
+  <span class="hljs-attr">"version"</span> : <span class="hljs-number">1</span>
+}
+</code></pre>
+<p>&quot;fov&quot; is required if the fov does not cover the entire sensor. I.e. the field
+of view is restricted not only by the size of the sensor, but by the field of
+view of the lens. This is fairly common for fisheye cameras, and means that they
+produce round pictures which include the inside of the lens and even a black
+area beyond that. &quot;fov&quot; tells the software to ignore pixels corresponding to
+angles outside the lens field of view.</p>
+<p>The angle is measured in radians from the edge to the camera's center axis.
+Note that lenses usually specify twice that angle (the angle from one edge to
+the other), and that they usually specify degrees.</p>
+<p>For example, if the lens fov is specified as being 185 degrees from edge to
+edge, then it is half that - 92.5 degrees - from edge to center axis:</p>
+<pre><code class="hljs">  <span class="hljs-number">92.5</span> <span class="hljs-built_in">degrees</span> * <span class="hljs-built_in">pi</span>/<span class="hljs-number">180</span> <span class="hljs-built_in">radians</span>/degree = <span class="hljs-number">1.61443</span> <span class="hljs-built_in">radians</span>, <span class="hljs-symbol">so:</span>
+  <span class="hljs-string">"fov"</span> <span class="hljs-symbol">:</span> <span class="hljs-number">1.61443</span>
+</code></pre>
+<p>If &quot;fov&quot; is not provided, the software will assume that the lens fov covers the
+entire sensor.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/data"><span class="arrow-prev">← </span><span>Data</span></a><a class="docs-next button" href="/docs/calibration"><span>Calibration</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#quick-walkthrough">Quick Walkthrough</a></li><li><a href="#example">Example</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/favicon.ico" alt="facebook360_dep" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/install.html">Getting Started</a><a href="/docs/en/api.html">API Reference</a><a href="/docs/en/calibration.html">Tutorial</a></div><div><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2019 Facebook Inc.</section></footer></div></body></html>
