@@ -83,40 +83,28 @@ class Index extends React.Component {
       </Container>
     );
 
-    const LearnHow = () => (
-      <Block background="light">
-        {[
-          {
-            content: `INSERT SAMPLE VIDEO HERE.`,
-            imageAlign: 'center',
-            title: 'Depth Estimation in Action',
-          },
-        ]}
-      </Block>
-    );
-
-    const Features = () => (
-      <Block layout="threeColumn" background="dark">
+    const Features = props => (
+      <Block layout="threeColumn" background="light">
         {[
           {
             content: `Built to cater to all users, with a streamlined user interface
             for producers interested in directly diving into creating 6DoF content and
             robust internals for developers.`,
             imageAlign: 'top',
-            title: 'Accessible',
+            title: '<h2>Accessible</h2>',
           },
           {
             content: `Built on a rendering pipeline composed of loosely coupled components to
             enable tinkering with any of its pieces.`,
             imageAlign: 'top',
-            title: 'Pluggable',
+            title: '<h2>Pluggable</h2>',
           },
           {
             content: `Designed without any constraints imposed on the camera systems used
             to capture content, allowing rapid prototyping of new camera arrangements and
             lens types.`,
             imageAlign: 'top',
-            title: 'Flexible',
+            title: '<h2>Flexible</h2>',
           }
         ]}
       </Block>
@@ -126,7 +114,6 @@ class Index extends React.Component {
       <div>
         <HomeSplash siteConfig={siteConfig} language={language} />
         <Features />
-        <LearnHow />
       </div>
     );
   }
