@@ -57,7 +57,7 @@ class HomeSplash extends React.Component {
         <div className="inner">
           <PromoSection>
             <Button href="https://github.com/facebook/facebook360_dep">Start Hacking</Button>
-            <Button href="/docs/install">Tutorial</Button>
+            <Button href={siteConfig.baseUrl + "docs/install"}>Tutorial</Button>
           </PromoSection>
         </div>
       </SplashContainer>

@@ -5,8 +5,8 @@ sidebar_label: API
 ---
 
 We automatically generate our API documentation with Doxygen:
-- [Scripts (Python)](/scripts/html/)
-- [Source (C++)](/source/html/)
+- [Scripts (Python)](../scripts/html/)
+- [Source (C++)](../source/html/)
 
 For quick reference, here is a list of the binaries in our repository and descriptions of
 their uses along with an example.

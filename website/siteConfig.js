@@ -9,10 +9,12 @@ const siteConfig = {
   title: 'facebook360_dep',
   tagline: 'Facebook360 Depth Estimation Pipeline',
   url: 'https://facebook.github.io',
-  baseUrl: '/', // Base URL for your project
+  baseUrl: '/facebook360_dep/', // Base URL for your project
 
   // Used for publishing and more
   projectName: 'facebook360_dep',
+  repo: 'facebook/facebook360_dep',
+  editUrl: 'https://github.com/facebook/facebook360_dep/edit/master/docs/',
   organizationName: 'facebook',
 
   // For no header links in the top nav bar -> headerLinks: [],
@@ -35,6 +37,8 @@ const siteConfig = {
     primaryColor: '#4267B2',
     secondaryColor: '#5890ff',
   },
+
+  separateCss: ["static/source/html", "static/scripts/html"],
 
   // Copyright info
   copyright: `Copyright © ${new Date().getFullYear()} Facebook Inc.`,
