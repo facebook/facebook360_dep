@@ -1,6 +1,6 @@
 ---
 name: "📃 Documentation Issue"
-about: Documentation issues are handled in https://github.com/facebook/facebook360_dep.github.io.
+about: Something that is wrong or missing from the documentation in https://facebook.github.io/facebook360_dep.
 title: 'Docs: '
 labels: 'Type: Docs'
 

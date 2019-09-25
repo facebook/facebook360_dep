@@ -8,7 +8,7 @@ If you have a coding question related to facebook360_dep, it might be better sui
 
 ## 📃 I found something that seems wrong in the documentation.
 
-The facebook360_dep website is hosted on a [separate repository](https://github.com/facebook/facebook360_dep.github.io). If you want to report something that is wrong or missing from the documentation, [please open a new issue there](https://github.com/facebook/facebook360_dep.github.io/issues).
+If you want to report something that is wrong or missing from the documentation, [please open a new issue there](https://github.com/facebook/facebook360_dep/issues/new?labels=Type%3A+Bug+Report&template=bug_report.md).
 
 
 ## 🐛 I found a bug in facebook360_dep.

@@ -56,7 +56,7 @@ class HomeSplash extends React.Component {
         <Logo img_src={`${baseUrl}img/dep_logo.png`} />
         <div className="inner">
           <PromoSection>
-            <Button href="https://github.com/facebookexternal/facebook360_dep">Start Hacking</Button>
+            <Button href="https://github.com/facebook/facebook360_dep">Start Hacking</Button>
             <Button href="/docs/install">Tutorial</Button>
           </PromoSection>
         </div>

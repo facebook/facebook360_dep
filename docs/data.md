@@ -22,13 +22,13 @@ test in the cloud to avoid having to deal with excessive render times or local d
 - **Rendered Frame Sequence**: A sample render of the frame sequence to show what the output looks like.
 
 ### The Complex
-- **Single Frame**: s3://facebook360-dep-sample-data/the_complex/1_frame_unpacked
-- **Rendered Single Frame**: s3://facebook360-dep-sample-data/the_complex/1_frame_unpacked_rendered
-- **Frame Sequence**: s3://facebook360-dep-sample-data/the_complex/20_frames
-- **Rendered Frame Sequence**: s3://facebook360-dep-sample-data/the_complex/20_frames_rendered
+- **Single Frame**: coming soon
+- **Rendered Single Frame**: coming soon
+- **Frame Sequence**: coming soon
+- **Rendered Frame Sequence**: coming soon
 
 ### Room Chat
-- **Single Frame**: s3://facebook360-dep-sample-data/room_chat/1_frame_unpacked
-- **Rendered Single Frame**: s3://facebook360-dep-sample-data/room_chat/1_frame_unpacked_rendered
-- **Frame Sequence**: s3://facebook360-dep-sample-data/room_chat/50_frames
-- **Rendered Frame Sequence**: s3://facebook360-dep-sample-data/room_chat/50_frames_rendered
+- **Single Frame**: coming soon
+- **Rendered Single Frame**: coming soon
+- **Frame Sequence**: coming soon
+- **Rendered Frame Sequence**: coming soon

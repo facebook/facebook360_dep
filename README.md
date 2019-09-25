@@ -6,16 +6,18 @@ Facebook360 Depth Estimation Pipeline (facebook360_dep) is a computational imagi
 supporting on-line marker-less calibration, high-quality reconstruction, and real-time streaming
 and rendering of 6DoF content.
 
-[![Build Status](https://travis-ci.com/facebookexternal/facebook360_dep.svg?token=cBbgb2cAy5GyFfyUqdeg&branch=master)](https://travis-ci.com/facebookexternal/facebook360_dep)
+This work is based on the 2019 SIGGRAPH Asia publication ["An Integrated 6DoF Video Camera and System Design"](https://research.fb.com/publications/an-integrated-6dof-video-camera-and-system-design/).
+
+[![Build Status](https://travis-ci.com/facebook/facebook360_dep.svg?token=cBbgb2cAy5GyFfyUqdeg&branch=master)](https://travis-ci.com/facebook/facebook360_dep)
 [![Build Status](https://img.shields.io/badge/license-BSD-green.svg)](LICENSE)
 
 ## Contents
 
 - [Requirements](#-requirements)
-- [Building facebook360_dep](#-building-facebook360_dep)
 - [Documentation](#-documentation)
 - [How to Contribute](#-how-to-contribute)
-- [Code of Conduct](#-code-of-conduct)
+- [Code of Conduct](#code-of-conduct)
+- [Support](#-support)
 - [License](#-license)
 
 ## 📋 Requirements
@@ -28,7 +30,7 @@ software pipeline. Certain capabilities are restricted on the operating systems,
 
 Here you can find short guides for the most common scenarios: [facebook360_dep][tutorial].
 
-[tutorial]: https://facebook360_dep.github.io/docs/tutorial.html
+[tutorial]: https://facebook.github.io/facebook360_dep/docs/tutorial.html
 
 ## 👏 How to Contribute
 
@@ -50,6 +52,12 @@ Read our [**Contributing Guide**](CONTRIBUTING.md) to learn about our developmen
 We have a list of [good first issues][gfi] that contain bugs which have a relatively limited scope. This is a great place to get started, gain experience, and get familiar with our contribution process.
 
 [gfi]: https://github.com/facebook/facebook360_dep/labels/good%20first%20issue
+
+## Support
+
+If you need help with your facebook360_dep app, the right place to go depends on the [type of help that you need][supp].
+
+[supp]: https://github.com/facebook/facebook360_dep/blob/master/.github/SUPPORT.md
 
 ## 📄 License
 

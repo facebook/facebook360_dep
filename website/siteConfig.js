@@ -5,24 +5,15 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-// See https://docusaurus.io/docs/site-config for all the possible
-// site configuration options.
-
 const siteConfig = {
-  title: 'facebook360_dep', // Title for your website.
+  title: 'facebook360_dep',
   tagline: 'Facebook360 Depth Estimation Pipeline',
-  url: 'https://your-docusaurus-test-site.com', // Your website URL
-  baseUrl: '/', // Base URL for your project */
-  // For github.io type URLs, you would set the url and baseUrl like:
-  //   url: 'https://facebook.github.io',
-  //   baseUrl: '/test-site/',
+  url: 'https://facebook.github.io',
+  baseUrl: '/', // Base URL for your project
 
   // Used for publishing and more
   projectName: 'facebook360_dep',
   organizationName: 'facebook',
-  // For top-level user or org sites, the organization is still the same.
-  // e.g., for the https://JoelMarcey.github.io site, it would be set like...
-  //   organizationName: 'JoelMarcey'
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
@@ -31,38 +22,21 @@ const siteConfig = {
     {doc: 'api', label: 'API Reference'},
     {doc: 'roadmap', label: 'Roadmap'},
     {doc: 'faqs', label: 'Help'},
-    {href: 'https://github.com/facebookexternal/facebook360_dep', label: 'GitHub'},
+    {href: 'https://github.com/facebook/facebook360_dep', label: 'GitHub'},
   ],
-
-  // If you have users set above, you add it here:
-  // users,
 
   /* path to images for header/footer */
   headerIcon: 'img/favicon.ico',
   footerIcon: 'img/favicon.ico',
   favicon: 'img/favicon.ico',
 
-  /* Colors for website */
+  // Colors for website
   colors: {
     primaryColor: '#4267B2',
     secondaryColor: '#5890ff',
   },
 
-  /* Custom fonts for website */
-  /*
-  fonts: {
-    myFont: [
-      "Times New Roman",
-      "Serif"
-    ],
-    myOtherFont: [
-      "-apple-system",
-      "system-ui"
-    ]
-  },
-  */
-
-  // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
+  // Copyright info
   copyright: `Copyright © ${new Date().getFullYear()} Facebook Inc.`,
 
   highlight: {
@@ -87,10 +61,6 @@ const siteConfig = {
 
   // Show documentation's last update time.
   // enableUpdateTime: true,
-
-  // You may provide arbitrary config keys to be used as needed by your
-  // template. For example, if you need your repo's URL...
-  //   repoUrl: 'https://github.com/facebook/test-site',
 };
 
 module.exports = siteConfig;
