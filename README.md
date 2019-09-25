@@ -53,7 +53,7 @@ We have a list of [good first issues][gfi] that contain bugs which have a relati
 
 [gfi]: https://github.com/facebook/facebook360_dep/labels/good%20first%20issue
 
-## Support
+## ❓ Support
 
 If you need help with your facebook360_dep app, the right place to go depends on the [type of help that you need][supp].
 
