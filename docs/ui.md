@@ -119,3 +119,17 @@ where `<LOCAL_BIN_DIR>` is an absolute path pointing at the `bin` directory of t
 - `--verbose=True`: prints debugging messages about the progress. Default: *False*
 - `--s3_ignore_fullsize_color`: when `project_root` is an S3 path it does not try to download full-size images. Useful when not wanting to calibrate. Default: *False*
 - `--s3_sample_frame`: when `project_root` is an S3 path it downloads this frame for local testing, e.g. "000326". If empty it defaults to the first available frame. Default: *(empty)*
+
+
+## Video tutorials
+- Run depth estimation
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Veso9UedQzw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+- Generate 6DoF data
+<iframe width="560" height="315" src="https://www.youtube.com/embed/a_2ruI0gFxE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+- Download meshes from cloud
+<iframe width="560" height="315" src="https://www.youtube.com/embed/gYFra9pADLs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+- Stripe 6DoF data locally
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3KhDXOUYTNc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

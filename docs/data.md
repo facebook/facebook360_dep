@@ -30,5 +30,5 @@ test in the cloud to avoid having to deal with excessive render times or local d
 ### Room Chat
 - [**Single Frame**](https://facebook360-dep-downloads.s3-us-west-2.amazonaws.com/room_chat/1_frame_unpacked.zip)
 - [**Rendered Single Frame**](https://facebook360-dep-downloads.s3-us-west-2.amazonaws.com/room_chat/1_frame_unpacked_rendered.zip)
-- **Frame Sequence**: coming soon
-- **Rendered Frame Sequence**: coming soon
+- [**Frame Sequence**](https://facebook360-dep-downloads.s3-us-west-2.amazonaws.com/room_chat/50_frames_unpacked.zip)
+- [**Rendered Frame Sequence**](https://facebook360-dep-downloads.s3-us-west-2.amazonaws.com/room_chat/50_frames_unpacked_rendered.zip)
