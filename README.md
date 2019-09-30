@@ -6,7 +6,7 @@ Facebook360 Depth Estimation Pipeline (facebook360_dep) is a computational imagi
 supporting on-line marker-less calibration, high-quality reconstruction, and real-time streaming
 and rendering of 6DoF content.
 
-This work is based on the 2019 SIGGRAPH Asia publication ["An Integrated 6DoF Video Camera and System Design"](https://research.fb.com/publications/an-integrated-6dof-video-camera-and-system-design/).
+This work is based on the 2019 SIGGRAPH Asia publication ["An Integrated 6DoF Video Camera and System Design"](https://research.fb.com/publications/an-integrated-6dof-video-camera-and-system-design/) ([paper](https://research.fb.com/wp-content/uploads/2019/09/An-Integrated-6DoF-Video-Camera-and-System-Design.pdf), [supplemental material](https://facebook360-dep-downloads.s3-us-west-2.amazonaws.com/siggraph_asia_2019/supplemental_material.zip)).
 
 [![Build Status](https://travis-ci.com/facebook/facebook360_dep.svg?token=cBbgb2cAy5GyFfyUqdeg&branch=master)](https://travis-ci.com/facebook/facebook360_dep)
 [![Build Status](https://img.shields.io/badge/license-BSD-green.svg)](LICENSE)
