@@ -7,6 +7,9 @@
 
 #include "source/calibration/Calibration.h"
 #include "source/util/SystemUtil.h"
+#ifdef WIN32
+#include "source/calibration/Calibration.cpp"
+#endif
 
 const std::string kUsageMessage = R"(
    - Performs geometric calibration on a sample frame. The results of the feature matcher should

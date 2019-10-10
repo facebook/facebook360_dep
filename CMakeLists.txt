@@ -30,16 +30,19 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -m64 -O3 -funroll-loops -pipe")
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -mmmx -mavx -msse -msse3")
-
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wsign-compare")
+if(UNIX) 
+  set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -m64 -O3 -funroll-loops -pipe")
+  set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -mmmx -mavx -msse -msse3")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wsign-compare")
+else(UNIX)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DNOMINMAX=1 -DUNICODE")
+endif()
 
 if(BUILD_LINE_COVERAGE)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-instr-generate -fcoverage-mapping")
 endif()
 
-if(NOT APPLE)
+if(UNIX AND NOT APPLE)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 endif()
 
@@ -71,9 +74,11 @@ set(OPENCV_COMPONENTS
 
 # When adding Boost::chrono to target_link_libraries make sure it is listed after Boost::timer
 # because Boost::timer depends on Boost::chrono
-find_package(Boost REQUIRED COMPONENTS chrono filesystem system program_options regex timer)
+find_package(Boost REQUIRED COMPONENTS chrono filesystem system program_options regex timer locale)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
+if(UNIX)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
+endif()
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 find_package(Ceres 1.14 REQUIRED)
@@ -81,6 +86,7 @@ find_package(gflags 2.2 REQUIRED)
 find_package(glog 0.3 REQUIRED)
 find_package(Eigen3 3.3 REQUIRED)
 find_package(double-conversion 3.0)
+find_package(zlib REQUIRED)
 include_directories(${EIGEN3_INCLUDE_DIR})
 
 if(APPLE)
@@ -89,7 +95,7 @@ else()
   find_package(Folly REQUIRED)
   set(FOLLY_LIB Folly::folly)
 endif()
-set(FOLLY_TARGET ${FOLLY_LIB} double-conversion)
+set(FOLLY_TARGET ${FOLLY_LIB})
 
 ###### Targets ######
 
@@ -197,8 +203,12 @@ target_link_libraries(
 )
 
 ### TARGET ConvertToBinary ###
+if(UNIX)
+  include("${CMAKE_CURRENT_SOURCE_DIR}/ISPC.cmake")
+else()
+  include("${CMAKE_CURRENT_SOURCE_DIR}/ISPC-win32.cmake")
+endif()
 
-include("${CMAKE_CURRENT_SOURCE_DIR}/ISPC.cmake")
 add_executable(
   ConvertToBinary
   source/mesh_stream/ConvertToBinary.cpp
@@ -428,6 +438,7 @@ target_link_libraries(
   Boost::program_options
   Boost::timer
   Boost::chrono
+  Boost::locale
   Eigen3::Eigen
   glog::glog
   ${OPENCV_COMPONENTS}

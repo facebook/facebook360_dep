@@ -8,6 +8,10 @@
 #include "source/calibration/CalibrationLib.h"
 
 #include "source/calibration/Calibration.h"
+#ifdef WIN32
+#include "source/calibration/Calibration.cpp"
+#endif
+
 
 int calibration(
     const std::string& output_rig,
