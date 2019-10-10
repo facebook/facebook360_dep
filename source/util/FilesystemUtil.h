@@ -7,7 +7,7 @@
 
 #pragma once
 
-#ifdef WIN32
+#ifdef WIN32_do_not_use
 #include <filesystem>
 #else
 #define BOOST_FILESYSTEM_NO_DEPRECATED
@@ -17,7 +17,7 @@
 #include <glog/logging.h>
 
 namespace filesystem {
-#ifdef WIN32
+#ifdef WIN32_do_not_use
 using namespace std::experimental::filesystem;
 #else
 using namespace boost::filesystem;

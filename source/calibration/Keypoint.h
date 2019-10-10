@@ -103,6 +103,8 @@ struct Overlap {
   std::array<std::string, 2> images;
   std::vector<Match> matches;
 
+  Overlap() {};
+
   Overlap(const std::string& image0, const std::string& image1) {
     images[0] = image0;
     images[1] = image1;

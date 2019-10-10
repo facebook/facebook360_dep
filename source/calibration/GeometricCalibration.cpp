@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Copyright 2004-present Facebook. All Rights Reserved.
  *
  * This source code is licensed under the BSD-style license found in the
@@ -7,7 +7,6 @@
 
 #include "source/calibration/GeometricCalibration.h"
 
-#include <future>
 #include <iostream>
 #include <random>
 #include <unordered_map>
@@ -117,14 +116,16 @@ void buildCameraIndexMaps(const Camera::Rig& rig) {
 
 using ImageId = std::string;
 
+	
 std::string getCameraId(const ImageId& image) {
   // image is actually a path
   filesystem::path path = image;
   if (FLAGS_dir_per_frame) {
-    return path.stem().native();
+    return path.stem().string();
   }
-  return path.parent_path().filename().native();
+  return path.parent_path().filename().string();
 }
+
 
 int getFrameIndex(const ImageId& image) {
   // image is actually a path
@@ -882,6 +883,9 @@ void solve(ceres::Problem& problem) {
     options.num_threads = 1;
   }
   options.function_tolerance = FLAGS_ceres_function_tolerance;
+
+  /* try other solvers than default SPARSE_SCHUR */
+  options.linear_solver_type = ceres::ITERATIVE_SCHUR;
 
   ceres::Solver::Summary summary;
 

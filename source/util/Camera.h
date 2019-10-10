@@ -25,7 +25,7 @@
 #endif
 
 // windows doesn't need the full rig i/o functionality
-#define SUPPRESS_RIG_IO
+// yes it does -- TKS  #define SUPPRESS_RIG_IO
 
 #endif // WIN32
 

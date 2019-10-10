@@ -7,6 +7,9 @@
 
 #include "source/calibration/Calibration.h"
 #include "source/util/SystemUtil.h"
+#ifdef WIN32
+#include "source/calibration/Calibration.cpp"
+#endif
 
 const std::string kUsageMessage = R"(
    - Calibrates an uncalibrated rig by feature matching and performing geometric calibration
