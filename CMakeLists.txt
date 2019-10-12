@@ -7,6 +7,16 @@
 
 cmake_minimum_required(VERSION 3.4)
 
+if(WIN32)
+  option(AUTOMATE_VCPKG "Automatic installation of dependent packages by vcpkg" ON)
+  option(AUTOMATE_VCPKG_UPDATE "Automatic update of dependent packages by vcpkg" OFF)
+  if(AUTOMATE_VCPKG)
+    include(build_win32/automate-vcpkg-tks.cmake)
+    include(build_win32/vcpkg_list.cmake)
+    vcpkg_install_packages(${VCPACKAGES})
+  endif(AUTOMATE_VCPKG)
+endif(WIN32)
+
 project(Facebook360_DEP CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -34,7 +44,7 @@ if(UNIX)
   set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -m64 -O3 -funroll-loops -pipe")
   set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -mmmx -mavx -msse -msse3")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wsign-compare")
-else(UNIX)
+elseif(WIN32)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DNOMINMAX=1 -DUNICODE")
 endif()
 
@@ -46,18 +56,20 @@ if(UNIX AND NOT APPLE)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 endif()
 
-# Add extra directories that may not have been added by default
-set(OPT_LOCAL_DIR "/opt/local")
-if(EXISTS "${OPT_LOCAL_DIR}/lib")
-  link_directories("${OPT_LOCAL_DIR}/lib")
-  include_directories(SYSTEM "${OPT_LOCAL_DIR}/include")
-endif()
+if(UNIX)
+  # Add extra directories that may not have been added by default
+  set(OPT_LOCAL_DIR "/opt/local")
+  if(EXISTS "${OPT_LOCAL_DIR}/lib")
+    link_directories("${OPT_LOCAL_DIR}/lib")
+    include_directories(SYSTEM "${OPT_LOCAL_DIR}/include")
+  endif()
 
-set(USR_LOCAL_DIR "/usr/local")
-if(EXISTS "${USR_LOCAL_DIR}/lib")
-  link_directories("${USR_LOCAL_DIR}/lib")
-  include_directories(SYSTEM "${USR_LOCAL_DIR}/include")
-endif()
+  set(USR_LOCAL_DIR "/usr/local")
+  if(EXISTS "${USR_LOCAL_DIR}/lib")
+    link_directories("${USR_LOCAL_DIR}/lib")
+    include_directories(SYSTEM "${USR_LOCAL_DIR}/include")
+  endif()
+endif(UNIX)
 
 # Add custom targets to show all source and header files in Xcode
 file(GLOB SRC "${CMAKE_CURRENT_SOURCE_DIR}/source/*")
@@ -86,8 +98,11 @@ find_package(gflags 2.2 REQUIRED)
 find_package(glog 0.3 REQUIRED)
 find_package(Eigen3 3.3 REQUIRED)
 find_package(double-conversion 3.0)
-find_package(zlib REQUIRED)
 include_directories(${EIGEN3_INCLUDE_DIR})
+
+if(WIN32)
+  find_package(zlib REQUIRED)
+endif()
 
 if(APPLE)
   set(FOLLY_LIB folly)
@@ -205,8 +220,8 @@ target_link_libraries(
 ### TARGET ConvertToBinary ###
 if(UNIX)
   include("${CMAKE_CURRENT_SOURCE_DIR}/ISPC.cmake")
-else()
-  include("${CMAKE_CURRENT_SOURCE_DIR}/ISPC-win32.cmake")
+elseif(WIN32)
+  include("${CMAKE_CURRENT_SOURCE_DIR}/build_win32/ISPC-win32.cmake")
 endif()
 
 add_executable(
