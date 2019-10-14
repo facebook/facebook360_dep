@@ -8,13 +8,13 @@
 cmake_minimum_required(VERSION 3.4)
 
 if(WIN32)
-  option(AUTOMATE_VCPKG "Automatic installation of dependent packages by vcpkg" ON)
-  option(AUTOMATE_VCPKG_UPDATE "Automatic update of dependent packages by vcpkg" OFF)
-  if(AUTOMATE_VCPKG)
-    include(build_win32/automate-vcpkg-tks.cmake)
-    include(build_win32/vcpkg_list.cmake)
+  set(BUILD_WIN32_DIR ${CMAKE_CURRENT_SOURCE_DIR}/build_win32)
+  if( NOT DEFINED VCPKG_BUILT )
+    include(${BUILD_WIN32_DIR}/automate-vcpkg-tks.cmake)
+    include(${BUILD_WIN32_DIR}/vcpkg_list.cmake)
     vcpkg_install_packages(${VCPACKAGES})
-  endif(AUTOMATE_VCPKG)
+    set(VCPKG_BUILT TRUE CACHE BOOL "vcpkg_install_packages has run")
+  endif()
 endif(WIN32)
 
 project(Facebook360_DEP CXX)
@@ -102,6 +102,7 @@ include_directories(${EIGEN3_INCLUDE_DIR})
 
 if(WIN32)
   find_package(zlib REQUIRED)
+  find_package(gtest REQUIRED)
 endif()
 
 if(APPLE)
@@ -187,7 +188,6 @@ target_link_libraries(
 )
 
 ### TARGET DepUnitTest ###
-
 add_executable(
   DepUnitTest
   source/test/DepUnitTest.cpp
@@ -221,7 +221,7 @@ target_link_libraries(
 if(UNIX)
   include("${CMAKE_CURRENT_SOURCE_DIR}/ISPC.cmake")
 elseif(WIN32)
-  include("${CMAKE_CURRENT_SOURCE_DIR}/build_win32/ISPC-win32.cmake")
+  include("${BUILD_WIN32_DIR}/ISPC-win32.cmake")
 endif()
 
 add_executable(
