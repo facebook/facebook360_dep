@@ -1,0 +1,498 @@
+Facebook360 Depth Estimation Pipeline (Windows Build) -- Module Help Printouts
+  obtaind by running <module name>.exe --help
+
+AlignColors.exe:
+   - Aligns colors using separate (calibrated) color rigs.
+
+   - Example:
+     ./AlignColors \
+     --output=/path/to/output \
+     --color=/path/to/video/color \
+     --calibrated_rig=/path/to/rigs/rig_calibrated.json \
+     --rig_blue=/path/to/rigs/rig_blue.json \
+     --rig_green=/path/to/rigs/rig_green.json \
+     --rig_red=/path/to/rigs/rig_red.json
+
+
+AlignPointCloud.exe:
+  - Aligns point cloud to camera rig. The transformation includes translation, rotation and scaling.
+
+  - Example:
+    ./AlignPointCloud \
+    --color=/path/to/background/color \
+    --point_cloud=/path/to/lidar/points.pts \
+    --rig_in=/path/to/rigs/rig.json \
+    --rig_out=/path/to/rigs/rig_aligned.json
+
+
+Calibration.exe:
+   - Calibrates an uncalibrated rig by feature matching and performing geometric calibration
+   on a sample frame.
+
+   - Example:
+     ./Calibration \
+     --color=/path/to/video/color \
+     --matches=/path/to/output/matches.json \
+     --rig_in=/path/to/rigs/rig.json \
+     --rig_out=/path/to/rigs/rig_calibrated.json
+
+
+CalibrationLib.exe
+Usage: calibrationlib <output_rig_filename> <matches_filename> <input_rig_filename> <color_directory>
+
+  - Calibrates an uncalibrated rig by feature matching and performing geometric calibration
+  on a sample frame. Unlike Calibration, this app takes fixed command line arguments.
+
+  - Example:
+    ./CalibrationLibMain \
+      /path/to/rigs/rig_calibrated.json \
+      /path/to/output/matches.json \
+      /path/to/rigs/rig.json \
+      /path/to/video/color
+
+
+ComputeRephotographyErrors.exe:
+   - Computes rephotography error for a set of frames. Rephotography error for a single frame is
+   computed by generating cubemaps for both the reference and the rendered data, translating the
+   cubemap origin to the center of the reference camera, and computing the MSSIM for each camera.
+
+   - Example:
+     ./ComputeRephotographyErrors \
+     --first=000000 \
+     --last=000000 \
+     --output=/path/to/output \
+     --rig=/path/to/rigs/rig.json \
+     --color=/path/to/video/color \
+     --disparity=/path/to/output/disparity
+
+
+ConvertToBinary.exe(no help)
+
+
+CorrectVignetting.exe:
+   - Correct vignetting in a single image.
+
+   - Example:
+     ./CorrectVignetting \
+     --out=/path/to/output/image \
+     --principal_x=1680 \
+     --principal_y=1080 \
+     --raw=/path/to/raw/image
+     --vignetting_x="1.5,1.0,1.0,1.0,1.0,1.5" \
+     --vignetting_y="1.5,1.0,1.0,1.0,1.0,1.5"
+
+
+CreateObjFromDisparityEquirect.exe:
+  - Creates an OBJ (optionally with texturing) from a disparity equirect.
+
+  - Example:
+    ./CreateObjFromDisparityEquirect \
+    --input_png_color=/path/to/equirects/color.png \
+    --input_png_disp=/path/to/equirects/disparity.png \
+    --output_obj=/path/to/output/test.obj
+
+
+DerpCLI.exe:
+ - Runs depth estimation on a set of frames. We assume the inputs have already been resized into
+ the appropriate pyramid level widths before execution. See scripts/render/config.py to see
+ the assumed widths.
+
+ - Example:
+   ./DerpCLI \
+   --input_root=/path/to/ \
+   --output_root=/path/to/output \
+   --rig=/path/to/rigs/rig.json \
+   --first=000000 \
+   --last=000000
+
+
+ExportPointCloud.exe:
+  - Reads a set of color and disparity images and produces an ascii file with a
+  single point per line
+
+  Each line contains "x y z 1 r g b", where
+  - x y z is the position (in meters)
+  - r g b is the color (0..255)
+
+  The format can be imported as a .txt into meshlab with File -> Import Mesh
+  set Separator to "SPACE" and set Point format to "X Y Z Reflectance R G B"
+
+  - Example:
+    ./ExportPointCloud \
+    --output=/path/to/video/output \
+    --color=/path/to/video/color \
+    --disparity=/path/to/output/disparity \
+    --rig=/path/to/rigs/rig.json \
+    --frame=000000
+
+
+GenerateCameraOverlaps.exe:
+   - Generates a series of images of the rig cameras projected into destination cameras over
+   a series of fixed depths.
+
+   - Example:
+     ./GenerateCameraOverlaps \
+     --frame=000000 \
+     --output=/path/to/output \
+     --rig=/path/to/rigs/rig.json \
+     --color=/path/to/video/color
+
+     A typical extension of this is creating a video over the series of depth generated, i.e.:
+
+     ffmpeg -framerate 10 -pattern_type glob \
+     -i '/path/to/output/overlaps/cam0/*.png' -c:v libx264 -pix_fmt yuv420p \
+     -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" /path/to/output/overlaps/cam0.mp4 -y
+
+
+GenerateEquirect.exe:
+  - Generates an equirect from a set of color images at a uniformly spaced range of depths.
+
+  - Example:
+    ./GenerateEquirect \
+    --color=/path/to/video/color \
+    --output=/path/to/output \
+    --rig=/path/to/rigs/rig.json \
+    --frame=000000 \
+    --depth_min=1.0 \
+    --depth_max=1000.0 \
+    --num_depths=50
+
+
+GenerateForegroundMasks.exe:
+   - Generates foreground masks for a series of frames assuming a fixed background. Various
+   parameters can be tweaked to improve the mask accuracy.
+
+   - Example:
+     ./GenerateForegroundMasks \
+     --first=000000 \
+     --last=000000 \
+     --rig=/path/to/rigs/rig.json \
+     --color=/path/to/video/color \
+     --background_color=/path/to/background/color \
+     --foreground_masks=/path/to/video/output
+
+
+GenerateKeypointProjections.exe:
+  - Reprojects a grid of keypoints to another camera at different depths.
+
+  - Example:
+    ./GenerateKeypointProjections \
+    --color=/path/to/video/color \
+    --frame=000000 \
+    --rig=/path/to/rigs/rig.json \
+    --output_dir=/path/to/output
+
+
+GeometricCalibration.exe:
+   - Performs geometric calibration on a sample frame. The results of the feature matcher should
+   be available before execution.
+
+   - Example:
+     ./GeometricCalibration \
+     --matches=/path/to/output/matches.json \
+     --rig_in=/path/to/rigs/rig.json \
+     --rig_out=/path/to/rigs/rig_calibrated.json
+
+
+GeometricConsistency.exe:
+- Compute initial depth for every camera
+- Repeat pass_count times:
+  - Clean away depths that are implausible
+  - Recompute depths using clean depths to estimate occlusions
+
+- Example:
+    GeometricConsistency \
+    --color /path/to/color \
+    --output /path/to/output \
+    --rig /path/to/rigs/rig.json \
+    --first 000000 \
+    --last 000000
+
+
+GlViewer.exe:
+  - OpenGL-based viewer for binary 6dof data files.
+
+  Keyboard navigation:
+  - w, a, s, d as well as the arrow keyes  will rotate the view.
+  - z, and x move forward and backward.
+
+  Mouse navigation:
+  - Left button drag the mouse to rotate.
+  - Right button drag the mouse to pan.
+
+  Misc:
+  - Hit 'r' to reset the view to what was on the command line.
+  - Hit 'p' to dump the current view parameters in the command line format.
+
+  - Example:
+    ./GlViewer \
+    --rig=/path/to/output/fused/rig_calibrated.json \
+    --catalog=/path/to/output/fused/fused.json \
+    --strip_files=/path/to/output/fused/fused_0.bin
+
+
+ImportPointCloud.exe:
+  - Reads a point cloud as an ASCII file with a single point per line and generates a disparity
+  image per camera.
+
+  Supports multiple point cloud formats, but only extracts the xyz coordinates.
+
+  The input file can have a single line header with a point count.
+
+  - Example:
+    ./ImportPointCloud \
+    --output=/path/to/output \
+    --rig=/path/to/rigs/rig.json \
+    --point_cloud=/path/to/points.xyz
+
+    Where points.xyz may be of the form:
+
+    10000
+    -0.04503071680665016 -2.2521071434020996 4.965743541717529 1 90 104 136
+    -0.005194493103772402 -2.323836088180542 4.938142776489258 1 94 110 143
+    0.046292994171381 -2.2623345851898193 4.609960079193115 1 101 122 149
+    ...
+
+
+LayerDisparities.exe:
+   - Layers foreground disparity atop background disparity assuming nans to correspond to locations
+   without valid disparities.
+
+   - Example:
+     ./LayerDisparities \
+     --rig=/path/to/rigs/rig.json \
+     --background_disp=/path/to/background/disparity \
+     --foreground_disp=/path/to/output/disparity \
+     --output=/path/to/output \
+     --first=000000 \
+     --last=000000
+
+
+MatchCorners.exe:
+   - Performs feature matching on a sample frame.
+
+   - Example:
+     ./MatchCorners \
+     --color=/path/to/video/color \
+     --matches=/path/to/output/matches.json \
+     --rig_in=/path/to/rigs/rig.json
+
+
+PngToPfm.exe:
+ - Converts a PNG single-channel disparity image to a PFM.
+
+ - Example:
+   ./PngToPfm \
+   --png=/path/to/video/000000.png \
+   --pfm=/path/to/video/000000.pfm
+
+
+ProjectCamerasToEquirects.exe:
+  - Reads cameras and projects them to equirect at a given depth.
+
+  - Example:
+    ./ProjectCamerasToEquirects \
+    --color=/path/to/video/color \
+    --rig=/path/to/rigs/rig_calibrated.json \
+    --first=000000 \
+    --last=000000 \
+    --output=/path/to/output
+
+
+ProjectEquirectsToCameras.exe:
+  - Reads equirect masks and projects them to individual cameras assuming a given depth.
+
+  - Example:
+    ./ProjectEquirectsToCameras \
+    --eqr_masks=/path/to/video/equirect_masks/ \
+    --rig=/path/to/rigs/rig.json \
+    --first=000000 \
+    --last=000000 \
+    --output=/path/to/output/
+
+
+RawToRgb.exe:
+   - Converts a RAW image to RGB using a given ISP configuration.
+
+   - Example:
+     ./RawToRgb \
+     --input_image_path=/path/to/video/color/000000.raw \
+     --output_image_path=/path/to/video/color/000000.png \
+     --isp_config_path=/path/to/video/isp.json
+
+
+RigAligner.exe:
+   - Aligns the scale, position, and orientation of the input rig to a reference rig via rescaling,
+   translating, and rotating respectively. These can be selectively locked.
+
+   - Example:
+     ./RigAligner \
+     --rig_in=/path/to/rigs/rig.json \
+     --rig_reference=/path/to/rigs/reference.json \
+     --rig_out=/path/to/rigs/aligned.json
+
+
+RigAnalyzer.exe:
+   - Miscellaneous analysis utilities for a rig. Various output formats are supported to
+   visualize the rig setup (e.g. equirect projection).
+
+   - Example:
+     ./RigAnalyzer \
+     --rig=/path/to/rigs/rig.json \
+     --output_equirect=/path/to/output/equirect.png
+
+
+RigCompare.exe:
+  - Performs a camera-to-camera compare between an input rig and a reference rig.
+
+  - Example:
+    ./RigCompare \
+    --rig=/path/to/rigs/rig.json \
+    --reference=/path/to/rigs/reference.json
+
+
+RigSimulator.exe:
+  - Render an artificial scene as seen by the specified rig.
+
+  - Example:
+    ./RigSimulator \
+    --mode=pinhole_ring \
+    --skybox_path=/path/to/skybox.png
+
+
+SimpleMeshRenderer.exe:
+  - Reads a set of disparity (and optionally color) images for a rig and renders a fused version.
+  It can either output images in a specified format or do a real-time on-screen rendering.
+
+  For the latter:
+
+  Keyboard navigation:
+  - w, a, s, d as well as the arrow keyes  will rotate the view.
+  - z, and x move forward and backward.
+
+  Mouse navigation:
+  - Left button drag the mouse to rotate.
+  - Right button drag the mouse to pan.
+
+  Misc:
+  - Hit 'r' to reset the view to what was on the command line.
+  - Hit 'p' to dump the current view parameters in the command line format.
+
+  - Example:
+    ./SimpleMeshRenderer \
+    --first=000000 \
+    --last=000000 \
+    --rig=/path/to/rigs/rig.json \
+    --color=/path/to/video/color \
+    --disparity=/path/to/output/disparity \
+    --output=/path/to/output/meshes \
+    --format=cubecolor
+
+
+TemporalBilateralFilter.exe:
+  - Runs temporal filter across disparity frames using corresponding color frames as guides.
+
+  - Example:
+    ./TemporalBilateralFilter \
+    --input_root=/path/to/ \
+    --output_root=/path/to/output \
+    --rig=/path/to/rigs/rig.json \
+    --first=000000 \
+    --last=000000
+
+
+UpsampleDisparity.exe:
+  - Upscales the input disparity using the original color as guide.
+
+  - Example:
+    ./UpsampleDisparity \
+    --rig=/path/to/rigs/rig.json \
+    --disparity=/path/to/output/disparity \
+    --color=/path/to/video/color \
+    --foreground_masks_in=/path/to/video/foreground_masks/ \
+    --foreground_masks_out=/path/to/video/foreground_masks_full_size/ \
+    --output=/path/to/video/output/disparity_full_size \
+    --frame=000000 \
+    --background_disp=/path/to/background/disparity_full_size
+
+
+ViewColorVarianceThresholds.exe:
+   Reads a color image and a width and displays a trackbar to interactively visualize how the
+   flags --var_noise_floor and --var_high_thresh affect the areas of the image that will be
+   either ignored or considered at different stages:
+
+   - var_noise_floor: noise variance floor on original, full-size images. Variance noise is
+     multiplied by the square of the scale at a given level, whose width is given by --width
+     Random proposals and disparity mismatches are ignored if their variance is lower than this
+     threshold.
+   - var_high_thresh: ignore variances higher than this threshold
+     Random proposals and disparity mismatches are accepted if their variance is higher than this
+     threshold.
+
+
+ViewForegroundMaskThresholds.exe:
+   Reads two color images (background and foreground) and a width and displays a trackbar to
+   interactively visualize how the flags --blur_radius, --threshold and --morph_closing_size
+   affect the areas of the image that will be either ignored (background) or considered (foreground)
+   at different stages:
+
+   - blur_radius: Gaussian blur radius, used to reduce noise
+   - threshold: Foreground/background RGB L2-norm threshold [0..1]
+     foreground mask = ||background - foreground||^2 > threshold
+   - morph_closing_size: Morphological closing size, used to fill holes on the final mask
+
+
+DepUnitTest.exe 
+This program contains tests written using Google Test. You can use the
+following command line flags to control its behavior:
+
+Test Selection:
+  --gtest_list_tests
+      List the names of all tests instead of running them. The name of
+      TEST(Foo, Bar) is "Foo.Bar".
+  --gtest_filter=POSTIVE_PATTERNS[-NEGATIVE_PATTERNS]
+      Run only the tests whose name matches one of the positive patterns but
+      none of the negative patterns. '?' matches any single character; '*'
+      matches any substring; ':' separates two patterns.
+  --gtest_also_run_disabled_tests
+      Run all disabled tests too.
+
+Test Execution:
+  --gtest_repeat=[COUNT]
+      Run the tests repeatedly; use a negative count to repeat forever.
+  --gtest_shuffle
+      Randomize tests' orders on every iteration.
+  --gtest_random_seed=[NUMBER]
+      Random number seed to use for shuffling test orders (between 1 and
+      99999, or 0 to use a seed based on the current time).
+
+Test Output:
+  --gtest_color=(yes|no|auto)
+      Enable/disable colored output. The default is auto.
+  --gtest_print_time=0
+      Don't print the elapsed time of each test.
+  --gtest_output=(json|xml)[:DIRECTORY_PATH\|:FILE_PATH]
+      Generate a JSON or XML report in the given directory or with the given
+      file name. FILE_PATH defaults to test_detail.xml.
+
+Assertion Behavior:
+  --gtest_break_on_failure
+      Turn assertion failures into debugger break-points.
+  --gtest_throw_on_failure
+      Turn assertion failures into C++ exceptions for use by an external
+      test framework.
+  --gtest_catch_exceptions=0
+      Do not report exceptions as test failures. Instead, allow them
+      to crash the program or throw a pop-up (on Windows).
+
+Except for --gtest_list_tests, you can alternatively set the corresponding
+environment variable of a flag (all letters in upper-case). For example, to
+disable colored text output, you can either specify --gtest_color=no or set
+the GTEST_COLOR environment variable to no.
+
+For more information, please read the Google Test documentation at
+https://github.com/google/googletest/. If you find a bug in Google Test
+(not one in your own code or tests), please report it to
+<googletestframework@googlegroups.com>.
+
+
