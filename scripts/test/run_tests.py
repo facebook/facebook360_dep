@@ -53,6 +53,7 @@ from .test_rig_simulator import RigSimulatorTest
 from .test_simple_mesh_renderer import SimpleMeshRendererTest
 from .test_upsample_disparity import UpsampleDisparityTest
 
+
 try:
     import networkx as nx
 
@@ -97,7 +98,7 @@ def get_ordered_tests(tests_setup, test_type):
     return ordered_tests
 
 
-def run_tests(loader=None):
+def run_tests(loader=None, res_dir=None):
     """Runs tests of the variant specified by CLI arguments. If "cpu" is specified,
     CPU-only tests will be run and similarly for "gpu." Both are run if "both" is
     passed in. If "static" is specified, the tests are run per their order in the
@@ -112,9 +113,11 @@ def run_tests(loader=None):
     )
     args = parser.parse_args()
 
-    translator_path = os.path.join(
-        Path(os.path.abspath(__file__)).parents[2], "res", "test", "translator.json"
-    )
+    if not res_dir:
+        res_dir = os.path.join(
+            Path(os.path.abspath(__file__)).parents[2], "res", "test"
+        )
+    translator_path = os.path.join(res_dir, "translator.json")
     with open(translator_path) as f:
         tests_setup = json.load(f)
 
@@ -131,7 +134,7 @@ def run_tests(loader=None):
     test_classes = []
     for test in ordered_tests:
         test_classes.append(getattr(sys.modules[__name__], test))
-    generic_main(test_classes, loader)
+    generic_main(test_classes, loader, res_dir)
 
 
 if __name__ == "__main__":

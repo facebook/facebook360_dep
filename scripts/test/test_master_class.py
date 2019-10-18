@@ -217,11 +217,7 @@ class DepTest(unittest.TestCase):
             str: Space-separated string of CLI arguments (e.g.
                 "--example1 <X> --example2 <Y>")
         """
-        parent_dir = os.path.dirname(os.path.abspath(__file__))
-        res_dir = os.path.abspath(
-            os.path.join(os.path.dirname(os.path.dirname(parent_dir)), "res")
-        )
-        flagfile = os.path.join(res_dir, "test", f"{camel_to_snake(binary_name)}.flags")
+        flagfile = os.path.join(self.res_dir, f"{camel_to_snake(binary_name)}.flags")
         with open(flagfile, "r") as f:
             flag_lines = f.readlines()
 
@@ -413,7 +409,7 @@ def prepare_run(test_class, testing_dir, rig, binary_dir):
     test_class.io_args = SimpleNamespace(**io_dict)
 
 
-def generic_main(test_classes, loader=None):
+def generic_main(test_classes, loader=None, res_dir=None):
     """Generic main function for running tests across classes. Execution follows
     using the Python unittest library, meaning successes, errors, and failures
     are produced per the library's standard. If any test fails, we exit with
@@ -423,7 +419,10 @@ def generic_main(test_classes, loader=None):
         test_classes (list[class]): List of classes for which tests are to be run.
     """
     args = parser.parse_args()
-    res_dir = os.path.join(Path(__file__).parents[2], "res", "test")
+    if not res_dir:
+        res_dir = os.path.join(
+            Path(os.path.abspath(__file__)).parents[2], "res", "test"
+        )
     with open(os.path.join(res_dir, "translator.json")) as f:
         tests_setup = json.load(f)
 
@@ -461,6 +460,7 @@ def generic_main(test_classes, loader=None):
         test_class.setup = test_setups if len(test_setups) > 1 else test_setups[0]
         test_class.io_args.truth_dir = truth_dir
         test_class.replay_metadata = {}
+        test_class.res_dir = res_dir
 
         test_suites.append(unittest.TestLoader().loadTestsFromTestCase(test_class))
 
