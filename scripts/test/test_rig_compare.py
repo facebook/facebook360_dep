@@ -21,8 +21,7 @@ Example:
 
 import os
 
-import test_config as config
-from test_master_class import DepTest, generic_main
+from .test_master_class import DepTest, generic_main
 
 
 class RigCompareTest(DepTest):

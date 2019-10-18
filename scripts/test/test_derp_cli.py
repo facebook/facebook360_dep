@@ -25,8 +25,8 @@ import sys
 sys.path.append(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 )
-import test_config as config
-from test_master_class import DepTest, generic_main
+from . import test_config as config
+from .test_master_class import DepTest, generic_main
 
 
 class DerpCLITest(DepTest):

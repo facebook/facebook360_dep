@@ -33,25 +33,25 @@ import os
 import sys
 from pathlib import Path
 
-from test_align_colors import AlignColorsTest
-from test_calibration import CalibrationTest
-from test_calibration_lib_main import CalibrationLibMainTest
-from test_convert_to_binary import ConvertToBinaryTest
-from test_derp_cli import DerpCLITest
-from test_export_point_cloud import ExportPointCloudTest
-from test_generate_camera_overlaps import GenerateCameraOverlapsTest
-from test_generate_foreground_masks import GenerateForegroundMasksTest
-from test_import_point_cloud import ImportPointCloudTest
-from test_layer_disparities import LayerDisparitiesTest
-from test_master_class import generic_main, parser
-from test_project_equirects_to_cameras import ProjectEquirectsToCamerasTest
-from test_raw_to_rgb import RawToRgbTest
-from test_rig_aligner import RigAlignerTest
-from test_rig_analyzer import RigAnalyzerTest
-from test_rig_compare import RigCompareTest
-from test_rig_simulator import RigSimulatorTest
-from test_simple_mesh_renderer import SimpleMeshRendererTest
-from test_upsample_disparity import UpsampleDisparityTest
+from .test_align_colors import AlignColorsTest
+from .test_calibration import CalibrationTest
+from .test_calibration_lib_main import CalibrationLibMainTest
+from .test_convert_to_binary import ConvertToBinaryTest
+from .test_derp_cli import DerpCLITest
+from .test_export_point_cloud import ExportPointCloudTest
+from .test_generate_camera_overlaps import GenerateCameraOverlapsTest
+from .test_generate_foreground_masks import GenerateForegroundMasksTest
+from .test_import_point_cloud import ImportPointCloudTest
+from .test_layer_disparities import LayerDisparitiesTest
+from .test_master_class import generic_main, parser
+from .test_project_equirects_to_cameras import ProjectEquirectsToCamerasTest
+from .test_raw_to_rgb import RawToRgbTest
+from .test_rig_aligner import RigAlignerTest
+from .test_rig_analyzer import RigAnalyzerTest
+from .test_rig_compare import RigCompareTest
+from .test_rig_simulator import RigSimulatorTest
+from .test_simple_mesh_renderer import SimpleMeshRendererTest
+from .test_upsample_disparity import UpsampleDisparityTest
 
 try:
     import networkx as nx

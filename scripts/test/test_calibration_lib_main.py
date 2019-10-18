@@ -22,9 +22,8 @@ Example:
 import os
 import shutil
 
-import test_config as config
-from test_calibration import CalibrationTest, parse_calibration_results
-from test_master_class import DepTest, generic_main
+from .test_calibration import CalibrationTest, parse_calibration_results
+from .test_master_class import DepTest, generic_main
 
 
 class CalibrationLibMainTest(DepTest):
