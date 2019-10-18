@@ -79,15 +79,40 @@ def _set_image_type_paths():
             for (e.g. "color" with respect to the input root and "disparity" to the output). For
             a full list of the input types, see: source/util/ImageTypes.h.
     """
-    derp_util_h = os.path.join(facebook360_dep_root, "source", "util", "ImageTypes.h")
-    with open(derp_util_h) as f:
-        content = f.readlines()
-    content = [x.strip() for x in content if x.strip().startswith("X(")]
     image_type_paths = {}
-    for line in content:
-        # ImageType definitions have format: X(type, value)
-        m = re.search(r"X\((.*), \"(.*)\"\)", line)
-        image_type_paths[m.group(1)] = m.group(2)
+    image_type_paths["background_color"] = "background/color"
+    image_type_paths["background_color_levels"] = "background/color_levels"
+    image_type_paths["background_disp"] = "background/disparity"
+    image_type_paths["background_disp_levels"] = "background/disparity_levels"
+    image_type_paths["background_disp_upsample"] = "background/disparity_upsample"
+    image_type_paths["bin"] = "bin"
+    image_type_paths["color"] = "video/color"
+    image_type_paths["color_levels"] = "video/color_levels"
+    image_type_paths["confidence"] = "confidence"
+    image_type_paths["cost"] = "cost"
+    image_type_paths["disparity"] = "disparity"
+    image_type_paths["disparity_upsample"] = "disparity_upsample"
+    image_type_paths["disparity_levels"] = "disparity_levels"
+    image_type_paths["disparity_time_filtered"] = "disparity_time_filtered"
+    image_type_paths[
+        "disparity_time_filtered_levels"
+    ] = "disparity_time_filtered_levels"
+    image_type_paths["exports"] = "exports"
+    image_type_paths["exports_cubecolor"] = "exports/cubecolor"
+    image_type_paths["exports_cubedisp"] = "exports/cubedisp"
+    image_type_paths["exports_eqrcolor"] = "exports/eqrcolor"
+    image_type_paths["exports_eqrdisp"] = "exports/eqrdisp"
+    image_type_paths["exports_lr180"] = "exports/lr180"
+    image_type_paths["exports_tb3dof"] = "exports/tb3dof"
+    image_type_paths["exports_tbstereo"] = "exports/tbstereo"
+    image_type_paths["foreground_masks"] = "video/foreground_masks"
+    image_type_paths["foreground_masks_levels"] = "video/foreground_masks_levels"
+    image_type_paths["fused"] = "fused"
+    image_type_paths["mismatches"] = "mismatches"
+    image_type_paths["video_bin"] = "video/bin"
+    image_type_paths["video_disp"] = "video/disparity"
+    image_type_paths["video_disp_levels"] = "video/disparity_levels"
+    image_type_paths["video_fused"] = "video/fused"
     return image_type_paths
 
 
