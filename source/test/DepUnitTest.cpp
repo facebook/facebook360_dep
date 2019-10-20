@@ -9,6 +9,10 @@
 
 #include "source/util/CvUtil.h"
 
+#ifdef WIN32
+#include "source/calibration/Calibration.cpp"
+#endif
+
 int main(int argc, char** argv) {
   ::cv::setNumThreads(1);
   ::testing::InitGoogleTest(&argc, argv);

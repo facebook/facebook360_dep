@@ -24,6 +24,10 @@
 #include "source/util/ImageUtil.h"
 #include "source/util/SystemUtil.h"
 
+#ifdef WIN32
+#include "source/calibration/Calibration.cpp"
+#endif
+
 using namespace fb360_dep;
 using namespace fb360_dep::calibration;
 using namespace fb360_dep::point_cloud_util;

@@ -16,6 +16,13 @@
 
 #include <folly/Format.h>
 
+#ifdef WIN32
+#include <boost/locale.hpp>
+#include <boost/filesystem/path.hpp>
+#include <boost/filesystem/fstream.hpp>
+#endif
+
+
 DECLARE_bool(help);
 DECLARE_bool(helpshort);
 
@@ -96,6 +103,13 @@ void logFlags() {
 }
 
 void initDep(int& argc, char**& argv, const std::string kUsageMessage) {
+#ifdef WIN32
+	// Create and install global locale default "en_US.UTF-8"
+	std::locale::global(boost::locale::generator().generate(""));
+	// Make boost.filesystem use it
+	boost::filesystem::path::imbue(std::locale());
+#endif
+
   if (kUsageMessage!="") {
     gflags::SetUsageMessage(kUsageMessage);
   }

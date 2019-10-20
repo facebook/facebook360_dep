@@ -60,11 +60,11 @@ int main(int argc, char* argv[]) {
          ++itr) {
       if (filesystem::is_regular_file(*itr) && itr->path().extension() == ".raw") {
         filesystem::path inputFile = itr->path();
-        inputFiles.emplace_back(inputFile.c_str());
-        outputFiles.emplace_back(inputFile.replace_extension(".png").c_str());
+        inputFiles.emplace_back(inputFile.string().c_str());
+        outputFiles.emplace_back(inputFile.replace_extension(".png").string().c_str());
 
         if (!FLAGS_output_dng_path.empty()) {
-          dngFiles.emplace_back(inputFile.replace_extension(".dng").c_str());
+          dngFiles.emplace_back(inputFile.replace_extension(".dng").string().c_str());
         }
       }
     }

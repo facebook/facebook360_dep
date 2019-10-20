@@ -7,6 +7,16 @@
 
 cmake_minimum_required(VERSION 3.4)
 
+if(WIN32)
+  set(BUILD_WIN32_DIR ${CMAKE_CURRENT_SOURCE_DIR}/build_win32)
+  if( NOT DEFINED VCPKG_BUILT )
+    include(${BUILD_WIN32_DIR}/automate-vcpkg-tks.cmake)
+    include(${BUILD_WIN32_DIR}/vcpkg_list.cmake)
+    vcpkg_install_packages(${VCPACKAGES})
+    set(VCPKG_BUILT TRUE CACHE BOOL "vcpkg_install_packages has run")
+  endif()
+endif(WIN32)
+
 project(Facebook360_DEP CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -30,31 +40,36 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -m64 -O3 -funroll-loops -pipe")
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -mmmx -mavx -msse -msse3")
-
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wsign-compare")
+if(UNIX) 
+  set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -m64 -O3 -funroll-loops -pipe")
+  set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -mmmx -mavx -msse -msse3")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wsign-compare")
+elseif(WIN32)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DNOMINMAX=1 -DUNICODE")
+endif()
 
 if(BUILD_LINE_COVERAGE)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-instr-generate -fcoverage-mapping")
 endif()
 
-if(NOT APPLE)
+if(UNIX AND NOT APPLE)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 endif()
 
-# Add extra directories that may not have been added by default
-set(OPT_LOCAL_DIR "/opt/local")
-if(EXISTS "${OPT_LOCAL_DIR}/lib")
-  link_directories("${OPT_LOCAL_DIR}/lib")
-  include_directories(SYSTEM "${OPT_LOCAL_DIR}/include")
-endif()
+if(UNIX)
+  # Add extra directories that may not have been added by default
+  set(OPT_LOCAL_DIR "/opt/local")
+  if(EXISTS "${OPT_LOCAL_DIR}/lib")
+    link_directories("${OPT_LOCAL_DIR}/lib")
+    include_directories(SYSTEM "${OPT_LOCAL_DIR}/include")
+  endif()
 
-set(USR_LOCAL_DIR "/usr/local")
-if(EXISTS "${USR_LOCAL_DIR}/lib")
-  link_directories("${USR_LOCAL_DIR}/lib")
-  include_directories(SYSTEM "${USR_LOCAL_DIR}/include")
-endif()
+  set(USR_LOCAL_DIR "/usr/local")
+  if(EXISTS "${USR_LOCAL_DIR}/lib")
+    link_directories("${USR_LOCAL_DIR}/lib")
+    include_directories(SYSTEM "${USR_LOCAL_DIR}/include")
+  endif()
+endif(UNIX)
 
 # Add custom targets to show all source and header files in Xcode
 file(GLOB SRC "${CMAKE_CURRENT_SOURCE_DIR}/source/*")
@@ -71,9 +86,11 @@ set(OPENCV_COMPONENTS
 
 # When adding Boost::chrono to target_link_libraries make sure it is listed after Boost::timer
 # because Boost::timer depends on Boost::chrono
-find_package(Boost REQUIRED COMPONENTS chrono filesystem system program_options regex timer)
+find_package(Boost REQUIRED COMPONENTS chrono filesystem system program_options regex timer locale)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
+if(UNIX)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
+endif()
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 find_package(Ceres 1.14 REQUIRED)
@@ -83,13 +100,18 @@ find_package(Eigen3 3.3 REQUIRED)
 find_package(double-conversion 3.0)
 include_directories(${EIGEN3_INCLUDE_DIR})
 
+if(WIN32)
+  find_package(zlib REQUIRED)
+  find_package(gtest REQUIRED)
+endif()
+
 if(APPLE)
   set(FOLLY_LIB folly)
 else()
   find_package(Folly REQUIRED)
   set(FOLLY_LIB Folly::folly)
 endif()
-set(FOLLY_TARGET ${FOLLY_LIB} double-conversion)
+set(FOLLY_TARGET ${FOLLY_LIB})
 
 ###### Targets ######
 
@@ -166,7 +188,6 @@ target_link_libraries(
 )
 
 ### TARGET DepUnitTest ###
-
 add_executable(
   DepUnitTest
   source/test/DepUnitTest.cpp
@@ -197,8 +218,12 @@ target_link_libraries(
 )
 
 ### TARGET ConvertToBinary ###
+if(UNIX)
+  include("${CMAKE_CURRENT_SOURCE_DIR}/ISPC.cmake")
+elseif(WIN32)
+  include("${BUILD_WIN32_DIR}/ISPC-win32.cmake")
+endif()
 
-include("${CMAKE_CURRENT_SOURCE_DIR}/ISPC.cmake")
 add_executable(
   ConvertToBinary
   source/mesh_stream/ConvertToBinary.cpp
@@ -428,6 +453,7 @@ target_link_libraries(
   Boost::program_options
   Boost::timer
   Boost::chrono
+  Boost::locale
   Eigen3::Eigen
   glog::glog
   ${OPENCV_COMPONENTS}

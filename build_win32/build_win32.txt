@@ -1,0 +1,72 @@
+Building facebook360-dep on Windows with Cmake and vcpkg
+
+These instructions pertain to the Windows port of facebook360-dep created Oct 2019
+by Thomas Sharpless <tksharpless@gmail.com>.  It has a directory named build_win32
+containing some cmake scripts and this file.
+
+==  PACKAGES  ==
+
+Building facebook360-dep with cmake creates native executables to be run on the
+machine that built them, as opposed to a Docker package that can run anywhere.
+The Windows Docker package is not so useful since for technical reasons it cannot
+use the local GPU.  Moreover it limits the available processing scenarios.  With 
+native executables you can apply the many programs that make up fb360-dep to a
+wider variety of problems.
+
+Due to the GPU access problem, there is a sub-package in directory 'windows' to 
+build just the VR viewer component natively on Windows.  On other platforms the 
+main cmake script builds the viewer too.
+
+The hardest part of building a big open source project is marshalling all the many
+software packages it depends on.  The modern way to do that is to use a package
+manager, which knows how to find standard packages on the Internet and install them
+in places where the build system can find them.  This build uses vcpkg, a Microsoft 
+product available on Windows, OS X and Linux.  vcpkg installs everything inside a
+single directory that also contains the vcpkg executable, and sets no system-wide
+state; its work can be completely undone just by deleting that directory.
+
+The master cmake script can install all required packages into directory 'vcpkg' 
+in the build directory.  This can take several hours. In case you already
+have a vcpkg instance containing some of those packages, you can tell cmake to
+use that instead of creating a new one.  In that case any missing packages will be 
+added to the existing instance, since only one instance can be active.
+  
+The file build_win32/vcpkg_list.cmake contains the list of package names.
+
+Once the vcpkg directory is populated cmake configure will scan it and issue a
+warning message for any package that has available updates. However it will not
+automatically update those packages; to do that, you can use vcpkg commands.
+
+==  BUILD  ==
+
+The build is controlled as usual by the file cmakelists.txt in the root directory
+of the source package. I suggest you run it with cmake-gui; if you prefer the 
+command line, you presumably know how to translate these instructions.
+
+Start by pointing cmake at the source root and give it a new build directory name.
+Click configure. Approve creating the build directory.  In the dialog that next pops 
+up, select your compiler package -- which must be msvc 14 (VisualStudio 2017) or 
+later -- and the 'x64' platform -- mandatory because cmake still defaults to 32 bit 
+builds on Windows.  
+
+To use an existing vcpkg instance, check "specify toolchain file for cross-compiling" 
+before clicking "next".  In the new dialog, enter the full path to its vcpkg.cmake
+file, example "C:/Users/Me/myvcpkg/scripts/buildsystems/vcpkg.cmake".  Otherwise just
+click "next" and cmake will create a new vcpkg instance in the build directory. In
+either case, it will next invoke vcpkg to install all the needed packages.  This can
+take a long time when everything needs to be guilt fresh.
+
+Next, cmake should quickly find the dependencies and configure the build.  If it 
+reports any errors, you must try to resolve them, for example by running external
+install commands, then click configure again.
+
+When configure succeeds, click "generate". Cmake will put a Visual Studio solution
+having around 40 projects in the build directory.  You can open it by clicking "open" 
+on cmake-gui, or in the usual ways.  
+
+Building the whole solution takes about 30 minutes.  Many projects can be built
+independently if you prefer.
+
+
+
+

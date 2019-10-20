@@ -16,6 +16,13 @@
 #include "source/util/ImageUtil.h"
 #include "source/util/SystemUtil.h"
 
+#ifdef WIN32
+#include "source/calibration/Calibration.cpp"
+DEFINE_int32(octave_count, 4, "number of resolutions to use when looking for features");
+DEFINE_bool(same_scale, false, "match at same scale where feature was found");
+DEFINE_bool(use_nearest, false, "use nearest neighbor during corner matching, default is bilinear"); 
+#endif
+
 using namespace fb360_dep;
 
 const std::string kUsageMessage = R"(
