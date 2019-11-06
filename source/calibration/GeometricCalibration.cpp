@@ -581,8 +581,8 @@ void drawRedGreenLine(
     const Camera::Vector2& r,
     const Camera::Vector2& g,
     const Camera::Vector2& m) {
-  const cv::Scalar red(0, 0, 255);
-  const cv::Scalar green(0, 255, 0);
+  const cv::Scalar red = cv_util::createBGR<cv::Vec3w>(0, 0, 1);
+  const cv::Scalar green = cv_util::createBGR<cv::Vec3w>(0, 1, 0);
   cv::line(dst, cv::Point2f(r.x(), r.y()), cv::Point2f(m.x(), m.y()), red, 2);
   cv::line(dst, cv::Point2f(g.x(), g.y()), cv::Point2f(m.x(), m.y()), green, 2);
 }
@@ -598,7 +598,7 @@ cv::Mat_<T> projectImageBetweenCamerasNearest(
       Camera::Vector3 rig = dst.rigNearInfinity({x + 0.5, y + 0.5});
       Camera::Vector2 srcPixel;
       if (src.sees(rig, srcPixel)) {
-        dstImage(y, x) = srcImage.empty() ? cv_util::createBGR<T>(255, 255, 255)
+        dstImage(y, x) = srcImage.empty() ? cv_util::createBGR<T>(1, 1, 1)
                                           : srcImage(srcPixel.y(), srcPixel.x());
       } else {
         dstImage(y, x) = cv_util::createBGR<T>(0, 0, 0);
