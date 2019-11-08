@@ -10,9 +10,9 @@
 #include "source/util/Camera.h"
 
 namespace fb360_dep {
-  bool testUndoPixel(
-      Camera camera,
-      Camera::Vector3 targetPoint,
-      Camera::Real depth,
-      Camera::Vector3 expected);
+bool testUndoPixel(
+    Camera camera,
+    Camera::Vector3 targetPoint,
+    Camera::Real depth,
+    Camera::Vector3 expected);
 }

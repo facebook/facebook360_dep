@@ -26,7 +26,6 @@ static const char* testFthetaJson = R"({
   "id" : "cam1"
 })";
 
-
 // Test fixture for the camera. Read about google tests here:
 //   https://github.com/google/googletest/blob/master/googletest/docs/primer.md
 

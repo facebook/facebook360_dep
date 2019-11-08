@@ -78,9 +78,9 @@ DEFINE_double(point_error_stddev, 0.5, "error added to artificial points");
 DEFINE_double(point_min_dist, 1, "minimum distance of artificial points");
 DEFINE_string(points_file, "", "path to output calibration points file, default next to output");
 DEFINE_string(
-  points_file_json,
-  "",
-  "path to output calibration points file including reference points, default next to output");
+    points_file_json,
+    "",
+    "path to output calibration points file including reference points, default next to output");
 DEFINE_string(reference_camera, "", "reference camera to lock if positions are unlocked");
 DEFINE_double(
     remove_sparse_overlaps,
@@ -941,18 +941,13 @@ void savePointsFileJson(FeatureMap& featureMap, const std::vector<Trace>& traces
     for (const auto& ref : trace.references) {
       const ImageId& image = ref.first;
       const Feature& feature = featureMap[image][ref.second];
-      folly::dynamic featureSerialized = folly::dynamic::object
-        ("y", feature.position.y())
-        ("x", feature.position.x())
-        ("image_id", ref.first);
+      folly::dynamic featureSerialized = folly::dynamic::object("y", feature.position.y())(
+          "x", feature.position.x())("image_id", ref.first);
       arrayOfFeatures.push_back(featureSerialized);
     }
-    folly::dynamic traceSerialized = folly::dynamic::object
-      ("features", arrayOfFeatures)
-      ("number of references", trace.references.size())
-      ("z", trace.position.z())
-      ("y", trace.position.y())
-      ("x", trace.position.x());
+    folly::dynamic traceSerialized = folly::dynamic::object("features", arrayOfFeatures)(
+        "number of references", trace.references.size())("z", trace.position.z())(
+        "y", trace.position.y())("x", trace.position.x());
     arrayOfTraces.push_back(traceSerialized);
   }
 
@@ -1154,10 +1149,14 @@ double refine(
         getReprojectionErrorOutliers(problem);
     LOG(INFO) << folly::sformat("Number of down-weighted outliers: {}", errorsIgnored.size());
     std::sort(errorsIgnored.begin(), errorsIgnored.end(), math_util::sortdescPair<double, double>);
-    LOG(INFO) << folly::sformat("Highest 3 (true/weighted): {}/{}, {}/{}, {}/{}",
-        errorsIgnored[2].first, errorsIgnored[2].second,
-        errorsIgnored[1].first, errorsIgnored[1].second,
-        errorsIgnored[0].first, errorsIgnored[0].second);
+    LOG(INFO) << folly::sformat(
+        "Highest 3 (true/weighted): {}/{}, {}/{}, {}/{}",
+        errorsIgnored[2].first,
+        errorsIgnored[2].second,
+        errorsIgnored[1].first,
+        errorsIgnored[1].second,
+        errorsIgnored[0].first,
+        errorsIgnored[0].second);
   }
   reportReprojectionErrors(overlaps, featureMap, traces, cameras);
   solve(problem);

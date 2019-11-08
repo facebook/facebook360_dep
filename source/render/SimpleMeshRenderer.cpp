@@ -48,11 +48,11 @@ const char* kUsage = R"(
 #include "source/gpu/GlfwUtil.h"
 #include "source/util/Camera.h"
 
+#include "CanopyScene.h"
+#include "DisparityColor.h"
 #include "source/util/CvUtil.h"
 #include "source/util/ImageUtil.h"
 #include "source/util/SystemUtil.h"
-#include "CanopyScene.h"
-#include "DisparityColor.h"
 
 using namespace fb360_dep;
 using namespace fb360_dep::image_util;

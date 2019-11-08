@@ -13,7 +13,7 @@
 
 using namespace fb360_dep;
 
-static const char* testOrthographicJson= R"({
+static const char* testOrthographicJson = R"({
   "version" : 1,
   "type" : "ORTHOGRAPHIC",
   "origin" : [0, 0, 0],

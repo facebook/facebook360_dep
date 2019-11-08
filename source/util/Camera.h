@@ -318,7 +318,7 @@ struct Camera {
       Real xy = camera.head<2>().norm();
       Real r;
       if (-camera.z() <= 0) { // outside fov
-        r = tan(M_PI/2);
+        r = tan(M_PI / 2);
       } else {
         r = xy / -camera.z();
       }

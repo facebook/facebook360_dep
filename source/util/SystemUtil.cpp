@@ -96,7 +96,7 @@ void logFlags() {
 }
 
 void initDep(int& argc, char**& argv, const std::string kUsageMessage) {
-  if (kUsageMessage!="") {
+  if (kUsageMessage != "") {
     gflags::SetUsageMessage(kUsageMessage);
   }
 

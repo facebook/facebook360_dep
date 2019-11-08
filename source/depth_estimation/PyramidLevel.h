@@ -489,7 +489,7 @@ struct PyramidLevel {
     std::unordered_set<std::string> outputFormats(outputFormatsVec.begin(), outputFormatsVec.end());
 
     const bool saveExr = (outputFormats.find("exr") != outputFormats.end());
-    const bool savePfm = true;  // always save PFM
+    const bool savePfm = true; // always save PFM
     const bool savePng = (outputFormats.find("png") != outputFormats.end());
 
     if (!(saveExr || savePfm || savePng)) {

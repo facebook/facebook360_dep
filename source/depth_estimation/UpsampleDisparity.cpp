@@ -84,7 +84,8 @@ void upsampleFrame(const Camera::Rig& rigSrc, const Camera::Rig& rigDst, const s
 
   int height;
   if (FLAGS_height == -1) {
-    height = std::round(float(rigDst[0].resolution.y()) / rigDst[0].resolution.x() * FLAGS_resolution);
+    height =
+        std::round(float(rigDst[0].resolution.y()) / rigDst[0].resolution.x() * FLAGS_resolution);
     height += height % 2; // force even height
   } else {
     height = FLAGS_height;

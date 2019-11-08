@@ -30,7 +30,10 @@ DEFINE_double(custom, -1, "custom angle away from north");
 DEFINE_double(discard_poles, 0, "degrees from poles to ignore");
 DEFINE_string(eulers, "", "create from eulers file");
 DEFINE_double(min_distance, 0.50, "min distance to test");
-DEFINE_double(overlap_distance, Camera::kNearInfinity, "distance to visualize equirect overlap, default is INF");
+DEFINE_double(
+    overlap_distance,
+    Camera::kNearInfinity,
+    "distance to visualize equirect overlap, default is INF");
 DEFINE_bool(one_based_indexing, false, "enable to index cameras starting at 1 instead of 0");
 DEFINE_string(output_camera, "", "path to output camera .ppm file");
 DEFINE_string(output_camera_id, "", "output camera id");
@@ -399,7 +402,7 @@ void saveEquirect(const std::string& filename, const Camera::Rig& rig) {
           // Normalized timing distance assuming all the cameras'
           // pixel clocks are synced and single line activated/reset rolling
           // shutter.
-          timing[count] = p.y() /camera.resolution.y();
+          timing[count] = p.y() / camera.resolution.y();
           // Count this camera
           ++count;
         }

@@ -240,7 +240,7 @@ Overlap findMatches(
       if (firstProjection || disparity > 1 / FLAGS_max_depth_for_remap) {
         // compute what the area around corner 0 would look like from camera 1
         projectCornerTimer.resume();
-        callsToProjectCorners ++;
+        callsToProjectCorners++;
         if (!projectCorner(image1, camera1, img0, camera0, corner0, 1 / disparity)) {
           continue;
         }
@@ -265,7 +265,7 @@ Overlap findMatches(
         double score = computeZncc(projection1, corners1[index1]);
         bestMatches0[index0].updateCornerScore(score, index1);
         bestMatches1[index1].updateCornerScore(score, index0);
-        callsToZncc ++;
+        callsToZncc++;
       }
       znccTimer.stop();
     }

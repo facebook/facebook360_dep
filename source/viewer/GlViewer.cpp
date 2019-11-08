@@ -49,11 +49,7 @@ static const float kEffectMax = 15; // meters
 // so we permute the coordinates on the way to the graphics pipeline
 // match opengl's coordinate system.
 static const Eigen::Matrix4f kPermutationMatrix(
-  (Eigen::Matrix4f() <<
-    1, 0,  0, 0,
-    0, 0, -1, 0,
-    0, 1,  0, 0,
-    0, 0,  0, 1).finished());
+    (Eigen::Matrix4f() << 1, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 0, 0, 1).finished());
 
 class GlViewer : public GlWindow {
  private:

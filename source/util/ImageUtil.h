@@ -133,9 +133,8 @@ std::vector<cv::Mat_<T>> loadScaledImages(
   std::vector<cv::Mat_<T>> images(rig.size());
   ThreadPool threadPool(numThreads);
   for (int i = 0; i < int(rig.size()); ++i) {
-    threadPool.spawn([&, i] {
-      images[i] = loadScaledImage<T>(dir, rig[i].id, frameName, scaleFactor, interp);
-    });
+    threadPool.spawn(
+        [&, i] { images[i] = loadScaledImage<T>(dir, rig[i].id, frameName, scaleFactor, interp); });
   }
   threadPool.join();
   return images;

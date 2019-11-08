@@ -36,7 +36,7 @@ namespace system_util {
 // this should be the first line of most main() function in this project. sets up glog,
 // gflags, and enables stack traces to be triggered when the program stops due to an
 // exception
-void initDep(int& argc, char**& argv, const std::string kUsageMessage="");
+void initDep(int& argc, char**& argv, const std::string kUsageMessage = "");
 
 } // namespace system_util
 } // namespace fb360_dep

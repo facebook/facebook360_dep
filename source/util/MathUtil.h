@@ -144,8 +144,7 @@ matrixToLinearIndex(std::tuple<int, int> rowCol, int numRows, int numCols, bool 
 
 // Descending sort function for pairs (sort by first element)
 template <class T, class U>
-bool sortdescPair(const std::pair<T, U>& a,
-    const std::pair<T, U>& b) {
+bool sortdescPair(const std::pair<T, U>& a, const std::pair<T, U>& b) {
   return (std::get<0>(a) > std::get<0>(b));
 }
 

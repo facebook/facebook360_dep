@@ -21,11 +21,10 @@
 #include "source/render/RigScene.h"
 #include "source/render/Soundtrack.h"
 #include "source/render/VideoFile.h"
-#include "source/viewer/MenuScreen.h"
 #include "source/util/SystemUtil.h"
+#include "source/viewer/MenuScreen.h"
 
 using namespace fb360_dep;
-
 
 const std::string kUsageMessage = R"(
    Plays a video sequence on a Rift HMD, taking as input the fused binary file, catalog, and rig
@@ -210,8 +209,8 @@ static float getVideoTimeMs(const VideoFile& videoFile) {
 static std::set<char> depressedKeys;
 
 static std::vector<char> getAndUpdateActiveKeys() {
-  static std::set<char> keysOfInterest =
-    {VK_LEFT, VK_RIGHT, 'W', VK_UP, 'S', VK_DOWN, 'D', 'A', 'C', 'H', 'M', 'B', ' '};
+  static std::set<char> keysOfInterest = {
+      VK_LEFT, VK_RIGHT, 'W', VK_UP, 'S', VK_DOWN, 'D', 'A', 'C', 'H', 'M', 'B', ' '};
   static std::set<char> keysActiveOnlyOnKeyPress = {'C', 'H', 'M', 'B', ' '};
 
   std::vector<char> activeKeys;

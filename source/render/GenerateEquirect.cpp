@@ -5,8 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-#include <algorithm>
 #include <math.h>
+#include <algorithm>
 
 #include <gflags/gflags.h>
 #include <glog/logging.h>
@@ -14,10 +14,10 @@
 
 #include <folly/Format.h>
 
+#include "source/rig/RigTransform.h"
 #include "source/util/Camera.h"
 #include "source/util/ImageUtil.h"
 #include "source/util/ThreadPool.h"
-#include "source/rig/RigTransform.h"
 
 using namespace fb360_dep;
 using namespace fb360_dep::image_util;
@@ -182,20 +182,20 @@ double getRotationAngle(Camera::Vector3 v1, Camera::Vector3 v2, int signFactor) 
 
 // Rotate rig so that selected camera is facing towards centered in the equirect
 void centerRig(Camera::Rig& rig, std::string camera_id) {
-  const Camera::Vector3 centerOfEquirect(-1,0,0);
-  const Camera::Vector3 upwards(0,0,1); // desired final upward orientation for camera
+  const Camera::Vector3 centerOfEquirect(-1, 0, 0);
+  const Camera::Vector3 upwards(0, 0, 1); // desired final upward orientation for camera
   const Camera::Vector3 translation(0, 0, 0);
   const Eigen::UniformScaling<double> scale(1);
 
   Camera::Real theta = 0; // angle around x axis
-  Camera::Real psi = 0;  // angle around y axis
-  Camera::Real phi = 0;  // angle around z axis
+  Camera::Real psi = 0; // angle around y axis
+  Camera::Real phi = 0; // angle around z axis
 
   // Yaw (rotation around z axis)
   const Camera& selectedCamera = Camera::findCameraById(camera_id, rig);
 
   Camera::Vector3 projectedOnXY =
-    Camera::Vector3(selectedCamera.forward().x(), selectedCamera.forward().y(), 0);
+      Camera::Vector3(selectedCamera.forward().x(), selectedCamera.forward().y(), 0);
 
   int phiFactor = selectedCamera.forward().y() > 0 ? 1 : -1;
   phi = getRotationAngle(centerOfEquirect, projectedOnXY, phiFactor);
@@ -207,7 +207,7 @@ void centerRig(Camera::Rig& rig, std::string camera_id) {
   const Camera& selectedCamera2 = Camera::findCameraById(camera_id, rig);
 
   Camera::Vector3 projectedOnXZ =
-    Camera::Vector3(selectedCamera2.forward().x(), 0, selectedCamera2.forward().z());
+      Camera::Vector3(selectedCamera2.forward().x(), 0, selectedCamera2.forward().z());
 
   int psiFactor = selectedCamera2.forward().z() > 0 ? -1 : 1;
   psi = getRotationAngle(centerOfEquirect, projectedOnXZ, psiFactor);
@@ -219,7 +219,7 @@ void centerRig(Camera::Rig& rig, std::string camera_id) {
   const Camera& selectedCamera3 = Camera::findCameraById(camera_id, rig);
 
   Camera::Vector3 projectedOnYZ =
-    Camera::Vector3(0, selectedCamera3.up().y(), selectedCamera3.up().z());
+      Camera::Vector3(0, selectedCamera3.up().y(), selectedCamera3.up().z());
 
   int thetaFactor = selectedCamera3.up().y() > 0 ? 1 : -1;
   theta = getRotationAngle(upwards, projectedOnYZ, thetaFactor);
