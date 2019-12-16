@@ -30,7 +30,7 @@ software pipeline. Certain capabilities are restricted on the operating systems,
 
 Here you can find short guides for the most common scenarios: [facebook360_dep][tutorial].
 
-[tutorial]: https://facebook.github.io/facebook360_dep/docs/tutorial.html
+[tutorial]: https://facebook.github.io/facebook360_dep/docs/install
 
 ## 👏 How to Contribute
 
