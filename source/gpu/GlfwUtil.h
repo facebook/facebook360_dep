@@ -25,7 +25,7 @@
 #include <folly/Format.h>
 
 #ifdef __linux__
-#define USE_EGL
+#undef USE_EGL
 #endif
 
 #ifdef USE_EGL
@@ -307,6 +307,10 @@ class GlWindow {
       // Create a frame buffer to render into
       fbo = createFramebuffer();
 
+      // Message the graphics device info
+      LOG(INFO) << folly::format(
+          "OpenGL off-screen renderer: {}", (char*)(glGetString(GL_RENDERER)));
+
       // Return early avoiding glfw entirely for offscreen rendering
       return;
     }
@@ -318,6 +322,10 @@ class GlWindow {
     const int glfwInitialization = glfwInit();
     glfwGetError(&lastGlfwErrorMessage);
     CHECK(glfwInitialization) << "failed -> " << lastGlfwErrorMessage;
+
+    if (screenState & OFF_SCREEN) {
+      glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+    }
 
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
@@ -359,7 +367,7 @@ class GlWindow {
 #endif
 
     // Message the graphics device info
-    LOG(INFO) << folly::format("OpenGL renderer: {}", (char*)(glGetString(GL_RENDERER)));
+    LOG(INFO) << folly::format("OpenGL on screen renderer: {}", (char*)(glGetString(GL_RENDERER)));
 
     // Create a place to render offscreen pixesl
     if (screenState & OFF_SCREEN) {
