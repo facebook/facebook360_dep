@@ -25,7 +25,7 @@
 #include <folly/Format.h>
 
 #ifdef __linux__
-#undef USE_EGL
+#define USE_EGL
 #endif
 
 #ifdef USE_EGL
