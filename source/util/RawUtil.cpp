@@ -306,12 +306,12 @@ bool writeDng(
   fwrite(&stripCnt[0], sizeof(uint16_t), stripsPerImg, fDng);
   fwrite(cameraSoftware.c_str(), sizeof(char), cameraSoftware.size() + 1, fDng);
 
-  char szDateTime[20];
+  char szDateTime[72];
   time_t time = 0; // Need to get this from the camera meta data.
   struct tm* tlocal = localtime(&time);
   snprintf(
       szDateTime,
-      20,
+      72,
       "%04d-%02d-%02d %02d:%02d:%02d",
       tlocal->tm_year + 1900,
       tlocal->tm_mon,
@@ -319,7 +319,7 @@ bool writeDng(
       tlocal->tm_hour,
       tlocal->tm_min,
       tlocal->tm_sec);
-  szDateTime[19] = '\0';
+  szDateTime[71] = '\0';
 
   fwrite(szDateTime, sizeof(char), 20, fDng);
 
