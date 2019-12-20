@@ -149,6 +149,11 @@ class GlWindow {
   }
 
   virtual void reshape(const int w, const int h) {
+    // Update this window's width and height state
+    width = w;
+    height = h;
+
+    // Update the transformation matrix
     viewport = Eigen::Vector2i(w, h);
     glViewport(0, 0, w, h);
 
