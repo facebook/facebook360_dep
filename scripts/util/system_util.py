@@ -30,11 +30,11 @@ import signal
 import subprocess
 import sys
 import tarfile
-
 from enum import Enum
-from itertools import chain
 from functools import reduce
+from itertools import chain
 from pathlib import Path
+
 
 facebook360_dep_root = str(Path(os.path.abspath(__file__)).parents[2])
 
@@ -389,7 +389,7 @@ def sh_stream(arg, file=sys.stdout, use_shell=None):
         decoded_c = c.decode("utf-8")
         sys.stdout.write(decoded_c)
         outputs.append(decoded_c)
-    exit_code = process.poll()
+    exit_code = process.wait()
     if exit_code != 0:
         raise subprocess.CalledProcessError(exit_code, arg)
     return "".join(outputs)
