@@ -8,7 +8,9 @@
 #pragma once
 
 #ifdef WIN32
-#include <filesystem>
+#define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
+#include <experimental/filesystem> // C++-standard header file name
+#include <filesystem> // Microsoft-specific implementation header file name
 #else
 #define BOOST_FILESYSTEM_NO_DEPRECATED
 #include <boost/filesystem.hpp>

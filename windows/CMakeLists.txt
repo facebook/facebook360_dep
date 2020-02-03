@@ -18,6 +18,7 @@ find_package(OPENGL)
 find_package(folly CONFIG REQUIRED)
 find_package(double-conversion CONFIG REQUIRED)
 find_package(GLEW REQUIRED)
+find_package(ZLIB REQUIRED)
 
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
