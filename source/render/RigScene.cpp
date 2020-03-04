@@ -852,6 +852,10 @@ GLuint RigScene::createDirection(const Camera& camera) {
       Camera::Vector2 c(x, y);
       Camera::Vector2 pixel = c.cwiseProduct(camera.resolution) / (kDirections - 1);
       Camera::Vector3 direction = camera.rig(pixel).direction();
+      if (isDepthZCoord) {
+        Camera::Real factor = -camera.pixelToCamera(pixel).z();
+        direction /= factor;
+      }
       directions.push_back(direction.cast<float>());
     }
   }
@@ -1082,7 +1086,8 @@ RigScene::~RigScene() {
   emptyRecycling();
 }
 
-RigScene::RigScene(const Camera::Rig& rig, const bool useMesh) : useMesh(useMesh), rig(rig) {
+RigScene::RigScene(const Camera::Rig& rig, const bool useMesh, const bool isDepthZCoord)
+    : useMesh(useMesh), isDepthZCoord(isDepthZCoord), rig(rig) {
   createPrograms();
   for (const Camera& camera : rig) {
     directionTextures.push_back(createDirection(camera));
@@ -1090,15 +1095,16 @@ RigScene::RigScene(const Camera::Rig& rig, const bool useMesh) : useMesh(useMesh
   cameraFBO = 0; // mark cameraFBO as uninitialized
 }
 
-RigScene::RigScene(const std::string& rigPath, const bool useMesh)
-    : RigScene(Camera::loadRig(rigPath), useMesh) {}
+RigScene::RigScene(const std::string& rigPath, const bool useMesh, const bool isDepthZCoord)
+    : RigScene(Camera::loadRig(rigPath), useMesh, isDepthZCoord) {}
 
 RigScene::RigScene(
     const std::string& rigPath,
     const std::string& imageDir,
     const std::string& depthDir,
-    const bool useMesh)
-    : RigScene(rigPath, useMesh) {
+    const bool useMesh,
+    const bool isDepthZCoord)
+    : RigScene(rigPath, useMesh, isDepthZCoord) {
   subframes = createFrame(imageDir, depthDir);
 }
 

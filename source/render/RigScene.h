@@ -20,13 +20,20 @@ namespace fb360_dep {
 using MatrixDepth = Eigen::Matrix<float, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>;
 
 struct RigScene {
-  explicit RigScene(const Camera::Rig& rig, const bool useMesh = true);
-  explicit RigScene(const std::string& rigPath, const bool useMesh = true);
+  explicit RigScene(
+      const Camera::Rig& rig,
+      const bool useMesh = true,
+      const bool isDepthZCoord = false);
+  explicit RigScene(
+      const std::string& rigPath,
+      const bool useMesh = true,
+      const bool isDepthZCoord = false);
   RigScene(
       const std::string& rigPath,
       const std::string& imageDir,
       const std::string& depthDir,
-      const bool useMesh = true);
+      const bool useMesh = true,
+      const bool isDepthZCoord = false);
 
   // construct a RigScene using depth and image data that is already in-memory.
   // assumes 'images' is a vector of flattened image data, T[4], RGBA order.
@@ -43,6 +50,7 @@ struct RigScene {
   ~RigScene();
 
   const bool useMesh;
+  const bool isDepthZCoord;
 
   GLuint cameraProgram;
   GLuint cameraMeshProgram;
