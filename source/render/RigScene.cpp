@@ -1057,7 +1057,8 @@ void RigScene::render(
   culled.resize(rig.size());
   for (int i = 0; i < int(rig.size()); ++i) {
     culled[i] = doCulling && !isVisible(rig[i], transform);
-    if (subframes[i].isValid() && !culled[i]) {
+
+    if (i < int(subframes.size()) && subframes[i].isValid() && !culled[i]) {
       clearSubframe();
       renderSubframe(i, wireframe);
       updateAccumulation();
