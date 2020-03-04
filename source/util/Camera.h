@@ -24,9 +24,6 @@
 #define M_PI EIGEN_PI
 #endif
 
-// windows doesn't need the full rig i/o functionality
-#define SUPPRESS_RIG_IO
-
 #endif // WIN32
 
 namespace fb360_dep {
