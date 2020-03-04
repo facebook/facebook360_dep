@@ -101,6 +101,14 @@ struct RigScene {
       const std::string& id,
       const std::string& imageDir,
       const std::string& depthDir) const;
+  Subframe createPointCloudSubframeFromData(
+      const uint8_t* colorData,
+      uint16_t* depthData,
+      const int colorWidth,
+      const int colorHeight,
+      const int depthWidth,
+      const int depthHeight,
+      const float depthScale) const;
   std::vector<Subframe> createFrame(const std::string& imageDir, const std::string& depthDir) const;
   void destroyFrame(std::vector<Subframe>& subframes) const;
 

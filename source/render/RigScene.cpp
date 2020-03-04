@@ -815,6 +815,27 @@ std::vector<RigScene::Subframe> RigScene::createFrame(
   return subframes;
 }
 
+RigScene::Subframe RigScene::createPointCloudSubframeFromData(
+    const uint8_t* colorData,
+    uint16_t* depthData,
+    const int colorWidth,
+    const int colorHeight,
+    const int depthWidth,
+    const int depthHeight,
+    const float depthScale = 1.0f) const {
+  // Color
+  GLuint colorTexture = linearTexture2D(
+      colorWidth, colorHeight, GL_SRGB8_ALPHA8, GL_BGRA, GL_UNSIGNED_BYTE, colorData);
+
+  // Depth
+  using MatrixDepth16 = Eigen::Matrix<uint16_t, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>;
+  MatrixDepth16 depthMatrix16 = Eigen::Map<MatrixDepth16>(depthData, depthHeight, depthWidth);
+  MatrixDepth depthMatrix = depthMatrix16.cast<float>();
+  depthMatrix *= depthScale;
+
+  return createPointCloudSubframeFromMemory(colorTexture, depthMatrix, cameraProgram);
+}
+
 void RigScene::destroyFrame(std::vector<Subframe>& subframes) const {
   for (Subframe& subframe : subframes) {
     recycleTexture(subframe.colorTexture);
