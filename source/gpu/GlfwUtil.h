@@ -345,8 +345,11 @@ class GlWindow {
     glfwWindowHint(GLFW_GREEN_BITS, outputBPP);
     glfwWindowHint(GLFW_BLUE_BITS, outputBPP);
 
-#ifdef __linux__
-    glfwWindowHint(GLFW_CONTEXT_CREATION_API, GLFW_EGL_CONTEXT_API);
+#ifdef USE_EGL_
+    // Only use EGL for offscreen rendering.
+    if (screenState & OFF_SCREEN) {
+      glfwWindowHint(GLFW_CONTEXT_CREATION_API, GLFW_EGL_CONTEXT_API);
+    }
 #endif
 
     window = glfwCreateWindow(width, height, name.c_str(), NULL, NULL);
