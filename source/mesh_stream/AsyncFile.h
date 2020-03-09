@@ -165,7 +165,8 @@ struct AsyncFile {
 
   void readBegin(PendingRead& pending, const std::vector<Segment>& segments, uint64_t offset)
       const {
-#ifdef __APPLE__ // apple doesn't support preadv
+#if defined(__APPLE__) || defined(__linux__)
+    // apple doesn't support preadv and linux crashes
     pending = std::async(&AsyncFile::readSegments, this, segments, offset);
 #else // __APPLE__
     pending = std::async(preadv, handle, segments.data(), segments.size(), offset);
