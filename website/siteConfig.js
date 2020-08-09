@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 var date = new Date();
-year = date.getFullYear();
+currentYear = date.getFullYear();
 
 const siteConfig = {
   title: "facebook360_dep",
@@ -43,7 +43,7 @@ const siteConfig = {
   separateCss: ["static/source/html", "static/scripts/html"],
 
   // Copyright info
-  copyright: `Copyright © ${year} Facebook Inc.`,
+  copyright: `Copyright © ${currentYear} Facebook Inc.`,
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
