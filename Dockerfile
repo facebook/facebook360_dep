@@ -66,12 +66,12 @@ RUN curl -LO https://dl.bintray.com/boostorg/release/1.66.0/source/boost_1_66_0.
 RUN echo "Installed boost"
 
 RUN echo "Installing eigen..."
-RUN curl -LO http://bitbucket.org/eigen/eigen/get/3.3.4.tar.gz && \
-    tar -zxf 3.3.4.tar.gz && \
-    cd eigen-eigen-5a0156e40feb && \
+RUN curl -LO https://gitlab.com/libeigen/eigen/-/archive/3.3.4/eigen-3.3.4.tar.gz && \
+    tar -zxf eigen-3.3.4.tar.gz && \
+    cd eigen-3.3.4 && \
     mkdir build && cd build && \
     cmake .. && make install -j$(nproc) && \
-    cd ../../ && rm -fr eigen-eigen-5a0156e40feb
+    cd ../../ && rm -fr eigen-3.3.4
 RUN echo "Installed eigen"
 
 RUN echo "Installing ceres..."
