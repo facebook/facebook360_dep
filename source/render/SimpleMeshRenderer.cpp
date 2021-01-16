@@ -135,11 +135,12 @@ void verifyInputs(const Camera::Rig& rig) {
   }
 
   // If a format needs color we need colors to be provided
-  const std::set<std::string> formatsAllColor = {formatsArr[int(Format::eqrcolor)],
-                                                 formatsArr[int(Format::cubecolor)],
-                                                 formatsArr[int(Format::tbstereo)],
-                                                 formatsArr[int(Format::lr180)],
-                                                 formatsArr[int(Format::snapcolor)]};
+  const std::set<std::string> formatsAllColor = {
+      formatsArr[int(Format::eqrcolor)],
+      formatsArr[int(Format::cubecolor)],
+      formatsArr[int(Format::tbstereo)],
+      formatsArr[int(Format::lr180)],
+      formatsArr[int(Format::snapcolor)]};
   if (formatsAllColor.find(FLAGS_format) != formatsAllColor.end()) {
     CHECK_NE(FLAGS_color, "") << FLAGS_format << " needs --color to be set";
   }
@@ -198,10 +199,11 @@ const std::vector<cv::Mat_<cv::Vec4f>> loadDisparitiesAsColors(
   const bool onscreenDisparities = FLAGS_format.empty() && FLAGS_color.empty();
 
   // (2)
-  const std::set<std::string> formatsWithDisp = {formatsArr[int(Format::eqrdisp)],
-                                                 formatsArr[int(Format::cubedisp)],
-                                                 formatsArr[int(Format::snapdisp)],
-                                                 formatsArr[int(Format::tb3dof)]};
+  const std::set<std::string> formatsWithDisp = {
+      formatsArr[int(Format::eqrdisp)],
+      formatsArr[int(Format::cubedisp)],
+      formatsArr[int(Format::snapdisp)],
+      formatsArr[int(Format::tb3dof)]};
   const bool offscreenDisparities = formatsWithDisp.find(FLAGS_format) != formatsWithDisp.end();
 
   needDisparitiesAsColors = onscreenDisparities || offscreenDisparities;

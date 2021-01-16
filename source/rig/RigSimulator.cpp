@@ -121,18 +121,19 @@ DEFINE_double(top_cam_vertical_offset, 13.0, "distance from center plane to top 
 namespace icosahedron_data {
 const static float X = 0.525731112119133696;
 const static float Z = 0.850650808352039932;
-const static float icosahedronVertex[12][3] = {{-X, 0.0, Z},
-                                               {X, 0.0, Z},
-                                               {-X, 0.0, -Z},
-                                               {X, 0.0, -Z},
-                                               {0.0, Z, X},
-                                               {0.0, Z, -X},
-                                               {0.0, -Z, X},
-                                               {0.0, -Z, -X},
-                                               {Z, X, 0.0},
-                                               {-Z, X, 0.0},
-                                               {Z, -X, 0.0},
-                                               {-Z, -X, 0.0}};
+const static float icosahedronVertex[12][3] = {
+    {-X, 0.0, Z},
+    {X, 0.0, Z},
+    {-X, 0.0, -Z},
+    {X, 0.0, -Z},
+    {0.0, Z, X},
+    {0.0, Z, -X},
+    {0.0, -Z, X},
+    {0.0, -Z, -X},
+    {Z, X, 0.0},
+    {-Z, X, 0.0},
+    {Z, -X, 0.0},
+    {-Z, -X, 0.0}};
 const static int icosahedronTriangle[20][3] = {
     {1, 4, 0}, {4, 9, 0},  {4, 5, 9},  {8, 5, 4},  {1, 8, 4},  {1, 10, 8}, {10, 3, 8},
     {8, 3, 5}, {3, 2, 5},  {3, 7, 2},  {3, 10, 7}, {10, 6, 7}, {6, 11, 7}, {6, 0, 11},
@@ -290,18 +291,19 @@ void makeCubesScene(std::vector<Triangle>& triangles) {
   static const std::vector<cv::Vec3f> kCubeVertices = {
       {0, 0, 0}, {0, 0, 1}, {0, 1, 0}, {0, 1, 1}, {1, 0, 0}, {1, 0, 1}, {1, 1, 0}, {1, 1, 1}};
 
-  static const std::vector<cv::Vec3i> kCubeTriangleIndices = {{2, 0, 1},
-                                                              {1, 3, 2},
-                                                              {6, 2, 0},
-                                                              {0, 4, 6},
-                                                              {4, 0, 1},
-                                                              {1, 5, 4},
-                                                              {3, 1, 5},
-                                                              {5, 7, 3},
-                                                              {7, 3, 2},
-                                                              {2, 6, 7},
-                                                              {5, 4, 6},
-                                                              {6, 7, 5}};
+  static const std::vector<cv::Vec3i> kCubeTriangleIndices = {
+      {2, 0, 1},
+      {1, 3, 2},
+      {6, 2, 0},
+      {0, 4, 6},
+      {4, 0, 1},
+      {1, 5, 4},
+      {3, 1, 5},
+      {5, 7, 3},
+      {7, 3, 2},
+      {2, 6, 7},
+      {5, 4, 6},
+      {6, 7, 5}};
 
   for (int triangle = 0; triangle < int(kCubeTriangleIndices.size()); ++triangle) {
     cv::Vec3f vertices[3];

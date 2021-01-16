@@ -148,10 +148,11 @@ TEST(MatchCornersTest, TestTransformationDetection) {
   Camera::Vector2 translation(tX, tY);
   for (int i = 0; i < cols; ++i) {
     for (int j = 0; j < rows; ++j) {
-      std::vector<Camera::Vector2> boxOffsets = {Camera::Vector2(0, 0),
-                                                 Camera::Vector2(squareDim, 0),
-                                                 Camera::Vector2(0, squareDim),
-                                                 Camera::Vector2(squareDim, squareDim)};
+      std::vector<Camera::Vector2> boxOffsets = {
+          Camera::Vector2(0, 0),
+          Camera::Vector2(squareDim, 0),
+          Camera::Vector2(0, squareDim),
+          Camera::Vector2(squareDim, squareDim)};
 
       Camera::Vector2 topLeft(xOffset + i * xJump, yOffset + j * yJump);
       image(cv::Rect(topLeft.x(), topLeft.y(), squareDim, squareDim)) =

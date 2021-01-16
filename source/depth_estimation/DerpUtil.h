@@ -31,15 +31,16 @@ const std::vector<float> kRgbWeights = {0.3333f, 0.3334f, 0.3333f};
 // => var = integral_0.5^0.5 (x/255^2) = 1/12 / 255^2 = 1/12/65025 in [0..1]
 const float kMinVar = 1.0f / 12.0f / 65025.0f;
 
-const std::vector<std::array<int, 2>> candidateTemplateOriginal = {{{{0, 0}},
-                                                                    {{-1, 0}},
-                                                                    {{1, 0}}, //   []      []
-                                                                    {{0, -1}}, //       []
-                                                                    {{0, 1}}, //     [][][]
-                                                                    {{-2, -2}}, //       []
-                                                                    {{2, -2}}, //   []      []
-                                                                    {{-2, 2}},
-                                                                    {{2, 2}}}};
+const std::vector<std::array<int, 2>> candidateTemplateOriginal = {
+    {{{0, 0}},
+     {{-1, 0}},
+     {{1, 0}}, //   []      []
+     {{0, -1}}, //       []
+     {{0, 1}}, //     [][][]
+     {{-2, -2}}, //       []
+     {{2, -2}}, //   []      []
+     {{-2, 2}},
+     {{2, 2}}}};
 
 Camera::Vector3 dstToWorldPoint(
     const Camera& camDst,

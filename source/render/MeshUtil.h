@@ -182,10 +182,11 @@ inline unsigned getTriangleMask(
   const double bl = isRigCoordinates ? verts.row(bli).norm() : verts(bli, 2);
   const double br = isRigCoordinates ? verts.row(bri).norm() : verts(bri, 2);
 
-  std::vector<std::tuple<double, int>> v = {std::make_tuple(tl, 0),
-                                            std::make_tuple(tr, 1),
-                                            std::make_tuple(bl, 2),
-                                            std::make_tuple(br, 3)};
+  std::vector<std::tuple<double, int>> v = {
+      std::make_tuple(tl, 0),
+      std::make_tuple(tr, 1),
+      std::make_tuple(bl, 2),
+      std::make_tuple(br, 3)};
 
   sort(v.begin(), v.end());
 

@@ -539,8 +539,8 @@ std::vector<Trace> assembleTraces(FeatureMap& featureMap, const std::vector<Over
     const std::reference_wrapper<std::vector<Feature>> features[2] = {
         featureMap[overlap.images[0]], featureMap[overlap.images[1]]};
     for (const auto& match : overlap.matches) {
-      const std::reference_wrapper<int> indexes[2] = {features[0].get()[match[0]].trace,
-                                                      features[1].get()[match[1]].trace};
+      const std::reference_wrapper<int> indexes[2] = {
+          features[0].get()[match[0]].trace, features[1].get()[match[1]].trace};
       if (indexes[0] < 0 && indexes[1] < 0) { // neither belongs to a trace, start new trace
         traces.emplace_back();
         nonemptyTraceCount++;
