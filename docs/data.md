@@ -32,3 +32,7 @@ test in the cloud to avoid having to deal with excessive render times or local d
 - [**Rendered Single Frame**](https://facebook360-dep-downloads.s3-us-west-2.amazonaws.com/room_chat/1_frame_unpacked_rendered.zip)
 - [**Frame Sequence**](https://facebook360-dep-downloads.s3-us-west-2.amazonaws.com/room_chat/50_frames_unpacked.zip)
 - [**Rendered Frame Sequence**](https://facebook360-dep-downloads.s3-us-west-2.amazonaws.com/room_chat/50_frames_unpacked_rendered.zip)
+
+### License
+
+These facebook360_dep datasets are BSD licensed, as found in the [LICENSE](/LICENSE) file.
