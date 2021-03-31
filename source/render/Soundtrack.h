@@ -22,7 +22,8 @@ struct Soundtrack {
   Soundtrack() : isReady(false) {}
 
   void load(const std::string& filename) {
-    auto err = TBE_CreateAudioEngine(audioEngine);
+    EngineInitSettings settings = EngineInitSettings_default;
+    auto err = TBE_CreateAudioEngine(audioEngine, settings);
     CHECK(err == TBE::EngineError::OK) << "failed to create audio engine: " << int(err);
 
     err = audioEngine->createSpatDecoderFile(audioFile);
