@@ -21,8 +21,8 @@ Attributes:
 
 import glob
 import os
-import tarfile
 import sys
+import tarfile
 
 from absl import app, flags
 from watchdog.events import FileSystemEventHandler, FileMovedEvent

@@ -31,11 +31,10 @@ import multiprocessing as mp
 import os
 import sys
 
+import config
 import cv2
 import imageio
 from absl import app, flags
-
-import config
 from network import get_frame_name, get_sample_file
 
 FLAGS = flags.FLAGS

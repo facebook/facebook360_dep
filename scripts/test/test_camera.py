@@ -14,9 +14,9 @@ Example:
 
 import os
 import sys
+import unittest
 
 import numpy as np
-import unittest
 
 dir_scripts = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 dir_root = os.path.dirname(dir_scripts)
@@ -27,8 +27,8 @@ sys.path.append(os.path.join(dir_scripts, "util"))
 sys.path.append(dir_testutil)
 
 from camera import Camera
-from rig import Rig
 from camera_tester import CameraTester, RigTester
+from rig import Rig
 
 
 class cameraTest(unittest.TestCase):

@@ -5,7 +5,6 @@
 # LICENSE file in the root directory of this source tree.
 
 import numpy as np
-
 from logger import Logger
 from matrix_operations import normalize_vector
 
@@ -15,7 +14,7 @@ log.logger.propagate = False
 
 class Ray:
 
-    """ The Ray class represents a parameterized line
+    """The Ray class represents a parameterized line
 
     Attributes:
         origin (numpy 1x3 array) : xyz coordinates of the origin point of the ray

@@ -38,9 +38,9 @@ from shutil import copyfile
 
 import botocore
 import docker
+import patchwork.transfers
 from absl import app, flags
 from fabric import Connection
-import patchwork.transfers
 
 dir_scripts = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 dir_root = os.path.dirname(dir_scripts)

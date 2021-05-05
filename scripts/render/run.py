@@ -47,14 +47,14 @@ Attributes:
 
 import os
 import posixpath
-import requests
-from shutil import which
 import sys
 import time
+from shutil import which
 
 import colorama
 import docker
 import pyvidia
+import requests
 from absl import app, flags
 from watchdog.events import FileSystemEventHandler, DirModifiedEvent
 from watchdog.observers import Observer

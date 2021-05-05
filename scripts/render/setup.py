@@ -21,11 +21,11 @@ import json
 import multiprocessing as mp
 import os
 import re
-from shutil import which
 import signal
 import sys
 import traceback
 from pathlib import Path
+from shutil import which
 from subprocess import Popen
 from threading import Timer
 

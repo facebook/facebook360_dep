@@ -29,7 +29,6 @@ sys.path.append(os.path.join(dir_scripts, "util"))
 import common
 import dep_util
 import verify_data
-
 from scripts.util.system_util import image_type_paths, merge_lists
 
 

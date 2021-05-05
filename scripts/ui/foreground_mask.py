@@ -17,9 +17,8 @@ Example:
 """
 
 import cv2
-import numpy as np
-
 import dep_util
+import numpy as np
 
 
 class ForegroundMask:

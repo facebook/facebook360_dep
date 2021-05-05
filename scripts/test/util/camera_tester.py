@@ -23,10 +23,8 @@ sys.path.append(dir_root)
 sys.path.append(os.path.join(dir_scripts, "util"))
 
 import numpy as np
-
-from matrix_operations import is_approx, normalize_vector
-
 from logger import Logger
+from matrix_operations import is_approx, normalize_vector
 from rig import Rig
 
 log = Logger(__name__)

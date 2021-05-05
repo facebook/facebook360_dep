@@ -12,9 +12,8 @@ Example:
         slider = SliderWidget(type, attr, name, printed, hs, label, max, default)
 """
 
-from PyQt5 import QtWidgets
-
 import dep_util
+from PyQt5 import QtWidgets
 
 
 class SliderWidget(QtWidgets.QWidget):

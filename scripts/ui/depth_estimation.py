@@ -31,7 +31,6 @@ import common
 import dep_util
 import scripts.render.config as config
 import verify_data
-
 from scripts.util.system_util import image_type_paths, merge_lists
 
 

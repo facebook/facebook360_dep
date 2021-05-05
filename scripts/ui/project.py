@@ -28,7 +28,6 @@ sys.path.append(dir_root)
 sys.path.append(os.path.join(dir_scripts, "render"))
 
 import verify_data
-
 from scripts.aws.util import AWSUtil
 from scripts.render.network import Address
 

@@ -20,11 +20,10 @@ Example:
 """
 
 import numpy as np
-from PyQt5 import QtGui, QtWidgets
-
 from color_variance import ColorVariance
 from dep_util import convert_image_to_pixmap
 from foreground_mask import ForegroundMask
+from PyQt5 import QtGui, QtWidgets
 
 
 class ImageWidget(QtWidgets.QWidget):

@@ -33,7 +33,6 @@ import common
 import dep_util
 import scripts.render.config as config
 import verify_data
-
 from scripts.render.network import download
 from scripts.util.system_util import (
     get_flags_from_flagfile,

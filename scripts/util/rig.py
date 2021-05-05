@@ -18,7 +18,7 @@ RAND_MAX = 2147483647
 
 class Rig:
 
-    """ The Rig class represents a list of Cameras
+    """The Rig class represents a list of Cameras
 
     Attributes:
         cameras ([Camera]) : list of cameras in the rig

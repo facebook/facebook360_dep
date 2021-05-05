@@ -9,12 +9,11 @@ import math
 
 import numpy as np
 import numpy.polynomial.polynomial as poly
+from logger import Logger
+from matrix_operations import is_unitary, normalize_vector
+from ray import Ray
 from scipy import linalg
 from scipy.spatial.transform import Rotation as R
-
-from logger import Logger
-from ray import Ray
-from matrix_operations import is_unitary, normalize_vector
 
 K_NEAR_INFINITY = 1e4
 INFINITY = 1e50
@@ -25,7 +24,7 @@ log.logger.propagate = False
 
 class Camera:
 
-    """ The Camera class contains all attributes of a camera such as:
+    """The Camera class contains all attributes of a camera such as:
         type of lens, rotations, resolution, principal, focal, etc.
 
     Attributes:
@@ -321,7 +320,7 @@ class Camera:
     """ projection """
 
     def world_to_pixel(self, point):
-        """ Compute pixel coordinates from point in rig space """
+        """Compute pixel coordinates from point in rig space"""
         # transform point in rig space to camera space
         camera_point = np.matmul(self.rotation, (np.asarray(point) - self.position))
         # transform point in camera space to distorted sensor coordinates
@@ -330,7 +329,7 @@ class Camera:
         return sensor_point * self.focal + self.principal
 
     def pixel_to_world(self, pixel, depth=None):
-        """ Compute rig coordinates from pixel and return as a parameterized line """
+        """Compute rig coordinates from pixel and return as a parameterized line"""
         # transform from pixel to distorted sensor coordinates
         sensor_point = (pixel - self.principal) / self.focal
         # transform from distorted sensor coordinates to unit camera vector

@@ -36,7 +36,6 @@ sys.path.append(os.path.join(dir_scripts, "render"))
 sys.path.append(os.path.join(dir_scripts, "util"))
 
 import scripts.render.glog_check as glog
-
 from scripts.util.system_util import get_flags_from_flagfile, list_only_visible_files
 
 
