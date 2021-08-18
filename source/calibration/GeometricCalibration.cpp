@@ -945,9 +945,11 @@ void savePointsFileJson(FeatureMap& featureMap, const std::vector<Trace>& traces
           "x", feature.position.x())("image_id", ref.first);
       arrayOfFeatures.push_back(featureSerialized);
     }
+    // clang-format off
     folly::dynamic traceSerialized = folly::dynamic::object("features", arrayOfFeatures)(
         "number of references", trace.references.size())("z", trace.position.z())(
         "y", trace.position.y())("x", trace.position.x());
+    // clang-format on
     arrayOfTraces.push_back(traceSerialized);
   }
 

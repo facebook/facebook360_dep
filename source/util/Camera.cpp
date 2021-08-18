@@ -153,10 +153,12 @@ void Camera::setDistortion(const Distortion& distortion) {
 #ifndef SUPPRESS_RIG_IO
 
 folly::dynamic Camera::serialize() const {
+  // clang-format off
   folly::dynamic result = folly::dynamic::object("version", 1)("type", serializeType(type))(
       "origin", serializeVector(position))("forward", serializeVector(forward()))(
       "up", serializeVector(up()))("right", serializeVector(right()))(
       "resolution", serializeVector(resolution))("focal", serializeVector(focal))("id", id);
+  // clang-format on
   if (principal != resolution / 2) {
     result["principal"] = serializeVector(principal);
   }
