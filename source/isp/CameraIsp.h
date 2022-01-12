@@ -984,6 +984,7 @@ class CameraIsp {
         int j;
 
         Pval(float v) : val(v) {}
+        Pval(const Pval& other) = default;
 
         bool operator<(const Pval& p) const {
           return val < p.val;

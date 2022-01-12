@@ -41,15 +41,15 @@ void plotMatches(
   const cv::Mat_<float>& disparity = pyramidLevel.dstDisparity(dstIdx);
   const int xSize = disparity.cols;
   const int ySize = disparity.rows;
-  CHECK(
-      0 <= kDebugPlotMatchX && kDebugPlotMatchX < xSize && 0 <= kDebugPlotMatchY &&
-      kDebugPlotMatchY < ySize)
-      << folly::sformat(
-             "debug coords({}, {}) out of bounds: ({}, {})",
-             kDebugPlotMatchX,
-             kDebugPlotMatchY,
-             xSize,
-             ySize);
+
+  if ((0 <= kDebugPlotMatchX && 0 <= kDebugPlotMatchY)) {
+    CHECK(kDebugPlotMatchX < xSize && kDebugPlotMatchY < ySize) << folly::sformat(
+        "debug coords({}, {}) out of bounds: ({}, {})",
+        kDebugPlotMatchX,
+        kDebugPlotMatchY,
+        xSize,
+        ySize);
+  }
 
   for (int srcIdx = 0; srcIdx < int(pyramidLevel.rigSrc.size()); ++srcIdx) {
     const Camera& camSrc = pyramidLevel.rigSrc[srcIdx];

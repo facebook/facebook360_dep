@@ -18,6 +18,13 @@
 #elif __has_warning("-Wmisleading-indentation")
 #pragma GCC diagnostic ignored "-Wmisleading-indentation"
 #endif
+
+#if defined(__has_warning)
+#if __has_warning("-Wimplicit-fallthrough")
+#pragma GCC diagnostic ignored "-Wimplicit-fallthrough"
+#endif // __has_warning("-Wimplicit-fallthrough")
+#endif // defined(__has_warning)
+
 #include "source/thirdparty/stb_image.h"
 #pragma GCC diagnostic pop
 
@@ -977,7 +984,7 @@ GLint RigScene::clearAccumulation() {
   glClearColor(0, 0, 0, 0);
   glClear(GL_COLOR_BUFFER_BIT);
   glEnable(GL_FRAMEBUFFER_SRGB);
-  if (false) {
+  if (/* DISABLE CODE */ (false)) {
     glCullFace(GL_FRONT);
     glEnable(GL_CULL_FACE);
   }

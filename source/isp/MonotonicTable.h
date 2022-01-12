@@ -24,6 +24,8 @@ class MonotonicTable {
   const T minX, maxX;
   const T rangeScale;
 
+  virtual ~MonotonicTable() = default;
+
   // Function that is used to compute the table
   virtual T f(const T x) const = 0;
 
