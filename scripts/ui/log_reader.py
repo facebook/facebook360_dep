@@ -23,7 +23,7 @@ import re
 import sys
 
 from PyQt5 import QtCore
-from PyQt5.QtCore import QProcess, QTextCodec, pyqtSignal, pyqtSlot
+from PyQt5.QtCore import pyqtSignal, pyqtSlot, QProcess, QTextCodec
 from PyQt5.QtGui import QTextCursor
 
 

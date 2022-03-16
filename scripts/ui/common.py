@@ -35,8 +35,8 @@ import glog_check as glog
 import scripts.render.config as config
 from log_reader import LogReader
 from scripts.aws.create import (
-    get_staging_info,
     get_render_pid,
+    get_staging_info,
     has_render_flag,
     run_ssh_command,
 )

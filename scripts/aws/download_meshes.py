@@ -25,7 +25,7 @@ import sys
 import tarfile
 
 from absl import app, flags
-from watchdog.events import FileSystemEventHandler, FileMovedEvent
+from watchdog.events import FileMovedEvent, FileSystemEventHandler
 from watchdog.observers import Observer
 
 dir_scripts = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

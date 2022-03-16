@@ -17,7 +17,7 @@ binary_dir = os.path.join(dir_root, "build/bin")
 sys.path.append(dir_root)
 sys.path.append(os.path.join(dir_scripts, "util"))
 
-from scripts.util.system_util import run_command, gen_args_from_flags
+from scripts.util.system_util import gen_args_from_flags, run_command
 
 
 class AppUtil:

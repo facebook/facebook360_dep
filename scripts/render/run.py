@@ -56,7 +56,7 @@ import docker
 import pyvidia
 import requests
 from absl import app, flags
-from watchdog.events import FileSystemEventHandler, DirModifiedEvent
+from watchdog.events import DirModifiedEvent, FileSystemEventHandler
 from watchdog.observers import Observer
 
 dir_scripts = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -76,7 +76,7 @@ from scripts.util.system_util import (
     OSType,
     run_command,
 )
-from setup import RepeatedTimer, bin_to_flags, docker_mounts
+from setup import bin_to_flags, docker_mounts, RepeatedTimer
 
 FLAGS = flags.FLAGS
 container_name = None

@@ -37,7 +37,7 @@ sys.path.append(dir_root)
 sys.path.append(os.path.join(dir_scripts, "util"))
 
 import config
-from network import Address, NetcatClient, get_os_type
+from network import Address, get_os_type, NetcatClient
 from scripts.util.system_util import get_flags, image_type_paths, OSType, run_command
 
 

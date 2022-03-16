@@ -31,8 +31,7 @@ sys.path.append(os.path.join(dir_scripts, "util"))
 
 from scripts.util.system_util import image_type_paths, run_command
 
-from . import test_config as config
-from . import test_io
+from . import test_config as config, test_io
 from .test_util import min_max_frame_from_data_dir
 
 parser = argparse.ArgumentParser()
