@@ -1,4 +1,6 @@
-# Copyright 2004-present Facebook. All Rights Reserved.
+# (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
+
+
 #
 # This software is proprietary and confidential to Facebook, Inc.  Any reproduction, distribution,
 # modification, performance, display, and other use or disclosure is prohibited except to the
