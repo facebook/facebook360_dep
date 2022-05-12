@@ -89,7 +89,7 @@ class ColorVariance:
         h, w, _ = image.shape
         scale = int(res) / w
         self.image_unchanged = dep_util.scale_image(image, scale)
-        self.scale_var = scale ** 2
+        self.scale_var = scale**2
 
         self.image_float = dep_util.convert_to_float(self.image_unchanged)
         self.image_8bit = (255 * self.image_float).astype("uint8")

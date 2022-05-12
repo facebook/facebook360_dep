@@ -101,7 +101,7 @@ class ForegroundMask:
 
         # mask = ||template - frame||^2 > threshold
         diff = cv2.absdiff(bg_blur, fg_blur)
-        mask = np.sum(diff ** 2, axis=2) ** (1.0 / 2) > thresh
+        mask = np.sum(diff**2, axis=2) ** (1.0 / 2) > thresh
         mask = np.array(mask, dtype=np.uint8)
 
         # Fill holes
