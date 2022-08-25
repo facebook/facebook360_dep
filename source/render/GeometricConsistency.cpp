@@ -119,7 +119,7 @@ float sumSqNorm(const SignedPixel& rgba) {
   for (int c = 0; c < 3; ++c) { // exclude alpha
     sum += sq(float(rgba[c]));
   }
-  return sum / (kSignedMax * kSignedMax);
+  return sum / ((float)kSignedMax * (float)kSignedMax);
 }
 
 Camera::Real sliceDisparity(const int slice, const int sliceCount) {
