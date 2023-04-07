@@ -303,11 +303,15 @@ void fuse(const Camera::Rig& rig, const std::vector<std::string>& outputFormats)
   for (FILE* disk : disks) {
     fclose(disk);
   }
-
+#if BOOST_VERSION < 107400
+  constexpr auto option_overwrite = filesystem::copy_option::overwrite_if_exists;
+#else
+  constexpr auto option_overwrite = filesystem::copy_options::overwrite_existing;
+#endif
   // Copy original fused rig
   const filesystem::path jsonSrc = filesystem::getFirstFile(FLAGS_bin, false, false, ".json");
   const filesystem::path jsonDst = filesystem::path(FLAGS_fused) / jsonSrc.filename();
-  filesystem::copy_file(jsonSrc, jsonDst, filesystem::copy_option::overwrite_if_exists);
+  filesystem::copy_file(jsonSrc, jsonDst, option_overwrite);
 }
 
 void resizeRig(Camera::Rig& rig) {
