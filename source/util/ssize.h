@@ -12,8 +12,13 @@
 //   for (ssize_t i = ssize(container); i >= 0; --i) { // doesn't work with size_t
 #pragma once
 
+#include <vector> // For std::ssize in C++20.
+
 namespace fb360_dep {
 
+#if __cplusplus > 201703L
+using std::ssize;
+#else
 #ifndef _SSIZE_T
 using ssize_t = ptrdiff_t;
 #endif
@@ -27,5 +32,6 @@ template <class T, ssize_t N>
 constexpr ssize_t ssize(const T (&array)[N]) {
   return N;
 }
+#endif
 
 } // namespace fb360_dep
