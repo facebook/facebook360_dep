@@ -28,7 +28,6 @@ from .test_util import min_max_frame_from_data_dir
 
 
 class LayerDisparitiesTest(DepTest):
-
     """Unit test class for LayerDisparities.
 
     Attributes:

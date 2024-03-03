@@ -27,7 +27,6 @@ from .test_master_class import DepTest, generic_main
 
 
 class RawToRgbTest(DepTest):
-
     """Unit test class for RawToRgb.
 
     Attributes:

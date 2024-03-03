@@ -14,7 +14,6 @@ log.logger.propagate = False
 
 
 class Ray:
-
     """The Ray class represents a parameterized line
 
     Attributes:

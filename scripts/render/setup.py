@@ -71,7 +71,6 @@ bin_to_flags = {
 
 
 class RepeatedTimer(object):
-
     """Executes a provided function at periodic intervals.
 
     Attributes:

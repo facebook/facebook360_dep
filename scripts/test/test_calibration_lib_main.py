@@ -28,7 +28,6 @@ from .test_master_class import DepTest, generic_main
 
 
 class CalibrationLibMainTest(DepTest):
-
     """Unit test class for CalibrationLibMain.
 
     Attributes:

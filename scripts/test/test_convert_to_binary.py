@@ -27,7 +27,6 @@ from .test_master_class import DepTest, generic_main
 
 
 class ConvertToBinaryTest(DepTest):
-
     """Unit test class for ConvertToBinary.
 
     Attributes:

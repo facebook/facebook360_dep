@@ -95,9 +95,9 @@ def _set_image_type_paths():
     image_type_paths["disparity_upsample"] = "disparity_upsample"
     image_type_paths["disparity_levels"] = "disparity_levels"
     image_type_paths["disparity_time_filtered"] = "disparity_time_filtered"
-    image_type_paths[
+    image_type_paths["disparity_time_filtered_levels"] = (
         "disparity_time_filtered_levels"
-    ] = "disparity_time_filtered_levels"
+    )
     image_type_paths["exports"] = "exports"
     image_type_paths["exports_cubecolor"] = "exports/cubecolor"
     image_type_paths["exports_cubedisp"] = "exports/cubedisp"

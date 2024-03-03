@@ -18,7 +18,6 @@ from PyQt5 import QtWidgets
 
 
 class SliderWidget(QtWidgets.QWidget):
-
     """Slider class for interacting with the threshold displays.
 
     Attributes:

@@ -26,7 +26,6 @@ from .test_master_class import DepTest, generic_main
 
 
 class RigSimulatorTest(DepTest):
-
     """Unit test class for RigSimulator.
 
     Attributes:

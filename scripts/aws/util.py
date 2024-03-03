@@ -32,7 +32,6 @@ from scripts.util.system_util import run_command
 
 
 class AWSUtil:
-
     """Utility class for interacting with EC2 and S3.
 
     Attributes:

@@ -34,7 +34,6 @@ from scripts.render.network import Address
 
 
 class Project:
-
     """Project class to interact with S3"""
 
     def __init__(

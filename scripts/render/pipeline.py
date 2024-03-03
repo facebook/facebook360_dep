@@ -54,7 +54,6 @@ from scripts.util.system_util import image_type_paths
 
 
 class Pipeline:
-
     """Pipeline class for rendering stages. Pipeline stages process sequentially.
 
     Attributes:
@@ -365,9 +364,9 @@ class Pipeline:
         for level in range(start_level, end_level - 1, -1):
             depth_params = copy(post_resize_params)
             if level != end_level:
-                depth_params[
-                    "output_formats"
-                ] = "pfm"  # Force only PFM at non-finest levels
+                depth_params["output_formats"] = (
+                    "pfm"  # Force only PFM at non-finest levels
+                )
             depth_params.update(
                 {
                     "app": f"DerpCLI: Level {level}",

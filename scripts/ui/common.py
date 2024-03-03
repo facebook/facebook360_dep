@@ -183,9 +183,9 @@ def initialize_paths(parent):
         parent.flagfile_basename = "render_export.flags"
         parent.app_name_to_flagfile[parent.app_aws_create] = "aws_create_export.flags"
         parent.app_aws_download_meshes = "aws/download_meshes.py"
-        parent.app_name_to_flagfile[
-            parent.app_aws_download_meshes
-        ] = "download_meshes.flags"
+        parent.app_name_to_flagfile[parent.app_aws_download_meshes] = (
+            "download_meshes.flags"
+        )
 
     parent.app_name_to_flagfile[parent.app_name] = parent.flagfile_basename
     parent.tooltip = get_tooltip(parent, parent.app_name)

@@ -27,7 +27,6 @@ from .test_util import min_max_frame_from_data_dir
 
 
 class ProjectEquirectsToCamerasTest(DepTest):
-
     """Unit test class for ProjectEquirectsToCameras.
 
     Attributes:

@@ -23,7 +23,6 @@ import numpy as np
 
 
 class ColorVariance:
-
     """Back-end for the interactive element to visualize color variance thresholds.
 
     Attributes:

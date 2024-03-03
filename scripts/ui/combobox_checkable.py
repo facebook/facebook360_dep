@@ -22,7 +22,6 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class ComboBoxCheckable(QtWidgets.QComboBox):
-
     """UI dropdown element with checkbox selection."""
 
     def __init__(self, parent=None):
@@ -51,7 +50,6 @@ class ComboBoxCheckable(QtWidgets.QComboBox):
 
 
 class CheckableComboBoxModel(QtGui.QStandardItemModel):
-
     """Back-end for the UI dropdown element with checkbox selection."""
 
     def __init__(self, parent=None):
@@ -75,7 +73,6 @@ class CheckableComboBoxModel(QtGui.QStandardItemModel):
 
 
 class CheckDelegate(QtWidgets.QStyledItemDelegate):
-
     """Helper class to represent items in the specialized UI dropdown element."""
 
     def editorEvent(self, event, model, option, index):

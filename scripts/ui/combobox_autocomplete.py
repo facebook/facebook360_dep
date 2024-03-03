@@ -23,7 +23,6 @@ from PyQt5.QtWidgets import QComboBox, QCompleter
 
 
 class ComboBoxAutocomplete(QComboBox):
-
     """UI dropdown element with autocomplete.
 
     Attributes:

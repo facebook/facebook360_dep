@@ -39,7 +39,6 @@ from scripts.util.system_util import get_os_type_local, image_type_paths, run_co
 
 
 class Address:
-
     """Abstraction over various address types.
 
     Attributes:
@@ -74,7 +73,6 @@ class Address:
 
 
 class NetcatClient:
-
     """A client for running commands synchronously over netcat.
 
     Attributes:
@@ -145,7 +143,6 @@ class NetcatClient:
 
 
 class LAN:
-
     """Client for interacting with a local network.
 
     Attributes:

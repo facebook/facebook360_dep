@@ -27,7 +27,6 @@ from .test_master_class import DepTest, generic_main
 
 
 class ExportPointCloudTest(DepTest):
-
     """Unit test class for ExportPointCloud.
 
     Attributes:

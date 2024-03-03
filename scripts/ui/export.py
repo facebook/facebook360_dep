@@ -43,7 +43,6 @@ from scripts.util.system_util import (
 
 
 class Export:
-
     """Tab in UI responsible for producing meshed binaries and other final output formats
     (e.g. color and disparity equirects) and viewing them in corresponding PC and
     headset displays.

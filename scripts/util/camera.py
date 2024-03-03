@@ -24,7 +24,6 @@ log.logger.propagate = False
 
 
 class Camera:
-
     """The Camera class contains all attributes of a camera such as:
         type of lens, rotations, resolution, principal, focal, etc.
 

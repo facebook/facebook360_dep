@@ -34,7 +34,6 @@ from scripts.util.system_util import run_command
 
 
 class Calibration:
-
     """Tab in UI responsible for running feature-less calibration.
 
     Attributes:

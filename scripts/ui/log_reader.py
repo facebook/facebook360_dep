@@ -29,7 +29,6 @@ from PyQt5.QtGui import QTextCursor
 
 
 class LogReader(QtCore.QObject):
-
     """Back end for the logging used for printing to the terminal box in the UI.
 
     Attributes:

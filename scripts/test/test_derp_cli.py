@@ -31,7 +31,6 @@ from .test_master_class import DepTest, generic_main
 
 
 class DerpCLITest(DepTest):
-
     """Unit test class for DerpCLI.
 
     Attributes:

@@ -85,7 +85,6 @@ colorama.init(autoreset=True)
 
 
 class ViewerHandler(FileSystemEventHandler):
-
     """Handles events triggered for displaying the viewer if called from within the UI.
 
     Attributes:

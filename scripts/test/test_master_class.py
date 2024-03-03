@@ -117,7 +117,6 @@ def camel_to_snake(str):
 
 
 class DepTest(unittest.TestCase):
-
     """Master class for all app unit tests. DepTest is never itself directly run.
     Any additional tests that are created should subclass this to leverage the created
     testbed. unittest.TestCase is subclassed to provide functionality for execution.

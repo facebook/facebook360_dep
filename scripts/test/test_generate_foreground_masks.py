@@ -27,7 +27,6 @@ from .test_master_class import DepTest, generic_main
 
 
 class GenerateForegroundMasksTest(DepTest):
-
     """Unit test class for GenerateForegroundMasks.
 
     Attributes:

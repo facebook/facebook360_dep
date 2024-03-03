@@ -42,7 +42,6 @@ FLAGS = flags.FLAGS
 
 
 class ViewerHandler(FileSystemEventHandler):
-
     """Handles events triggered for extracting tar files as soon as we receive them.
 
     Attributes:

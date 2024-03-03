@@ -23,7 +23,6 @@ import numpy as np
 
 
 class ForegroundMask:
-
     """Back-end for the interactive element to visualize foreground mask thresholds.
 
     Attributes:

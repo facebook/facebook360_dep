@@ -23,7 +23,6 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class ImageViewer(QtWidgets.QGraphicsView):
-
     """Front end display for the threshold interaction models for the UI.
 
     Attributes:

@@ -39,7 +39,6 @@ from scripts.util.system_util import extract_tar
 
 
 class Loader:
-
     """Loader for downloading and preparing datasets available at public endpoints.
 
     Attributes:

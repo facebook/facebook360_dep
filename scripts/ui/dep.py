@@ -93,7 +93,6 @@ for sig in get_catchable_signals():
 
 
 class App(QDialog):
-
     """Main dialog box for the app initialized by QT.
 
     Attributes:

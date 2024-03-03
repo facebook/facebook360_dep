@@ -28,7 +28,6 @@ from PyQt5 import QtGui, QtWidgets
 
 
 class ImageWidget(QtWidgets.QWidget):
-
     """Element in the UI responsible for displaying interactive thresholds (both
     foreground mask and color variance).
 

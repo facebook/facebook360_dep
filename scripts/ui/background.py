@@ -34,7 +34,6 @@ from scripts.util.system_util import image_type_paths, merge_lists
 
 
 class Background:
-
     """Tab in UI responsible for computing depth estimates on the background frame.
 
     Attributes:
