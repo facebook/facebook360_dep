@@ -686,11 +686,9 @@ std::string getReprojectionReport(
   }
 
   std::ostringstream result;
-  result << "reprojections " << norms.size() << " "
-         << "RMSE " << sqrt(totalSq / norms.size()) << " "
-         << "average " << total / norms.size() << " "
-         << "median " << calcPercentile(norms, 0.5) << " "
-         << "90% " << calcPercentile(norms, 0.9) << " "
+  result << "reprojections " << norms.size() << " " << "RMSE " << sqrt(totalSq / norms.size())
+         << " " << "average " << total / norms.size() << " " << "median "
+         << calcPercentile(norms, 0.5) << " " << "90% " << calcPercentile(norms, 0.9) << " "
          << "99% " << calcPercentile(norms, 0.99) << " ";
 
   result << "worst 3: ";
@@ -769,13 +767,9 @@ std::string getCameraRmseReport(
   angle /= angleCount;
 
   std::ostringstream result;
-  result << "RMSEs: "
-         << "Pos " << sqrt(position) << " "
-         << "Rot " << sqrt(rotation) << " "
-         << "Principal " << sqrt(principal) << " "
-         << "Distortion " << sqrt(distortion) << " "
-         << "Focal " << sqrt(focal) << " "
-         << "Angle " << sqrt(angle) << " ";
+  result << "RMSEs: " << "Pos " << sqrt(position) << " " << "Rot " << sqrt(rotation) << " "
+         << "Principal " << sqrt(principal) << " " << "Distortion " << sqrt(distortion) << " "
+         << "Focal " << sqrt(focal) << " " << "Angle " << sqrt(angle) << " ";
 
   return result.str();
 }
