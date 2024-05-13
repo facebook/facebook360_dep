@@ -57,7 +57,7 @@ RUN git clone https://github.com/google/double-conversion.git && \
 RUN echo "Installed double-conversion"
 
 RUN echo "Installing boost..."
-RUN curl -LO https://dl.bintray.com/boostorg/release/1.66.0/source/boost_1_66_0.tar.gz && \
+RUN curl -LO  https://boostorg.jfrog.io/artifactory/main/release/1.66.0/source/boost_1_66_0.tar.gz && \
     tar -zxf boost_1_66_0.tar.gz && \
     cd boost_1_66_0 && \
     ./bootstrap.sh && \
@@ -66,12 +66,12 @@ RUN curl -LO https://dl.bintray.com/boostorg/release/1.66.0/source/boost_1_66_0.
 RUN echo "Installed boost"
 
 RUN echo "Installing eigen..."
-RUN curl -LO http://bitbucket.org/eigen/eigen/get/3.3.4.tar.gz && \
-    tar -zxf 3.3.4.tar.gz && \
-    cd eigen-eigen-5a0156e40feb && \
+RUN curl -LO https://gitlab.com/libeigen/eigen/-/archive/3.3.4/eigen-3.3.4.tar.gz && \
+    tar -zxf eigen-3.3.4.tar.gz && \
+    cd eigen-3.3.4 && \
     mkdir build && cd build && \
     cmake .. && make install -j$(nproc) && \
-    cd ../../ && rm -fr eigen-eigen-5a0156e40feb
+    cd ../../ && rm -fr eigen-3.3.4
 RUN echo "Installed eigen"
 
 RUN echo "Installing ceres..."
@@ -128,10 +128,12 @@ RUN git clone -b 3.4.3 https://github.com/opencv/opencv --depth 1 && \
 RUN echo "Installed opencv"
 
 RUN echo "Installing gtest..."
-RUN git clone https://github.com/google/googletest && \
-    cd googletest && mkdir build_ && cd build_ && \
+RUN curl -LO https://github.com/google/googletest/archive/refs/tags/release-1.12.1.tar.gz && \
+    tar -zxf release-1.12.1.tar.gz && \
+    cd googletest-release-1.12.1 && \
+    mkdir build_ && cd build_ && \
     cmake .. && make -j$(nproc) && make install -j$(nproc) && \
-    cd ../.. && rm -rf googletest
+    cd ../../ && rm -fr googletest-release-1.12.1
 RUN echo "Installed gtest"
 
 # Dependencies for render
