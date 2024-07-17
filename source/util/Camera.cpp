@@ -304,7 +304,7 @@ void Camera::saveRig(
   opts.sort_keys = true;
   opts.pretty_formatting = true;
   if (doubleNumDigits > 0) {
-    opts.double_mode = double_conversion::DoubleToStringConverter::FIXED;
+    opts.dtoa_mode = folly::DtoaMode::FIXED;
     opts.double_num_digits = doubleNumDigits;
   }
   folly::writeFile(folly::json::serialize(dynamic, opts), filename.c_str());
