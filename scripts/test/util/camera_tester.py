@@ -5,7 +5,7 @@
 # This source code is licensed under the BSD-style license found in the
 # LICENSE file in the root directory of this source tree.
 
-""" Tester functions for the Camera class
+"""Tester functions for the Camera class
 
 Performs tests on the functions defined in camera.py and rig.py
 Tester functions are used in the unit test script (test_camera.py)
@@ -167,7 +167,6 @@ class RigTester:
 
 
 class TestOutput:
-
     __slots__ = ["result", "message"]
 
     def __init__(self, result, message):

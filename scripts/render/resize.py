@@ -25,7 +25,6 @@ Attributes:
     FLAGS (absl.flags._flagvalues.FlagValues): Globally defined flags for resize.py.
 """
 
-
 import glob
 import json
 import multiprocessing as mp

@@ -6,7 +6,7 @@
 # LICENSE file in the root directory of this source tree.
 
 
-""" Camera unit tests
+"""Camera unit tests
 
 Runs unit tests on the Camera class using the test functions from camera_tester
 
