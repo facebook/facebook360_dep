@@ -84,7 +84,7 @@ int main(int argc, char** argv) {
   // Create MTL and OBJ files
   LOG(INFO) << "Creating OBJ...";
 
-  std::string fnMtl = "";
+  std::string fnMtl;
   if (FLAGS_create_mtl) {
     mesh_util::addTextureCoordinatesEquirect(vertexes);
     std::string fnMtl = mesh_util::writeMtl(FLAGS_output_obj, FLAGS_input_png_color);
