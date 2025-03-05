@@ -51,7 +51,7 @@ static const float kBilateralWeightB = 0.5;
 // Debugging: plot destination (x, y, depth) matches on all overlapping src cameras at given level
 // Outputs for random proposal and ping pong propagation
 static const int kDebugPlotMatchLevel = -1;
-static const std::string kDebugPlotMatchDst = "";
+static const std::string kDebugPlotMatchDst;
 static const int kDebugPlotMatchX = -1;
 static const int kDebugPlotMatchY = -1;
 
