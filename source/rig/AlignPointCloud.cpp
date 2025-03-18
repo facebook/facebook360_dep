@@ -230,7 +230,7 @@ void logMedianErrors(const Camera::Rig& rig, const std::vector<FeatureList>& all
 
   for (int i = 0; i < int(rig.size()); ++i) {
     std::vector<Camera::Real> cameraErrors;
-    for (auto& feature : allFeatures[i]) {
+    for (const auto& feature : allFeatures[i]) {
       Camera::Real residual = (rig[i].pixel(feature.point) - feature.coords).norm();
       cameraErrors.push_back(residual);
     }
