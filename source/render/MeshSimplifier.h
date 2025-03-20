@@ -16,8 +16,7 @@
 #define NUM_VERTEXES_FACE 3
 #endif
 
-namespace fb360_dep {
-namespace render {
+namespace fb360_dep::render {
 
 // Based on paper "Surface Simplification Using Quadric Error Metrics", by
 // M. Garland and P. Heckbert
@@ -88,5 +87,4 @@ class MeshSimplifier final {
   void createFinalMesh();
 };
 
-} // namespace render
-} // namespace fb360_dep
+} // namespace fb360_dep::render

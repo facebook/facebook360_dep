@@ -14,8 +14,7 @@
 
 #include "source/util/CvUtil.h"
 
-namespace fb360_dep {
-namespace rephoto_util {
+namespace fb360_dep::rephoto_util {
 
 // Based on paper "Image Quality Assessment: From Error Visibility to Structural
 // Similarity", by Z. Wang et al. 2004
@@ -180,5 +179,4 @@ inline cv::Mat_<cv::Vec3b> stackResults(
   return plot;
 }
 
-} // namespace rephoto_util
-} // namespace fb360_dep
+} // namespace fb360_dep::rephoto_util

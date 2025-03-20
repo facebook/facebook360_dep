@@ -19,8 +19,7 @@
 #include "source/util/FilesystemUtil.h"
 #include "source/util/MathUtil.h"
 
-namespace fb360_dep {
-namespace mesh_util {
+namespace fb360_dep::mesh_util {
 
 Eigen::Vector3d calcBarycentrics(const Eigen::Vector2d& point, const Eigen::Matrix3d& triangle) {
   const Eigen::Vector2d base = triangle.row(2).head<2>();
@@ -419,5 +418,4 @@ inline void addTextureCoordinatesEquirect(Eigen::MatrixXd& vertexes) {
   }
 }
 
-} // namespace mesh_util
-} // namespace fb360_dep
+} // namespace fb360_dep::mesh_util

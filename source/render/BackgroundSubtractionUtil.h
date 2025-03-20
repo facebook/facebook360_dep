@@ -13,8 +13,7 @@
 #include "source/util/CvUtil.h"
 #include "source/util/ThreadPool.h"
 
-namespace fb360_dep {
-namespace background_subtraction {
+namespace fb360_dep::background_subtraction {
 
 template <typename T, typename U>
 cv::Mat_<bool> generateForegroundMask(
@@ -85,5 +84,4 @@ std::vector<cv::Mat_<bool>> generateForegroundMasks(
   return masks;
 }
 
-} // namespace background_subtraction
-} // namespace fb360_dep
+} // namespace fb360_dep::background_subtraction
