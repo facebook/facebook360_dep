@@ -304,7 +304,7 @@ void CanopyScene::render(
   GLuint canopyDepth = createFramebufferDepth(viewport[2], viewport[3]);
 
   // accumulate all the canopies into the accumulateBuffer
-  for (auto& canopy : canopies) {
+  for (const auto& canopy : canopies) {
     canopy.render(canopyBuffer, transform, canopyProgram, ipd);
     accumulate(accumulateBuffer, canopyTexture, accumulateProgram, alphaBlend);
   }
