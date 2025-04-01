@@ -115,7 +115,7 @@ Camera::Rig filterDestinations(const Camera::Rig rigIn, const std::string& desti
   std::vector<std::string> destVec;
   boost::split(destVec, destinations, [](char c) { return c == ','; });
   for (const std::string& dest : destVec) {
-    for (auto& cam : rigIn) {
+    for (const auto& cam : rigIn) {
       if (cam.id == dest) {
         rigOut.push_back(cam);
       }
