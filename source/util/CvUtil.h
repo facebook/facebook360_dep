@@ -25,8 +25,7 @@
 #include "source/util/SystemUtil.h"
 #include "source/util/ThreadPool.h"
 
-namespace fb360_dep {
-namespace cv_util {
+namespace fb360_dep::cv_util {
 
 // wrapper for cv::imread which throws an exception if loading fails
 cv::Mat imreadExceptionOnFail(const filesystem::path& filename, const int flags = cv::IMREAD_COLOR);
@@ -439,5 +438,4 @@ inline std::vector<cv::Mat_<bool>> generateAllPassMasks(const cv::Size& size, co
   return masks;
 }
 
-} // namespace cv_util
-} // namespace fb360_dep
+} // namespace fb360_dep::cv_util

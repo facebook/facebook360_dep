@@ -10,8 +10,7 @@
 
 #include <boost/algorithm/string/split.hpp>
 
-namespace fb360_dep {
-namespace image_util {
+namespace fb360_dep::image_util {
 
 static inline const std::vector<filesystem::path> checkAndGetSortedFiles(
     const filesystem::path& imageDir,
@@ -166,5 +165,4 @@ cv::Mat_<cv::Vec2f> computeWarpDstToSrc(const Camera& dst, const Camera& src) {
   return warpMap;
 }
 
-} // namespace image_util
-} // namespace fb360_dep
+} // namespace fb360_dep::image_util

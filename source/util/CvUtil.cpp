@@ -15,8 +15,7 @@
 #include <folly/Format.h>
 #include <glog/logging.h>
 
-namespace fb360_dep {
-namespace cv_util {
+namespace fb360_dep::cv_util {
 
 using namespace math_util;
 
@@ -72,5 +71,4 @@ cv::Mat_<float> readCvMat32FC1FromPFM(const filesystem::path& path) {
   return m;
 }
 
-} // namespace cv_util
-} // namespace fb360_dep
+} // namespace fb360_dep::cv_util
