@@ -14,8 +14,7 @@
 
 #include "source/util/MathUtil.h"
 
-namespace fb360_dep {
-namespace math_util {
+namespace fb360_dep::math_util {
 
 template <typename T>
 class MonotonicTable {
@@ -79,5 +78,4 @@ class Butterworth : public MonotonicTable<float> {
   }
 };
 
-} // end namespace math_util
-} // end namespace fb360_dep
+} // namespace fb360_dep::math_util
