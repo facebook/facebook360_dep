@@ -20,8 +20,7 @@
 #include "source/util/ImageUtil.h"
 #include "source/util/SystemUtil.h"
 
-namespace fb360_dep {
-namespace binary_fusion {
+namespace fb360_dep::binary_fusion {
 
 void addFile(std::vector<FILE*>& disks, uint64_t& offset, const filesystem::path& filename) {
   uint64_t aligned = align(offset, kStripeSize);
@@ -83,5 +82,4 @@ void fuseFrame(
   }
 }
 
-} // namespace binary_fusion
-} // namespace fb360_dep
+} // namespace fb360_dep::binary_fusion
