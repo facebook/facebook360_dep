@@ -84,7 +84,7 @@ struct RigScene {
 
     GLuint vertexArray;
     GLsizei indexCount;
-    GLvoid* indexOffset = 0;
+    GLvoid* indexOffset = nullptr;
     GLuint colorTexture;
     Eigen::Vector2i size;
   };
