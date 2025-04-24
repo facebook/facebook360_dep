@@ -13,12 +13,10 @@
 #include "source/calibration/Keypoint.h"
 #include "source/util/Camera.h"
 
-namespace fb360_dep {
-namespace calibration {
+namespace fb360_dep::calibration {
 
 cv::Mat_<uint8_t> extractSingleChannelImage(const cv::Mat_<cv::Vec3b>& image);
 
 std::vector<cv::Mat_<uint8_t>> loadChannels(const Camera::Rig& rig);
 
-} // namespace calibration
-} // namespace fb360_dep
+} // namespace fb360_dep::calibration

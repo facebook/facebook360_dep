@@ -14,8 +14,7 @@ DECLARE_int32(threads);
 DECLARE_bool(use_nearest);
 DECLARE_double(match_score_threshold);
 
-namespace fb360_dep {
-namespace calibration {
+namespace fb360_dep::calibration {
 
 bool getNextDepthSample(
     int& currentDepthSample,
@@ -38,5 +37,4 @@ std::vector<Overlap> findAllMatches(
     const std::vector<cv::Mat_<uint8_t>>& images,
     const std::map<std::string, std::vector<Keypoint>>& allCorners);
 
-} // namespace calibration
-} // namespace fb360_dep
+} // namespace fb360_dep::calibration

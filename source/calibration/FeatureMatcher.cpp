@@ -38,8 +38,7 @@ using PixelType = uint8_t;
 using Image = cv::Mat_<PixelType>;
 using ImageId = std::string;
 
-namespace fb360_dep {
-namespace calibration {
+namespace fb360_dep::calibration {
 
 struct BestMatch {
   int bestIdx;
@@ -359,5 +358,4 @@ std::vector<Overlap> findAllMatches(
   return overlaps;
 }
 
-} // namespace calibration
-} // namespace fb360_dep
+} // namespace fb360_dep::calibration

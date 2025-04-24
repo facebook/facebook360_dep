@@ -13,8 +13,7 @@
 #include "source/util/Camera.h"
 #include "source/util/CvUtil.h"
 
-namespace fb360_dep {
-namespace calibration {
+namespace fb360_dep::calibration {
 
 inline std::string
 getImageFilename(const std::string& image, const std::string& frame, const std::string& imageExt) {
@@ -121,5 +120,4 @@ struct Overlap {
   }
 };
 
-} // namespace calibration
-} // namespace fb360_dep
+} // namespace fb360_dep::calibration

@@ -34,8 +34,7 @@ using PixelType = uint8_t;
 using Image = cv::Mat_<PixelType>;
 using ImageId = std::string;
 
-namespace fb360_dep {
-namespace calibration {
+namespace fb360_dep::calibration {
 
 bool isUniqueCorner(
     const std::vector<Keypoint>& corners,
@@ -194,5 +193,4 @@ findAllCorners(const Camera::Rig& rig, const std::vector<Image>& images, const b
   return allCorners;
 }
 
-} // namespace calibration
-} // namespace fb360_dep
+} // namespace fb360_dep::calibration

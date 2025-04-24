@@ -15,8 +15,7 @@ DECLARE_int32(octave_count);
 DECLARE_bool(same_scale);
 DECLARE_int32(threads);
 
-namespace fb360_dep {
-namespace calibration {
+namespace fb360_dep::calibration {
 
 std::vector<Keypoint>
 findCorners(const Camera& camera, const cv::Mat_<uint8_t>& image, const bool useNearest);
@@ -32,5 +31,4 @@ std::map<std::string, std::vector<Keypoint>> findAllCorners(
     const std::vector<cv::Mat_<uint8_t>>& images,
     const bool useNearest);
 
-} // namespace calibration
-} // namespace fb360_dep
+} // namespace fb360_dep::calibration

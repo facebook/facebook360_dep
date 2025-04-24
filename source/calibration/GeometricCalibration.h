@@ -10,8 +10,7 @@
 
 #include "source/util/Camera.h"
 
-namespace fb360_dep {
-namespace calibration {
+namespace fb360_dep::calibration {
 
 using ReprojectionErrorOutlier = std::pair<double, double>; // <original_error, weighted_error>
 
@@ -382,5 +381,4 @@ std::vector<ReprojectionErrorOutlier> getReprojectionErrorOutliers(
   return result;
 }
 
-} // namespace calibration
-} // namespace fb360_dep
+} // namespace fb360_dep::calibration

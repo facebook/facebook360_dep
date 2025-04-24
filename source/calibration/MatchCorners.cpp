@@ -41,8 +41,7 @@ DEFINE_bool(use_nearest, false, "use nearest neighbor during corner matching, de
 using Image = cv::Mat_<uint8_t>;
 using ImageId = std::string;
 
-namespace fb360_dep {
-namespace calibration {
+namespace fb360_dep::calibration {
 
 Image extractSingleChannelImage(const cv::Mat_<cv::Vec3b>& image) {
   std::vector<Image> splitImage;
@@ -253,8 +252,7 @@ void processOctaves(
   }
 }
 
-} // namespace calibration
-} // namespace fb360_dep
+} // namespace fb360_dep::calibration
 
 int matchCorners() {
   CHECK_NE(FLAGS_color, "");
