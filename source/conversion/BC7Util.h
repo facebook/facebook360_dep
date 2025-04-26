@@ -19,8 +19,7 @@
 #include "source/util/RawUtil.h"
 #include "source/util/SystemUtil.h"
 
-namespace fb360_dep {
-namespace bc7_util {
+namespace fb360_dep::bc7_util {
 
 void writeDDSHeaderField(
     char* headerData,
@@ -109,5 +108,4 @@ void compressBC7(
   compressBC7(srcImg, destFilename, gammaCorrection, writeDDSHeader);
 }
 
-} // namespace bc7_util
-} // namespace fb360_dep
+} // namespace fb360_dep::bc7_util
