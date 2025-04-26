@@ -12,8 +12,7 @@
 
 #include "source/util/Camera.h"
 
-namespace fb360_dep {
-namespace point_cloud_util {
+namespace fb360_dep::point_cloud_util {
 
 struct BGRPoint {
   Camera::Vector3 coords;
@@ -36,5 +35,4 @@ PointCloud
 extractPoints(const std::string& pointCloudFile, const int pointCount, const int maxThreads);
 PointCloud extractPoints(const std::string& pointCloudFile, const int maxThreads);
 
-} // namespace point_cloud_util
-} // namespace fb360_dep
+} // namespace fb360_dep::point_cloud_util
