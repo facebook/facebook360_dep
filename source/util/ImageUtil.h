@@ -16,8 +16,7 @@
 #include "source/util/FilesystemUtil.h"
 #include "source/util/ImageTypes.h"
 
-namespace fb360_dep {
-namespace image_util {
+namespace fb360_dep::image_util {
 
 int getSingleFrame(const filesystem::path& imageDir, const Camera::Rig& rig, std::string frame);
 
@@ -175,5 +174,4 @@ Camera::Vector2 worldToEquirect(const Camera::Vector3 world, const int eqrW, con
 
 cv::Mat_<cv::Vec2f> computeWarpDstToSrc(const Camera& dst, const Camera& src);
 
-} // namespace image_util
-} // end namespace fb360_dep
+} // namespace fb360_dep::image_util
