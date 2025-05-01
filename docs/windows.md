@@ -30,12 +30,6 @@ https://developer3.oculus.com/downloads/
 ~~~~
 
 
-### Audio360/TwoBigEars (AUDIO360_ROOT)
-~~~~
-https://s3.amazonaws.com/fb360-spatial-workstation/RenderingEngine/1.0.2/Audio360_SDK_1.0.2.zip
-~~~~
-
-
 ### GLFW 3.3 source (GLFW_ROOT)
 ~~~~
 https://www.glfw.org/download.html
