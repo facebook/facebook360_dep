@@ -12,7 +12,7 @@
 
 namespace fb360_dep {
 
-const Eigen::Transform<double, 3, Eigen::Affine> generateTransform(
+inline Eigen::Transform<double, 3, Eigen::Affine> generateTransform(
     const Camera::Vector3& rotation,
     const Camera::Vector3& translation,
     const Eigen::UniformScaling<double>& scale,
@@ -34,7 +34,7 @@ const Eigen::Transform<double, 3, Eigen::Affine> generateTransform(
   return xform;
 }
 
-const Eigen::Transform<double, 3, Eigen::Affine> generateTransform(
+inline Eigen::Transform<double, 3, Eigen::Affine> generateTransform(
     double const* const rotation,
     double const* const translation,
     double const* const scale,
@@ -46,7 +46,7 @@ const Eigen::Transform<double, 3, Eigen::Affine> generateTransform(
       applyInReverse);
 }
 
-void solve(ceres::Problem& problem) {
+inline void solve(ceres::Problem& problem) {
   ceres::Solver::Options options;
   options.use_inner_iterations = true;
   options.max_num_iterations = 500;
@@ -103,7 +103,7 @@ struct TransformationFunctor {
   const Camera& referenceCamera;
 };
 
-Camera::Rig transformRig(
+inline Camera::Rig transformRig(
     const Camera::Rig& rig,
     const Camera::Vector3& rotation,
     const Camera::Vector3& translation,
@@ -129,7 +129,7 @@ Camera::Rig transformRig(
   return result;
 }
 
-Camera::Rig alignRig(
+inline Camera::Rig alignRig(
     const Camera::Rig& rig,
     const Camera::Rig& referenceRig,
     bool lockRotation = false,
@@ -140,10 +140,9 @@ Camera::Rig alignRig(
   Camera::Vector3 translation(0, 0, 0);
   Eigen::UniformScaling<double> scale(1);
 
-  for (int i = 0; i < int(rig.size()); ++i) {
-    const Camera& referenceCamera = Camera::findCameraById(rig[i].id, referenceRig);
-    TransformationFunctor::addResidual(
-        problem, rotation, translation, scale, rig[i], referenceCamera);
+  for (const auto& r : rig) {
+    const Camera referenceCamera = Camera::findCameraById(r.id, referenceRig);
+    TransformationFunctor::addResidual(problem, rotation, translation, scale, r, referenceCamera);
   }
 
   problem.SetParameterLowerBound(&scale.factor(), 0, 0.25);

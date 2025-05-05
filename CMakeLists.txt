@@ -1,4 +1,8 @@
-# (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+#
+# This source code is licensed under the BSD-style license found in the
+# LICENSE file in the root directory of this source tree.
 
 
 #
@@ -7,7 +11,7 @@
 # extent expressly permitted in a written agreement executed by an authorized representative of
 # Facebook, Inc.
 
-cmake_minimum_required(VERSION 3.4)
+cmake_minimum_required(VERSION 3.3...3.5)
 
 project(Facebook360_DEP CXX)
 
@@ -33,9 +37,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -m64 -O3 -funroll-loops -pipe")
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -mmmx -mavx -msse -msse3")
-
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wsign-compare")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -Wall -Wsign-compare")
 
 if(BUILD_LINE_COVERAGE)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-instr-generate -fcoverage-mapping")
@@ -62,7 +64,7 @@ endif()
 file(GLOB SRC "${CMAKE_CURRENT_SOURCE_DIR}/source/*")
 add_custom_target(_source SOURCES ${SRC})
 
-find_package(OpenCV 3 REQUIRED core imgproc imgcodecs highgui objdetect video)
+find_package(OpenCV 4 REQUIRED core imgproc imgcodecs highgui objdetect video)
 set(OPENCV_COMPONENTS
     opencv_core
     opencv_imgproc
@@ -73,16 +75,17 @@ set(OPENCV_COMPONENTS
 
 # When adding Boost::chrono to target_link_libraries make sure it is listed after Boost::timer
 # because Boost::timer depends on Boost::chrono
-find_package(Boost REQUIRED COMPONENTS chrono filesystem system program_options regex timer)
+find_package(Boost REQUIRED NO_MODULE COMPONENTS chrono filesystem system program_options regex timer)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-find_package(Ceres 1.14 REQUIRED)
+find_package(Ceres 2.2 REQUIRED)
 find_package(gflags 2.2 REQUIRED)
 find_package(glog 0.3 REQUIRED)
 find_package(Eigen3 3.3 REQUIRED)
 find_package(double-conversion 3.0)
+find_package(re2 REQUIRED)
 include_directories(${EIGEN3_INCLUDE_DIR})
 
 if(APPLE)
@@ -432,6 +435,7 @@ target_link_libraries(
   Boost::chrono
   Eigen3::Eigen
   glog::glog
+  re2::re2
   ${OPENCV_COMPONENTS}
   ${CERES_LIBRARIES}
   ${FOLLY_TARGET}

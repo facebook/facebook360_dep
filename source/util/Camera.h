@@ -378,7 +378,7 @@ struct Camera {
 
   template <typename T>
   static folly::dynamic serializeVector(const T& v) {
-    return folly::dynamic::array_range(v.data(), v.data() + v.size());
+    return folly::dynamic::array(v.data(), v.data() + v.size());
   }
 
   template <int kSize>

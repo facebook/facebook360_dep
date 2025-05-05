@@ -28,6 +28,7 @@ const char* kUsage = R"(
 
 #include <gflags/gflags.h>
 #include <glog/logging.h>
+#include <fstream>
 
 #include "source/util/Camera.h"
 #include "source/util/ImageUtil.h"
@@ -138,7 +139,7 @@ void writePoints(
     std::ofstream& file,
     const std::vector<std::vector<WorldColor>>& pointClouds,
     const int lines) {
-  LOG(INFO) << folly::format("Writing {} points to file...", lines);
+  LOG(INFO) << fmt::format("Writing {} points to file...", lines);
 
   // Merge all points
   std::vector<WorldColor> pointsAll;
@@ -156,16 +157,15 @@ void writePoints(
     const int start = i * pointsPerThread;
     const int end = std::min((i + 1) * pointsPerThread - 1, int(pointsAll.size()) - 1);
     threadPool.spawn([&, i, start, end] {
-      std::stringstream fileI;
       for (int j = start; j <= end; ++j) {
         // A line in a pts file represents x y z "intensity" r g b
         // x y z are in meters, we arbitrarily set "intensity" to 1, and rgb is between 0 and 255
         const WorldColor& point = pointsAll[j];
-        fileI << folly::format("{} {} {} 1 ", point[0], point[1], point[2]);
-        fileI << folly::format(
+        filestreams[i] << fmt::format("{} {} {} 1 ", point[0], point[1], point[2]);
+        filestreams[i] << fmt::format(
             "{:.0f} {:.0f} {:.0f}\n", 255 * point[3], 255 * point[4], 255 * point[5]);
       }
-      filestreams[i] = std::move(fileI);
+      // filestreams[i] = std::move(fileI);
     });
   }
   threadPool.join();
@@ -201,12 +201,12 @@ int main(int argc, char** argv) {
   }
 
   if (FLAGS_header_count) {
-    file << folly::format("{}\n", lines);
+    file << fmt::format("{}\n", lines);
   }
 
   writePoints(file, pointClouds, lines);
 
-  LOG(INFO) << folly::format("{} lines written", lines);
+  LOG(INFO) << fmt::format("{} lines written", lines);
 
   return EXIT_SUCCESS;
 }

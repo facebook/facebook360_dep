@@ -193,7 +193,7 @@ void centerRig(Camera::Rig& rig, std::string camera_id) {
   Camera::Real phi = 0; // angle around z axis
 
   // Yaw (rotation around z axis)
-  const Camera& selectedCamera = Camera::findCameraById(camera_id, rig);
+  const Camera selectedCamera = Camera::findCameraById(camera_id, rig);
 
   Camera::Vector3 projectedOnXY =
       Camera::Vector3(selectedCamera.forward().x(), selectedCamera.forward().y(), 0);
@@ -205,7 +205,7 @@ void centerRig(Camera::Rig& rig, std::string camera_id) {
   rig = transformRig(rig, rotation1, translation, scale);
 
   // Pitch (rotation around y axis)
-  const Camera& selectedCamera2 = Camera::findCameraById(camera_id, rig);
+  const Camera selectedCamera2 = Camera::findCameraById(camera_id, rig);
 
   Camera::Vector3 projectedOnXZ =
       Camera::Vector3(selectedCamera2.forward().x(), 0, selectedCamera2.forward().z());
@@ -217,7 +217,7 @@ void centerRig(Camera::Rig& rig, std::string camera_id) {
   rig = transformRig(rig, rotation2, translation, scale);
 
   // Roll (rotation around x axis)
-  const Camera& selectedCamera3 = Camera::findCameraById(camera_id, rig);
+  const Camera selectedCamera3 = Camera::findCameraById(camera_id, rig);
 
   Camera::Vector3 projectedOnYZ =
       Camera::Vector3(0, selectedCamera3.up().y(), selectedCamera3.up().z());

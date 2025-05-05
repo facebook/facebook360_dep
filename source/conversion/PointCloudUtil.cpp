@@ -8,7 +8,9 @@
 
 #include "source/conversion/PointCloudUtil.h"
 
-#include <regex>
+#include <re2/re2.h>
+
+#include <fstream>
 
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/lexical_cast.hpp>
@@ -102,16 +104,14 @@ int extractPCLPointCount(std::ifstream& file) {
   CHECK(boost::starts_with(line, "POINTS"))
       << folly::sformat("PCL header: expected point count in line {}, got {}", linePoints, line);
 
-  std::regex rgx("POINTS (\\w+)");
-  std::smatch match;
-  const std::string lineConst = line;
-  CHECK(std::regex_search(lineConst.begin(), lineConst.end(), match, rgx))
-      << "Could not parse point count from line " << line;
-  const std::string pointCountStr = match[1];
+  re2::RE2 rgx("POINTS (\\w+)");
+  std::string match;
+
+  CHECK(re2::RE2::FullMatch(line, rgx, &match)) << "Could not parse point count from line " << line;
   try {
-    return boost::lexical_cast<int>(pointCountStr);
+    return boost::lexical_cast<int>(match);
   } catch (boost::bad_lexical_cast&) {
-    CHECK(false) << folly::sformat("PCL header: invalid point count {}", pointCountStr);
+    CHECK(false) << folly::sformat("PCL header: invalid point count {}", match);
   }
 }
 

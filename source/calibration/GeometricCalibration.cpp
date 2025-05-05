@@ -8,6 +8,7 @@
 
 #include "source/calibration/GeometricCalibration.h"
 
+#include <fstream>
 #include <future>
 #include <iostream>
 #include <random>
@@ -318,7 +319,8 @@ void generateArtificalPoints(
     // create a random unit vector
     double longitude = std::uniform_real_distribution<>(-M_PI, +M_PI)(mt);
     double z = std::uniform_real_distribution<>(-1, 1)(mt);
-    Camera::Vector3 rig(sqrt(1 - z * z) * cos(longitude), sqrt(1 - z * z) * sin(longitude), z);
+    Camera::Vector3 rig(
+        std::sqrt(1 - z * z) * std::cos(longitude), std::sqrt(1 - z * z) * std::sin(longitude), z);
     CHECK_NEAR(rig.squaredNorm(), 1, 0.001);
 
     // divide unit vector by random disparity
@@ -398,7 +400,7 @@ void reportReprojectionErrors(
     std::ostringstream line;
     for (int percentile : {50, 90, 99}) {
       int index = percentile * (ssize(errors[i]) - 1) / 100.0 + 0.5;
-      line << folly::format("{}%: {:.2f} ", percentile, sqrt(errors[i][index]));
+      line << fmt::format("{}%: {:.2f} ", percentile, std::sqrt(errors[i][index]));
     }
     LOG(INFO) << folly::sformat(
         "{}: {} reproj. percentile {}", cameras[i].id, ssize(errors[i]), line.str());
@@ -686,7 +688,7 @@ std::string getReprojectionReport(
   }
 
   std::ostringstream result;
-  result << "reprojections " << norms.size() << " " << "RMSE " << sqrt(totalSq / norms.size())
+  result << "reprojections " << norms.size() << " " << "RMSE " << std::sqrt(totalSq / norms.size())
          << " " << "average " << total / norms.size() << " " << "median "
          << calcPercentile(norms, 0.5) << " " << "90% " << calcPercentile(norms, 0.9) << " "
          << "99% " << calcPercentile(norms, 0.99) << " ";
@@ -767,9 +769,10 @@ std::string getCameraRmseReport(
   angle /= angleCount;
 
   std::ostringstream result;
-  result << "RMSEs: " << "Pos " << sqrt(position) << " " << "Rot " << sqrt(rotation) << " "
-         << "Principal " << sqrt(principal) << " " << "Distortion " << sqrt(distortion) << " "
-         << "Focal " << sqrt(focal) << " " << "Angle " << sqrt(angle) << " ";
+  result << "RMSEs: " << "Pos " << std::sqrt(position) << " " << "Rot " << std::sqrt(rotation)
+         << " " << "Principal " << std::sqrt(principal) << " " << "Distortion "
+         << std::sqrt(distortion) << " " << "Focal " << std::sqrt(focal) << " " << "Angle "
+         << std::sqrt(angle) << " ";
 
   return result.str();
 }
@@ -956,9 +959,9 @@ void savePointsFile(FeatureMap& featureMap, const std::vector<Trace>& traces) {
     if (trace.references.empty()) {
       continue; // don't output zombie traces, a different trace has the references now
     }
-    file << folly::format("{} {} {} ", trace.position.x(), trace.position.y(), trace.position.z());
-    file << folly::format("1 "); // delimiter
-    file << folly::format("0 0 0"); // RGB value for the point
+    file << fmt::format("{} {} {} ", trace.position.x(), trace.position.y(), trace.position.z());
+    file << fmt::format("1 "); // delimiter
+    file << fmt::format("0 0 0"); // RGB value for the point
     file << "\n";
   }
 }

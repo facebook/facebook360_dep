@@ -501,7 +501,7 @@ int main(int argc, char* argv[]) {
   }
 
   if (!FLAGS_rotate_cam_z.empty()) {
-    const Camera& zCam = Camera::findCameraById(FLAGS_rotate_cam_z, rig);
+    const Camera zCam = Camera::findCameraById(FLAGS_rotate_cam_z, rig);
     const Camera::Vector3 z = Eigen::Vector3d::UnitZ();
     Camera::Real angle = acos(zCam.position.dot(z));
     Camera::Vector3 axis = zCam.position.cross(z);
@@ -579,7 +579,7 @@ int main(int argc, char* argv[]) {
     // Report results
     const int minC = coverages.minCoeff();
     double quality = minC + (coverages.array() >= minC + 1).count() / double(coverages.size());
-    std::cout << folly::format(
+    std::cout << fmt::format(
                      "distance: {:.2f} quality: {:.2f} samples: {} {}",
                      distance,
                      quality,

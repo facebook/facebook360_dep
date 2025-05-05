@@ -315,8 +315,7 @@ class GlWindow {
       fbo = createFramebuffer();
 
       // Message the graphics device info
-      LOG(INFO) << folly::format(
-          "OpenGL off-screen renderer: {}", (char*)(glGetString(GL_RENDERER)));
+      LOG(INFO) << fmt::format("OpenGL off-screen renderer: {}", (char*)(glGetString(GL_RENDERER)));
 
       // Return early avoiding glfw entirely for offscreen rendering
       return;
@@ -377,7 +376,7 @@ class GlWindow {
 #endif
 
     // Message the graphics device info
-    LOG(INFO) << folly::format("OpenGL on screen renderer: {}", (char*)(glGetString(GL_RENDERER)));
+    LOG(INFO) << fmt::format("OpenGL on screen renderer: {}", (char*)(glGetString(GL_RENDERER)));
 
     // Create a place to render offscreen pixesl
     if (screenState & OFF_SCREEN) {

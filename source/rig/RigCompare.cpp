@@ -37,7 +37,7 @@ void compareRigs(const Camera::Rig& rig, const Camera::Rig& reference) {
   double averagePrincipalDiff = 0;
   double averageFocalDiff = 0;
   for (const Camera& camera : rig) {
-    const Camera& ref = Camera::findCameraById(camera.id, reference);
+    const Camera ref = Camera::findCameraById(camera.id, reference);
     LOG(INFO) << folly::sformat("{}:", camera.id);
 
     double currentPositionDiff = (camera.position - ref.position).norm();

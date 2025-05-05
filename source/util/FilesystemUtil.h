@@ -7,6 +7,7 @@
  */
 
 #pragma once
+#include <algorithm>
 
 #ifdef WIN32
 #define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING

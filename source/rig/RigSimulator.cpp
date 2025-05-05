@@ -455,7 +455,7 @@ std::vector<Camera> makeDodecahedronOfFThetaCameras(
     const int imageCircleRadius,
     const float circleFov) {
   std::vector<Camera> cameras;
-  for (int i = 0; i < int(ARRAY_SIZE(icosahedron_data::icosahedronVertex)); ++i) {
+  for (std::size_t i = 0; i < std::size(icosahedron_data::icosahedronVertex); ++i) {
     cameras.emplace_back(makeFThetaCameraOnSphere(
         cameraSphereRadius,
         icosaVert(i),
