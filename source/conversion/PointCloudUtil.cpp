@@ -21,8 +21,7 @@ using Image = cv::Mat_<cv::Vec3b>;
 using DisparityImage = cv::Mat_<float>;
 using CoordinateImage = cv::Mat_<cv::Point3f>;
 
-namespace fb360_dep {
-namespace point_cloud_util {
+namespace fb360_dep::point_cloud_util {
 
 std::vector<PointCloudProjection> generateProjectedImages(
     const PointCloud& pointCloud,
@@ -197,5 +196,4 @@ PointCloud extractPoints(const std::string& pointCloudFile, const int maxThreads
   return extractPoints(pointCloudFile, pointCount, maxThreads);
 }
 
-} // namespace point_cloud_util
-} // namespace fb360_dep
+} // namespace fb360_dep::point_cloud_util
