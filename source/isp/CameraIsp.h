@@ -795,7 +795,7 @@ class CameraIsp {
     // - inner loop helpers to byte swap, interleave, and re-index as needed
     //   - converts from linear index to a representation-independent (channel, row, column)
     //     pixel index
-    auto pixelIndexFromInputLinearIndex = [=](int linearIndex) {
+    auto pixelIndexFromInputLinearIndex = [=, this](int linearIndex) {
       int channel, row, col;
       if (isPlanar) {
         channel = linearIndex / numPixelsPerPlane;
