@@ -34,8 +34,8 @@ DEFINE_string(raw, "", "path to raw image");
 DEFINE_string(vignetting_x, "", "x-axis comma-separated vignetting values");
 DEFINE_string(vignetting_y, "", "y-axis comma-separated vignetting values");
 
-float* vignettingTableX = 0;
-float* vignettingTableY = 0;
+float* vignettingTableX = nullptr;
+float* vignettingTableY = nullptr;
 
 template <typename T>
 inline T clamp(const T& x, const T& a, const T& b) {
