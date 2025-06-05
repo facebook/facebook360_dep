@@ -91,7 +91,7 @@ inline std::vector<GLuint> stripify(int width, int height, int skip = 1) {
 inline void attachShader(GLuint program, const GLint type, const std::string& source) {
   GLuint shader = glCreateShader(type);
   const char* p = source.c_str();
-  glShaderSource(shader, 1, &p, NULL);
+  glShaderSource(shader, 1, &p, nullptr);
   glCompileShader(shader);
   GLint status;
   glGetShaderiv(shader, GL_COMPILE_STATUS, &status);
@@ -243,7 +243,7 @@ GLuint createVertexAttributes(GLuint location, const T* p, size_t count) {
       getType((*p)[0]), // type
       GL_TRUE, // normalized
       0, // stride (0 means inferred)
-      (GLvoid*)0); // offset
+      (GLvoid*)nullptr); // offset
   glEnableVertexAttribArray(location);
   return buffer;
 }
@@ -388,7 +388,7 @@ inline GLuint createFramebufferTexture(int width, int height, GLenum format) {
       0, // border must be 0
       GL_RGBA,
       GL_BYTE,
-      NULL); // no pixel data
+      nullptr); // no pixel data
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
@@ -410,7 +410,7 @@ inline GLuint createFramebufferCubemapTexture(int width, int height, GLenum form
         0, // border must be 0
         GL_RGBA,
         GL_BYTE,
-        NULL); // no pixel data
+        nullptr); // no pixel data
   }
   glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
   glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
@@ -429,7 +429,7 @@ inline GLuint createFramebufferDepthTexture(int width, int height) {
       0, // border must be 0
       GL_DEPTH_COMPONENT,
       GL_FLOAT,
-      NULL); // no pixel data
+      nullptr); // no pixel data
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 

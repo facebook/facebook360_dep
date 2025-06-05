@@ -307,7 +307,7 @@ class GlWindow {
       eglBindAPI(EGL_OPENGL_API);
 
       // 5. Create a context and make it current
-      EGLContext eglCtx = eglCreateContext(eglDpy, eglCfg, EGL_NO_CONTEXT, NULL);
+      EGLContext eglCtx = eglCreateContext(eglDpy, eglCfg, EGL_NO_CONTEXT, nullptr);
 
       eglMakeCurrent(eglDpy, eglSurf, eglSurf, eglCtx);
 
@@ -353,7 +353,7 @@ class GlWindow {
     }
 #endif
 
-    window = glfwCreateWindow(width, height, name.c_str(), NULL, NULL);
+    window = glfwCreateWindow(width, height, name.c_str(), nullptr, nullptr);
     glfwGetError(&lastGlfwErrorMessage);
     CHECK(window) << "creation failed -> " << lastGlfwErrorMessage;
 
