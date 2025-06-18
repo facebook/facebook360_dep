@@ -168,7 +168,7 @@ bool writeDng(
   cv::Mat_<T> preprocessedRawImage = cameraIsp.getRawImage<T>();
 
   FILE* fDng = fopen(outputFilename.string().c_str(), "w");
-  if (fDng == NULL) {
+  if (fDng == nullptr) {
     LOG(ERROR) << folly::sformat("Failed to open file: {}", outputFilename.string()) << std::endl;
     return false;
   }
