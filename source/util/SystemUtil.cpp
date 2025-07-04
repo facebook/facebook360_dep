@@ -92,7 +92,7 @@ void logFlags() {
   LOG(INFO) << "Flags:";
   for (const auto& flag : flags) {
     if (isSubstring(flag.filename, substring)) {
-      LOG(INFO) << folly::sformat("--{:<*} = {}", padding, flag.name, flag.current_value);
+      LOG(INFO) << fmt::format("--{:<{}} = {}", flag.name, padding, flag.current_value);
     }
   }
 }

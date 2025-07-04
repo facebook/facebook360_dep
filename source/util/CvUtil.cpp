@@ -63,7 +63,8 @@ cv::Mat_<float> readCvMat32FC1FromPFM(const filesystem::path& path) {
 
   double endian;
   file >> endian;
-  CHECK_LE(endian, 0.0) << fmt::format("only little endian .pfm files supported: ", path.string());
+  CHECK_LE(endian, 0.0) << fmt::format(
+      "only little endian .pfm files supported: {}", path.string());
   file.ignore(); // eat newline
 
   cv::Mat_<float> m(cv::Size(width, height));
