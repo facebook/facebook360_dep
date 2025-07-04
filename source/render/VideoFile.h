@@ -12,6 +12,7 @@
 #include <mutex>
 
 #include <boost/filesystem.hpp>
+#include <fmt/format.h>
 
 #include <folly/Format.h>
 
@@ -40,7 +41,7 @@ struct VideoFile {
     }
     CHECK(frames.size()) << "no frames in catalog " << catalogName;
     sort(frames.begin(), frames.end());
-    LOG(INFO) << folly::sformat("{} frames found", frames.size());
+    LOG(INFO) << fmt::format("{} frames found", frames.size());
   }
 
   int getFront() const {

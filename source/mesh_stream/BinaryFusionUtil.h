@@ -11,6 +11,7 @@
 #include <cstdio>
 #include <fstream>
 
+#include <fmt/format.h>
 #include <gflags/gflags.h>
 #include <glog/logging.h>
 
@@ -27,7 +28,7 @@ void addFile(std::vector<FILE*>& disks, uint64_t& offset, const filesystem::path
   uint64_t end = offset == aligned ? offset + kStripeSize : aligned;
   uint64_t size = filesystem::file_size(filename);
   FILE* file = fopen(filename.c_str(), "rb");
-  LOG(INFO) << folly::sformat("Fusing {}...", filename.string());
+  LOG(INFO) << fmt::format("Fusing {}...", filename.string());
   while (size) {
     std::vector<uint8_t> buffer(std::min(size, end - offset));
     CHECK_EQ(fread(buffer.data(), 1, buffer.size(), file), buffer.size())

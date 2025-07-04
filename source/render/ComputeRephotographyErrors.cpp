@@ -7,6 +7,7 @@
  */
 
 #include <boost/algorithm/string/split.hpp>
+#include <fmt/format.h>
 #include <gflags/gflags.h>
 #include <glog/logging.h>
 
@@ -114,7 +115,7 @@ class OffscreenWindow : public GlWindow {
     for (int iFrame = 0; iFrame < numFrames; ++iFrame) {
       const std::string frameName =
           image_util::intToStringZeroPad(iFrame + std::stoi(FLAGS_first), 6);
-      LOG(INFO) << folly::sformat("Processing frame {}...", frameName);
+      LOG(INFO) << fmt::format("Processing frame {}...", frameName);
 
       LOG(INFO) << "Loading color and disparity images...";
 
@@ -140,7 +141,7 @@ class OffscreenWindow : public GlWindow {
           }
         }
 
-        LOG(INFO) << folly::sformat("Processing {} - {}...", frameName, camId);
+        LOG(INFO) << fmt::format("Processing {} - {}...", frameName, camId);
         const Eigen::Vector3f center = rig[i].position.cast<float>();
 
         std::vector<cv::Mat_<PixelType>> cubesRef =
@@ -163,7 +164,7 @@ class OffscreenWindow : public GlWindow {
             FLAGS_method, cubesRefColorNoAlpha, cubesRenderColorNoAlpha, FLAGS_stat_radius);
 
         const cv::Scalar avgScore = rephoto_util::averageScore(scoreMap, mask);
-        LOG(INFO) << folly::sformat(
+        LOG(INFO) << fmt::format(
             "{} {}: {}", camId, FLAGS_method, rephoto_util::formatResults(avgScore));
         frameScore += avgScore;
 
@@ -171,7 +172,7 @@ class OffscreenWindow : public GlWindow {
         const cv::Mat_<cv::Vec3b> plot =
             rephoto_util::stackResults(cubesRef, cubesRender, scoreMap, avgScore, mask);
         const std::string filename =
-            folly::sformat("{}/{}/{}.png", rephotoDir.string(), camId, frameName);
+            fmt::format("{}/{}/{}.png", rephotoDir.string(), camId, frameName);
         cv_util::imwriteExceptionOnFail(filename, plot);
       }
 
@@ -179,7 +180,7 @@ class OffscreenWindow : public GlWindow {
       frameScore.val[0] /= n;
       frameScore.val[1] /= n;
       frameScore.val[2] /= n;
-      LOG(INFO) << folly::sformat(
+      LOG(INFO) << fmt::format(
           "{} average {}: {}", frameName, FLAGS_method, rephoto_util::formatResults(frameScore));
       totalScore += frameScore;
     }
@@ -187,7 +188,7 @@ class OffscreenWindow : public GlWindow {
     totalScore.val[0] /= numFrames;
     totalScore.val[1] /= numFrames;
     totalScore.val[2] /= numFrames;
-    LOG(INFO) << folly::sformat(
+    LOG(INFO) << fmt::format(
         "TOTAL average {}: {}", FLAGS_method, rephoto_util::formatResults(totalScore));
   }
 };

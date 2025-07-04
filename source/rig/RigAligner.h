@@ -7,6 +7,7 @@
  */
 
 #include <ceres/ceres.h>
+#include <fmt/format.h>
 
 #include "source/util/Camera.h"
 
@@ -165,11 +166,10 @@ inline Camera::Rig alignRig(
 
   solve(problem);
 
-  LOG(INFO) << folly::sformat(
-      "New rotation values: {} {} {}", rotation[0], rotation[1], rotation[2]);
-  LOG(INFO) << folly::sformat(
+  LOG(INFO) << fmt::format("New rotation values: {} {} {}", rotation[0], rotation[1], rotation[2]);
+  LOG(INFO) << fmt::format(
       "New translation values: {} {} {}", translation[0], translation[1], translation[2]);
-  LOG(INFO) << folly::sformat("New scale: {}", scale.factor());
+  LOG(INFO) << fmt::format("New scale: {}", scale.factor());
   const Camera::Rig transformedRig = transformRig(rig, rotation, translation, scale);
   return transformedRig;
 }

@@ -11,6 +11,7 @@
 #include <random>
 
 #include <boost/algorithm/string/predicate.hpp>
+#include <fmt/format.h>
 #include <glog/logging.h>
 
 #include <folly/Format.h>
@@ -34,7 +35,7 @@ void plotMatches(
     return;
   }
 
-  LOG(INFO) << folly::sformat("Plotting matches for {}...", kDebugPlotMatchDst);
+  LOG(INFO) << fmt::format("Plotting matches for {}...", kDebugPlotMatchDst);
 
   const int dstIdx = pyramidLevel.findDstIdx(kDebugPlotMatchDst);
   const Camera& camDst = pyramidLevel.rigDst[dstIdx];
@@ -44,7 +45,7 @@ void plotMatches(
   const int ySize = disparity.rows;
 
   if ((0 <= kDebugPlotMatchX && 0 <= kDebugPlotMatchY)) {
-    CHECK(kDebugPlotMatchX < xSize && kDebugPlotMatchY < ySize) << folly::sformat(
+    CHECK(kDebugPlotMatchX < xSize && kDebugPlotMatchY < ySize) << fmt::format(
         "debug coords({}, {}) out of bounds: ({}, {})",
         kDebugPlotMatchX,
         kDebugPlotMatchY,
@@ -274,7 +275,7 @@ void computeBruteForceDisparity(
   cv::Mat_<float>& dstConfidences = pyramidLevel.dstConfidence(dstIdx);
 
   LOG(INFO) << "Computing initial costs at " << pyramidLevel.sizeLevel
-            << folly::sformat(" ({})", pyramidLevel.rigDst[dstIdx].id);
+            << fmt::format(" ({})", pyramidLevel.rigDst[dstIdx].id);
 
   std::vector<float> disparities(kNumDepths);
   const float minDisparity = 1.0f / maxDepthMeters;
@@ -334,7 +335,7 @@ void computeBruteForceDisparity(
       if (bestDisparityIdx == -1) {
         // This can only happen if we're outside the overlapping area when we
         // have partial coverage or due to noise in foreground masks
-        std::string warning = folly::sformat(
+        std::string warning = fmt::format(
             "Insufficient coverage at {} ({}, {}) ", pyramidLevel.rigDst[dstIdx].id, x, y);
         CHECK(partialCoverage || useForegroundMasks) << warning;
 
@@ -498,7 +499,7 @@ void pingPong(PyramidLevel<PixelType>& pyramidLevel, const int iterations, const
     }
 
     for (int it = 1; it <= iterations; ++it) {
-      LOG(INFO) << folly::sformat(
+      LOG(INFO) << fmt::format(
           "-- ping pong: iter {}/{}, {}", it, iterations, pyramidLevel.rigDst[dstIdx].id);
       const int radius = kSearchWindowRadius;
       ThreadPool threadPool(numThreads);
@@ -532,7 +533,7 @@ void pingPong(PyramidLevel<PixelType>& pyramidLevel, const int iterations, const
       const int countFov = cv::countNonZero(fovMask);
       const int count = cv::countNonZero(changed);
       const float changedPct = 100.0f * count / countFov;
-      LOG(INFO) << std::fixed << std::setprecision(2) << folly::sformat("changed: {}%", changedPct);
+      LOG(INFO) << std::fixed << std::setprecision(2) << fmt::format("changed: {}%", changedPct);
     }
   }
 }
@@ -853,7 +854,7 @@ void randomProposals(
   }
 
   for (int dstIdx = 0; dstIdx < int(pyramidLevel.rigDst.size()); ++dstIdx) {
-    LOG(INFO) << folly::sformat("-- random proposals: {}", pyramidLevel.rigDst[dstIdx].id);
+    LOG(INFO) << fmt::format("-- random proposals: {}", pyramidLevel.rigDst[dstIdx].id);
     ThreadPool threadPool(numThreads);
     const cv::Size size = pyramidLevel.dstDisparity(dstIdx).size();
     for (int y = kSearchWindowRadius; y < size.height - kSearchWindowRadius; ++y) {
@@ -924,7 +925,7 @@ void saveResults(
     const bool saveDebugImages,
     const std::string& outputFormatsIn) {
   if (saveDebugImages) {
-    LOG(INFO) << folly::sformat("Saving debug images for pyramid level {}...", pyramidLevel.level);
+    LOG(INFO) << fmt::format("Saving debug images for pyramid level {}...", pyramidLevel.level);
     pyramidLevel.saveDebugImages();
   }
 
@@ -1017,7 +1018,7 @@ void processLevel(
     const int mismatchesStartLevel,
     const bool doBilateralFilter,
     const int threads) {
-  LOG(INFO) << folly::sformat("Processing {} level {}", pyramidLevel.frameName, pyramidLevel.level);
+  LOG(INFO) << fmt::format("Processing {} level {}", pyramidLevel.frameName, pyramidLevel.level);
   reprojectColors(pyramidLevel, threads);
   preprocessLevel(pyramidLevel, minDepthM, maxDepthM, partialCoverage, useForegroundMasks, threads);
   randomProposals(pyramidLevel, numRandomProposals, minDepthM, maxDepthM, threads, outputRoot);

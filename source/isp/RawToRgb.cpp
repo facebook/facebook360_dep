@@ -9,6 +9,7 @@
 #include <fstream>
 
 #include <boost/timer/timer.hpp>
+#include <fmt/format.h>
 #include <gflags/gflags.h>
 #include <glog/logging.h>
 
@@ -86,7 +87,7 @@ int main(int argc, char* argv[]) {
         FLAGS_pow2_downscale_factor,
         (DemosaicFilter)FLAGS_demosaic_filter,
         FLAGS_apply_tone_curve);
-    LOG(INFO) << folly::sformat("Runtime = {}", timer.format());
+    LOG(INFO) << fmt::format("Runtime = {}", timer.format());
     imwriteExceptionOnFail(outputFiles[i], outputImage);
 
     if (!FLAGS_output_dng_path.empty()) {

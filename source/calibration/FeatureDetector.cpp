@@ -9,6 +9,7 @@
 #include "source/calibration/FeatureDetector.h"
 
 #include <boost/timer/timer.hpp>
+#include <fmt/format.h>
 #include <gflags/gflags.h>
 #include <glog/logging.h>
 
@@ -127,7 +128,7 @@ cv::Mat_<uint8_t> generateImageCircleMask(const Camera& camera) {
 }
 
 std::vector<Keypoint> findCorners(const Camera& camera, const Image& image, const bool useNearest) {
-  LOG(INFO) << folly::sformat("Processing camera {}... ", camera.id);
+  LOG(INFO) << fmt::format("Processing camera {}... ", camera.id);
 
   // Search for features at multiple scales
   int rejectedCorners = 0;
@@ -141,7 +142,7 @@ std::vector<Keypoint> findCorners(const Camera& camera, const Image& image, cons
     double scale = std::pow(0.5, octave);
     std::vector<Camera::Vector2> octaveCorners = findScaledCorners(scale, image, mask, camera.id);
     if (FLAGS_log_verbose) {
-      LOG(INFO) << folly::sformat(
+      LOG(INFO) << fmt::format(
           "{} found {} corners at scale {}", camera.id, octaveCorners.size(), scale);
     }
     int cornerCountBeforeOctave = corners.size();
@@ -157,14 +158,14 @@ std::vector<Keypoint> findCorners(const Camera& camera, const Image& image, cons
   }
 
   if (FLAGS_deduplicate_radius != 0) {
-    LOG(INFO) << folly::sformat(
+    LOG(INFO) << fmt::format(
         "{} accepted corners: {} deduplicated corners: {} rejected corners {}",
         camera.id,
         corners.size(),
         deduplicatedCorners,
         rejectedCorners);
   } else {
-    LOG(INFO) << folly::sformat(
+    LOG(INFO) << fmt::format(
         "{} accepted corners: {} rejected corners {}", camera.id, corners.size(), rejectedCorners);
   }
 
@@ -187,7 +188,7 @@ findAllCorners(const Camera::Rig& rig, const std::vector<Image>& images, const b
   threadPool.join();
 
   if (FLAGS_enable_timing) {
-    LOG(INFO) << folly::sformat("Find corners stage time: {}", featureTimer.format());
+    LOG(INFO) << fmt::format("Find corners stage time: {}", featureTimer.format());
   }
 
   return allCorners;

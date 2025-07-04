@@ -6,6 +6,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+#include <fmt/format.h>
 #include <gflags/gflags.h>
 #include <glog/logging.h>
 
@@ -79,7 +80,7 @@ int main(int argc, char** argv) {
     faces = ms.getFaces();
   }
 
-  LOG(INFO) << folly::sformat("Num vertexes: {}, num faces: {}", vertexes.size(), faces.size());
+  LOG(INFO) << fmt::format("Num vertexes: {}, num faces: {}", vertexes.size(), faces.size());
 
   // Create MTL and OBJ files
   LOG(INFO) << "Creating OBJ...";

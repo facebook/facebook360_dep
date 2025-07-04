@@ -14,6 +14,7 @@
 #include <thread>
 #include <vector>
 
+#include <fmt/format.h>
 #include <gflags/gflags.h>
 #include <glog/logging.h>
 
@@ -634,7 +635,7 @@ void renderCamerasThreaded(
   std::vector<cv::Mat_<cv::Vec3f>> images(cameras.size(), cv::Mat_<cv::Vec3f>());
   std::vector<cv::Mat_<float>> depthMaps(cameras.size(), cv::Mat_<float>());
   for (int i = 0; i < int(cameras.size()); ++i) {
-    LOG(INFO) << folly::sformat("------ rendering camera {}", i);
+    LOG(INFO) << fmt::format("------ rendering camera {}", i);
     renderThreads.emplace_back(
         renderCamera,
         std::ref(cameras[i]),

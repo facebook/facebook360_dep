@@ -12,6 +12,7 @@
 #include <queue>
 
 #include <boost/timer/timer.hpp>
+#include <fmt/format.h>
 
 #include <folly/Format.h>
 
@@ -291,7 +292,7 @@ Overlap findMatches(
   // In multithreaded mode these will clocks include time from other threads
   // running simultaneously
   if (FLAGS_enable_timing && FLAGS_threads == 1) {
-    LOG(INFO) << folly::sformat(
+    LOG(INFO) << fmt::format(
         "{} and {} matching complete. Overlap fraction: {}. Matches: {}. Timing: {} "
         "Calls to ZNCC: {}. ZNCC Time: {} "
         "Calls to ProjectCorners: {}. Project Corner Time: {} ",
@@ -305,7 +306,7 @@ Overlap findMatches(
         callsToProjectCorners,
         projectCornerTimer.format());
   } else {
-    LOG(INFO) << folly::sformat(
+    LOG(INFO) << fmt::format(
         "{} and {} matching complete. Overlap fraction: {}. Matches: {}",
         camera0.id,
         camera1.id,
@@ -352,7 +353,7 @@ std::vector<Overlap> findAllMatches(
   }
 
   if (FLAGS_enable_timing) {
-    LOG(INFO) << folly::sformat("Matching stage time: {}", matchTimer.format());
+    LOG(INFO) << fmt::format("Matching stage time: {}", matchTimer.format());
   }
 
   return overlaps;

@@ -8,6 +8,7 @@
 
 #include "source/calibration/MatchCorners.h"
 
+#include <fmt/format.h>
 #include <gflags/gflags.h>
 #include <glog/logging.h>
 
@@ -49,7 +50,7 @@ Image extractSingleChannelImage(const cv::Mat_<cv::Vec3b>& image) {
 
   const int channels = 3;
   CHECK_EQ(splitImage.size(), channels) << "error loading separate color channels";
-  LOG(INFO) << folly::sformat("Loading single channge images {}", FLAGS_color_channel);
+  LOG(INFO) << fmt::format("Loading single channge images {}", FLAGS_color_channel);
   Image singleChannelImage;
   if (FLAGS_color_channel == "grayscale") {
     cv::cvtColor(image, singleChannelImage, cv::COLOR_BGR2GRAY);
@@ -60,7 +61,7 @@ Image extractSingleChannelImage(const cv::Mat_<cv::Vec3b>& image) {
   } else if (FLAGS_color_channel == "red") {
     singleChannelImage = splitImage[2];
   } else {
-    LOG(FATAL) << folly::sformat("Unknown color channel selected: {}", FLAGS_color_channel);
+    LOG(FATAL) << fmt::format("Unknown color channel selected: {}", FLAGS_color_channel);
   }
   return singleChannelImage;
 }
@@ -97,7 +98,7 @@ static void saveMatches(
 
   folly::dynamic matchesData =
       folly::dynamic::object("all_matches", allMatches)("images", allCornersData);
-  LOG(INFO) << folly::sformat("Saving matches to file: {}", filename.string());
+  LOG(INFO) << fmt::format("Saving matches to file: {}", filename.string());
   if (filename.has_parent_path()) {
     filesystem::create_directories(filename.parent_path());
   }
@@ -123,7 +124,7 @@ std::vector<Image> loadChannels(const Camera::Rig& rig) {
     images = loadSingleChannelImages(colorDir, rig);
 
   } else {
-    LOG(FATAL) << folly::sformat("Unknown color channel selected: {}", FLAGS_color_channel);
+    LOG(FATAL) << fmt::format("Unknown color channel selected: {}", FLAGS_color_channel);
   }
   LOG(INFO) << "Images loaded";
 
@@ -193,7 +194,7 @@ void processScale(
     const std::vector<Image>& images,
     std::map<ImageId, std::vector<Keypoint>>& allCorners,
     std::vector<Overlap>& overlaps) {
-  LOG(INFO) << folly::sformat("Processing scale: {}", scale);
+  LOG(INFO) << fmt::format("Processing scale: {}", scale);
 
   std::vector<Image> scaledImages;
   for (const Image& image : images) {
@@ -275,8 +276,8 @@ int matchCorners() {
 
   for (const auto& entry : allCorners) {
     if (ssize(entry.second) < FLAGS_min_features) {
-      throw std::runtime_error(folly::sformat(
-          "Too few features found in camera {}: {}", entry.first, ssize(entry.second)));
+      throw std::runtime_error(
+          fmt::format("Too few features found in camera {}: {}", entry.first, ssize(entry.second)));
     }
   }
   saveMatches(FLAGS_matches, allCorners, overlaps);

@@ -6,6 +6,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+#include <fmt/format.h>
+
 #include "source/depth_estimation/DerpUtil.h"
 
 #include <queue>
@@ -182,7 +184,7 @@ void plotDstPointInSrc(
   const SaveType green = cv_util::createBGR<SaveType>(0, 1, 0);
   srcColorCopy(ptSrc.y(), ptSrc.x()) = green;
 
-  const std::string filename = folly::sformat(
+  const std::string filename = fmt::format(
       "{}/{}_{}_x={}_y={}->{}_x={:.2f}_y={:.2f}.png",
       outputDir.string(),
       prefix,
@@ -280,7 +282,7 @@ filesystem::path getImageDir(const filesystem::path& dir, const ImageType& image
 
 filesystem::path
 getImageDir(const filesystem::path& dir, const ImageType& imageType, const int level) {
-  return folly::sformat("{}/level_{}", getImageDir(dir, imageType).string(), std::to_string(level));
+  return fmt::format("{}/level_{}", getImageDir(dir, imageType).string(), std::to_string(level));
 }
 
 filesystem::path getImageDir(
@@ -303,7 +305,7 @@ filesystem::path genFilename(
     const std::string& camId,
     const std::string& frameName,
     const std::string& extension) {
-  return folly::sformat(
+  return fmt::format(
       "{}/{}.{}", getImageDir(dir, imageType, level, camId).string(), frameName, extension);
 }
 

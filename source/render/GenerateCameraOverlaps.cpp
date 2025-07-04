@@ -6,6 +6,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+#include <fmt/format.h>
 #include <gflags/gflags.h>
 #include <glog/logging.h>
 
@@ -97,7 +98,7 @@ void dumpOverlaps(
 
   // Loop through disparities
   for (int d = 0; d < numDisps; ++d) {
-    LOG(INFO) << folly::sformat("Depth {} of {}...", (d + 1), numDisps);
+    LOG(INFO) << fmt::format("Depth {} of {}...", (d + 1), numDisps);
     threadPool.spawn([&, d] {
       const float disparity = probeDisparity(d, numDisps, minDisparity, maxDisparity);
       for (const Camera& camDst : rigDst) {
@@ -116,7 +117,7 @@ void dumpOverlaps(
 
         // Pad filename with zeros so they are saved in lexicographical order
         const std::string filename =
-            folly::sformat("{}/{}/{:05}_cm.png", outputDir.string(), camDst.id, int(depthCm));
+            fmt::format("{}/{}/{:05}_cm.png", outputDir.string(), camDst.id, int(depthCm));
         cv_util::imwriteExceptionOnFail(filename, 255.0f * colorDst);
       }
     });

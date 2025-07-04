@@ -19,6 +19,8 @@
 #include <set>
 #include <thread>
 
+#include <fmt/format.h>
+
 #include <folly/Format.h>
 
 using namespace fb360_dep;
@@ -53,7 +55,7 @@ MeshSimplifier::MeshSimplifier(
   numThreads = nThreads;
   isEquiError = equiError;
 
-  LOG(INFO) << folly::sformat("Getting {} vertexes...", vertexesIn.rows());
+  LOG(INFO) << fmt::format("Getting {} vertexes...", vertexesIn.rows());
 
   vertexes.resize(vertexesIn.rows());
   std::vector<std::thread> threads;
@@ -66,7 +68,7 @@ MeshSimplifier::MeshSimplifier(
     thread.join();
   }
 
-  LOG(INFO) << folly::sformat("Getting {} faces...", facesIn.rows());
+  LOG(INFO) << fmt::format("Getting {} faces...", facesIn.rows());
 
   faces.resize(facesIn.rows());
   threads.clear();
@@ -493,7 +495,7 @@ void MeshSimplifier::simplify(
     numFacesDeletedPrev = numFacesDeleted;
 
     if (iteration % 1 == 0) {
-      LOG(INFO) << folly::sformat(
+      LOG(INFO) << fmt::format(
           "Iter: {}, faces: {}, threshold: {}", iteration, faces.size(), threshold);
     }
 

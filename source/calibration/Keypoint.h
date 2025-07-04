@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <fmt/format.h>
+
 #include <folly/dynamic.h>
 
 #include "source/util/Camera.h"
@@ -17,7 +19,7 @@ namespace fb360_dep::calibration {
 
 inline std::string
 getImageFilename(const std::string& image, const std::string& frame, const std::string& imageExt) {
-  return folly::sformat("{}/{}{}", image, frame, imageExt);
+  return fmt::format("{}/{}{}", image, frame, imageExt);
 }
 
 struct Keypoint {

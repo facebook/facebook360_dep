@@ -9,6 +9,7 @@
 #include "source/util/ImageUtil.h"
 
 #include <boost/algorithm/string/split.hpp>
+#include <fmt/format.h>
 
 namespace fb360_dep::image_util {
 
@@ -17,11 +18,11 @@ static inline const std::vector<filesystem::path> checkAndGetSortedFiles(
     const Camera::Rig& rig) {
   CHECK_GT(rig.size(), 0);
   filesystem::path camDir = imageDir / rig[0].id;
-  CHECK(filesystem::exists(camDir)) << folly::sformat("No folder found at {}", camDir.string());
+  CHECK(filesystem::exists(camDir)) << fmt::format("No folder found at {}", camDir.string());
   const bool includeHidden = false;
   const std::vector<filesystem::path> sortedFiles =
       filesystem::getFilesSorted(camDir, includeHidden);
-  CHECK_GT(sortedFiles.size(), 0) << folly::sformat("No files found in {}", camDir.string());
+  CHECK_GT(sortedFiles.size(), 0) << fmt::format("No files found in {}", camDir.string());
   return sortedFiles;
 }
 

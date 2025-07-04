@@ -12,6 +12,7 @@
 #include <exception>
 #include <stdexcept>
 
+#include <fmt/format.h>
 #include <gflags/gflags.h>
 #include <glog/logging.h>
 
@@ -29,7 +30,7 @@ void terminateHandler() {
     try {
       rethrow_exception(exptr);
     } catch (std::exception& ex) {
-      LOG(FATAL) << folly::sformat("Terminated with exception: {}", ex.what());
+      LOG(FATAL) << fmt::format("Terminated with exception: {}", ex.what());
     } catch (...) {
       LOG(FATAL) << "Terminated with unknown exception";
     }

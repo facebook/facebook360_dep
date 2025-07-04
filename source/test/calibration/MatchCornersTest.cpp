@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <string>
 
+#include <fmt/format.h>
 #include <gtest/gtest.h>
 
 #include <folly/FileUtil.h>
@@ -118,9 +119,9 @@ TEST(MatchCornersTest, TestTransformationDetection) {
   FLAGS_color = boost::filesystem::unique_path("test_%%%%%%").string();
   FLAGS_frame = "000000";
   const std::string matches_basenane = boost::filesystem::unique_path("matches_%%%%%%").string();
-  FLAGS_matches = folly::sformat("{}/{}.json", FLAGS_color, matches_basenane);
+  FLAGS_matches = fmt::format("{}/{}.json", FLAGS_color, matches_basenane);
   const std::string rig_basenane = boost::filesystem::unique_path("rig_%%%%%%").string();
-  FLAGS_rig_in = folly::sformat("{}/{}.json", FLAGS_color, rig_basenane);
+  FLAGS_rig_in = fmt::format("{}/{}.json", FLAGS_color, rig_basenane);
   FLAGS_min_features = 0;
 
   static const int squareDim = 300;
@@ -169,10 +170,10 @@ TEST(MatchCornersTest, TestTransformationDetection) {
   image = rotateImage(image, angle);
   image = translate(image, tX, tY);
 
-  std::string testPath = folly::sformat("{}/cam/", FLAGS_color);
+  std::string testPath = fmt::format("{}/cam/", FLAGS_color);
   boost::filesystem::create_directories(testPath);
 
-  cv_util::imwriteExceptionOnFail(folly::sformat("{}/{}.png", testPath, FLAGS_frame), image);
+  cv_util::imwriteExceptionOnFail(fmt::format("{}/{}.png", testPath, FLAGS_frame), image);
   Camera::saveRig(FLAGS_rig_in, rig);
 
   matchCorners();
@@ -190,7 +191,7 @@ TEST(MatchCornersTest, TestTransformationDetection) {
         bestTrueCorner = trueCorner;
       }
     }
-    CHECK_LE(bestDistanceSq, toleranceSq) << folly::sformat(
+    CHECK_LE(bestDistanceSq, toleranceSq) << fmt::format(
         "No corners near ({}, {}). Closest found: ({}, {})",
         corner.x(),
         corner.y(),

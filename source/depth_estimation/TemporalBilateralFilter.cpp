@@ -8,6 +8,7 @@
 
 #include "source/depth_estimation/TemporalBilateralFilter.h"
 
+#include <fmt/format.h>
 #include <gflags/gflags.h>
 #include <glog/logging.h>
 
@@ -99,8 +100,7 @@ void populateMinMaxFrame(
     const int curFrameIdx,
     int& firstFrameIdx,
     int& lastFrameIdx) {
-  const std::string levelDir =
-      folly::sformat("{}/level_{}/{}", dir, std::to_string(level), camRef.id);
+  const std::string levelDir = fmt::format("{}/level_{}/{}", dir, std::to_string(level), camRef.id);
   const std::string ext = filesystem::getFirstExtension(levelDir);
 
   int localFirstFrameIdx = INT_MAX;

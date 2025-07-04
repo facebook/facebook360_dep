@@ -8,6 +8,7 @@
 
 #include "source/conversion/PointCloudUtil.h"
 
+#include <fmt/format.h>
 #include <re2/re2.h>
 
 #include <fstream>
@@ -101,7 +102,7 @@ int extractPCLPointCount(std::ifstream& file) {
   goToLine(file, linePoints);
   std::getline(file, line);
   CHECK(boost::starts_with(line, "POINTS"))
-      << folly::sformat("PCL header: expected point count in line {}, got {}", linePoints, line);
+      << fmt::format("PCL header: expected point count in line {}, got {}", linePoints, line);
 
   re2::RE2 rgx("POINTS (\\w+)");
   std::string match;
@@ -110,7 +111,7 @@ int extractPCLPointCount(std::ifstream& file) {
   try {
     return boost::lexical_cast<int>(match);
   } catch (boost::bad_lexical_cast&) {
-    CHECK(false) << folly::sformat("PCL header: invalid point count {}", match);
+    CHECK(false) << fmt::format("PCL header: invalid point count {}", match);
   }
 }
 
@@ -142,7 +143,7 @@ int getPointCount(const std::string& pointCloudFile) {
 
 PointCloud
 extractPoints(const std::string& pointCloudFile, const int pointCount, const int maxThreads) {
-  LOG(INFO) << folly::sformat("Extracting {} points from {}...", pointCount, pointCloudFile);
+  LOG(INFO) << fmt::format("Extracting {} points from {}...", pointCount, pointCloudFile);
 
   ThreadPool threadPool(maxThreads);
   const int threads = threadPool.getMaxThreads();
@@ -180,9 +181,9 @@ extractPoints(const std::string& pointCloudFile, const int pointCount, const int
   }
   threadPool.join();
 
-  LOG(INFO) << folly::sformat("Extracted {} points.", points.size());
+  LOG(INFO) << fmt::format("Extracted {} points.", points.size());
   if (pointCount > 0) {
-    CHECK_EQ(pointCount, points.size()) << folly::sformat(
+    CHECK_EQ(pointCount, points.size()) << fmt::format(
         "Point count in header ({}) does not match number of extracted points ({})",
         pointCount,
         points.size());

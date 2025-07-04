@@ -6,6 +6,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+#include <fmt/format.h>
 #include <gflags/gflags.h>
 #include <glog/logging.h>
 #include <opencv2/opencv.hpp>
@@ -98,7 +99,7 @@ int main(int argc, char* argv[]) {
       cv::Mat_<cv::Vec4f> blend;
       cv::addWeighted(images[c0Idx], 1, keypointProjection, 0.6, 0, blend);
       const std::string fn =
-          folly::sformat("{}/{}_{}.png", FLAGS_output_dir, rig[c0Idx].id, rig[c1Idx].id);
+          fmt::format("{}/{}_{}.png", FLAGS_output_dir, rig[c0Idx].id, rig[c1Idx].id);
       cv_util::imwriteExceptionOnFail(fn, 255.0f * blend);
     }
   }

@@ -10,6 +10,7 @@
 
 #include <vector>
 
+#include <fmt/format.h>
 #include <gflags/gflags.h>
 #include <glog/logging.h>
 #include <opencv2/calib3d.hpp>
@@ -175,7 +176,7 @@ inline float maxPixelValueFromCvDepth(int cvDepth) {
   } else if (cvDepth == CV_32F) {
     return 1.0f;
   } else {
-    LOG(FATAL) << folly::sformat("Depth not supported: {}", cvDepth);
+    LOG(FATAL) << fmt::format("Depth not supported: {}", cvDepth);
     return 0.0f;
   }
 }

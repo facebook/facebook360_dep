@@ -19,6 +19,7 @@ const char* kUsage = R"(
 
  )";
 
+#include <fmt/format.h>
 #include <gflags/gflags.h>
 #include <glog/logging.h>
 
@@ -145,9 +146,9 @@ int main(int argc, char* argv[]) {
   LOG(INFO) << "Press any key to exit.";
   cv::waitKey(0);
 
-  LOG(INFO) << folly::sformat("{}={}", blurFlag, trackVar.getBlur());
-  LOG(INFO) << folly::sformat("{}={:.3e}", threshFlag, trackVar.getThreshold());
-  LOG(INFO) << folly::sformat("{}={}", closingFlag, trackVar.getClosing());
+  LOG(INFO) << fmt::format("{}={}", blurFlag, trackVar.getBlur());
+  LOG(INFO) << fmt::format("{}={:.3e}", threshFlag, trackVar.getThreshold());
+  LOG(INFO) << fmt::format("{}={}", closingFlag, trackVar.getClosing());
 
   return EXIT_SUCCESS;
 }

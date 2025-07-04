@@ -8,6 +8,7 @@
 
 #include "source/util/RawUtil.h"
 
+#include <fmt/format.h>
 #include <opencv2/core.hpp>
 
 #include <folly/FileUtil.h>
@@ -137,7 +138,7 @@ bool writeDng(
     const filesystem::path& rawImageFilename,
     const filesystem::path& outputFilename,
     CameraIsp& cameraIsp) {
-  LOG(INFO) << folly::sformat("Writing: {}", outputFilename.string()) << std::endl;
+  LOG(INFO) << fmt::format("Writing: {}", outputFilename.string()) << std::endl;
   // - sanity check
   CHECK_EQ(rawImageFilename.extension(), ".raw");
   int outputBitsPerPixel = 8 * sizeof(T);
@@ -169,7 +170,7 @@ bool writeDng(
 
   FILE* fDng = fopen(outputFilename.string().c_str(), "w");
   if (fDng == nullptr) {
-    LOG(ERROR) << folly::sformat("Failed to open file: {}", outputFilename.string()) << std::endl;
+    LOG(ERROR) << fmt::format("Failed to open file: {}", outputFilename.string()) << std::endl;
     return false;
   }
 

@@ -29,6 +29,7 @@ const char* kUsage = R"(
     ...
 )";
 
+#include <fmt/format.h>
 #include <gflags/gflags.h>
 #include <glog/logging.h>
 
@@ -67,7 +68,7 @@ void rescaleCameras(Camera::Rig& rig) {
       cam = cam.rescale({FLAGS_width, height});
     }
 
-    LOG(INFO) << folly::sformat(
+    LOG(INFO) << fmt::format(
         "{} output resolution: {}x{}", cam.id, cam.resolution.x(), cam.resolution.y());
   }
 }

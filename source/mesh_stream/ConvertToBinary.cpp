@@ -10,6 +10,7 @@
 #include <set>
 #include <string>
 
+#include <fmt/format.h>
 #include <gflags/gflags.h>
 #include <glog/logging.h>
 
@@ -123,7 +124,7 @@ void convertColor(
     return;
   }
 
-  LOG(INFO) << folly::sformat("Converting color: frame {}, camera {}...", frameName, camId);
+  LOG(INFO) << fmt::format("Converting color: frame {}, camera {}...", frameName, camId);
 
   Image image = image_util::loadScaledImage<PixelType>(
       FLAGS_color, camId, frameName, FLAGS_color_scale, cv::INTER_AREA);
@@ -158,7 +159,7 @@ void convertDepth(
   }
 
   const std::string& camId = cam.id;
-  LOG(INFO) << folly::sformat("Converting depth: frame {}, camera {}...", frameName, camId);
+  LOG(INFO) << fmt::format("Converting depth: frame {}, camera {}...", frameName, camId);
 
   cv::Mat_<float> disparity = image_util::loadPfmImage(FLAGS_disparity, camId, frameName);
   cv::Mat_<float> depth = 1.0f / disparity;
@@ -190,14 +191,14 @@ void convertDepth(
   const int originalFaceCount = faces.rows();
   mesh_util::applyMaskToVertexesAndFaces(vertexes, faces, vertexMask);
   const int numFacesRemoved = originalFaceCount - faces.rows();
-  LOG(INFO) << folly::sformat(
+  LOG(INFO) << fmt::format(
       "Removed {} of {} faces ({:.2f}%) corresponding to invalid depths and masked vertexes",
       numFacesRemoved,
       originalFaceCount,
       100.f * numFacesRemoved / (float)originalFaceCount);
 
   if (FLAGS_triangles > 0) {
-    LOG(INFO) << folly::sformat("Target number of faces: {}", FLAGS_triangles);
+    LOG(INFO) << fmt::format("Target number of faces: {}", FLAGS_triangles);
     static const bool kIsEquierror = true;
     static const int kThreads = 1;
     render::MeshSimplifier ms(vertexes, faces, kIsEquierror, kThreads);
@@ -235,7 +236,7 @@ void convertDepth(
   }
 
   if (saveObj) {
-    LOG(INFO) << folly::sformat("Exporting obj: frame {}, camera {}...", frameName, camId);
+    LOG(INFO) << fmt::format("Exporting obj: frame {}, camera {}...", frameName, camId);
     const filesystem::path objFilename = image_util::imagePath(FLAGS_bin, camId, frameName, ".obj");
     filesystem::create_directories(objFilename.parent_path());
     mesh_util::writeObj(
@@ -270,9 +271,9 @@ void fuse(const Camera::Rig& rig, const std::vector<std::string>& outputFormats)
   std::vector<FILE*> disks;
   boost::filesystem::create_directories(FLAGS_fused);
   for (int i = 0; i < FLAGS_fuse_strip; ++i) {
-    const std::string diskName = folly::sformat("{}/fused_{}.bin", FLAGS_fused, std::to_string(i));
+    const std::string diskName = fmt::format("{}/fused_{}.bin", FLAGS_fused, std::to_string(i));
     FILE* disk = fopen(diskName.c_str(), "wb");
-    CHECK(disk) << folly::sformat("Failed to open {}", diskName);
+    CHECK(disk) << fmt::format("Failed to open {}", diskName);
     disks.push_back(disk);
   }
 
@@ -291,7 +292,7 @@ void fuse(const Camera::Rig& rig, const std::vector<std::string>& outputFormats)
   for (int iFrame = 0; iFrame < numFrames; ++iFrame) {
     const std::string frameName =
         image_util::intToStringZeroPad(iFrame + std::stoi(FLAGS_first), 6);
-    LOG(INFO) << folly::sformat("Fusing frame {}...", frameName);
+    LOG(INFO) << fmt::format("Fusing frame {}...", frameName);
     binary_fusion::fuseFrame(catalog, disks, offset, FLAGS_bin, frameName, rig, extensions);
   }
 
@@ -320,7 +321,7 @@ void resizeRig(Camera::Rig& rig) {
         FLAGS_color, camera.id, FLAGS_first, FLAGS_color_scale);
     const float xScale = float(image.cols) / camera.resolution.x();
     const float yScale = float(image.rows) / camera.resolution.y();
-    CHECK_EQ(xScale, yScale) << folly::sformat(
+    CHECK_EQ(xScale, yScale) << fmt::format(
         "Aspect ratio must be kept. {}x{} vs {}x{}, x-scale: {}, y-scale: {}",
         camera.resolution.x(),
         camera.resolution.y(),
@@ -329,8 +330,7 @@ void resizeRig(Camera::Rig& rig) {
         xScale,
         yScale);
     if (camera.id == rig[0].id) {
-      LOG(INFO) << folly::sformat(
-          "Fusing color images at {}x{} resolution", image.cols, image.rows);
+      LOG(INFO) << fmt::format("Fusing color images at {}x{} resolution", image.cols, image.rows);
     }
     if (xScale != 1) {
       camera = camera.rescale(xScale * camera.resolution);
@@ -370,7 +370,7 @@ int main(int argc, char** argv) {
     threadPool.join();
 
     const std::string stem = filesystem::path(FLAGS_rig).stem().string();
-    const std::string rigFn = folly::sformat("{}/{}_fused.json", FLAGS_bin, stem);
+    const std::string rigFn = fmt::format("{}/{}_fused.json", FLAGS_bin, stem);
     const std::vector<std::string> comments = {};
     const int doubleNumDigits = 10;
     Camera::saveRig(rigFn, rig, comments, doubleNumDigits);

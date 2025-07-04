@@ -6,6 +6,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+#include <fmt/format.h>
 #include <gflags/gflags.h>
 #include <glog/logging.h>
 #include <opencv2/opencv.hpp>
@@ -153,7 +154,7 @@ int main(int argc, char* argv[]) {
 
   for (int iFrame = frameRange.first; iFrame <= frameRange.second; ++iFrame) {
     const std::string frameName = intToStringZeroPad(iFrame);
-    LOG(INFO) << folly::sformat("Loading frame {}", frameName);
+    LOG(INFO) << fmt::format("Loading frame {}", frameName);
 
     // Load input color images
     const std::vector<Image> images =
@@ -166,7 +167,7 @@ int main(int argc, char* argv[]) {
 
     // Align to green
     for (ssize_t imageIndex = 0; imageIndex < ssize(images); ++imageIndex) {
-      LOG(INFO) << folly::sformat("Aligning camera : {}", calibratedGreenRig[imageIndex].id);
+      LOG(INFO) << fmt::format("Aligning camera : {}", calibratedGreenRig[imageIndex].id);
       const int width = int(calibratedGreenRig[imageIndex].resolution.x());
       const int height = int(calibratedGreenRig[imageIndex].resolution.y());
       const Image& alignedImage = warpImage(
@@ -175,7 +176,7 @@ int main(int argc, char* argv[]) {
       const filesystem::path camDir =
           filesystem::path(FLAGS_output) / calibratedGreenRig[imageIndex].id;
       filesystem::create_directories(camDir);
-      const std::string outputFile = folly::sformat("{}/{}.png", camDir.string(), frameName);
+      const std::string outputFile = fmt::format("{}/{}.png", camDir.string(), frameName);
       cv_util::imwriteExceptionOnFail(outputFile, cv_util::convertTo<uint16_t>(alignedImage));
     }
   }

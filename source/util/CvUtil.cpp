@@ -12,6 +12,7 @@
 #include <string>
 #include <vector>
 
+#include <fmt/format.h>
 #include <folly/Format.h>
 #include <glog/logging.h>
 
@@ -21,9 +22,9 @@ using namespace math_util;
 
 cv::Mat imreadExceptionOnFail(const filesystem::path& filename, const int flags) {
   CHECK_NE(filename.extension(), ".pfm")
-      << folly::sformat("Cannot imread .pfm with OpenCV: ", filename.string());
+      << fmt::format("Cannot imread .pfm with OpenCV: ", filename.string());
   const cv::Mat image = cv::imread(filename.string(), flags);
-  CHECK(!image.empty()) << folly::sformat("failed to load image: {}", filename.string());
+  CHECK(!image.empty()) << fmt::format("failed to load image: {}", filename.string());
   return image;
 }
 
@@ -32,7 +33,7 @@ void imwriteExceptionOnFail(
     const cv::Mat& image,
     const std::vector<int>& params) {
   CHECK(imwrite(filename.string(), image, params))
-      << folly::sformat("failed to save image: {}", filename.string());
+      << fmt::format("failed to save image: {}", filename.string());
 }
 
 void writeCvMat32FC1ToPFM(const filesystem::path& path, const cv::Mat_<float>& m) {
@@ -54,7 +55,7 @@ cv::Mat_<float> readCvMat32FC1FromPFM(const filesystem::path& path) {
 
   std::string format;
   getline(file, format);
-  CHECK_EQ(format, "Pf") << folly::sformat(
+  CHECK_EQ(format, "Pf") << fmt::format(
       "expected 'Pf' in 1-channel .pfm file header: {}", path.string());
 
   int width, height;
@@ -62,8 +63,7 @@ cv::Mat_<float> readCvMat32FC1FromPFM(const filesystem::path& path) {
 
   double endian;
   file >> endian;
-  CHECK_LE(endian, 0.0) << folly::sformat(
-      "only little endian .pfm files supported: ", path.string());
+  CHECK_LE(endian, 0.0) << fmt::format("only little endian .pfm files supported: ", path.string());
   file.ignore(); // eat newline
 
   cv::Mat_<float> m(cv::Size(width, height));

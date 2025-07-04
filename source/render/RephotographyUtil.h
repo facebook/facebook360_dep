@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <fmt/format.h>
 #include <opencv2/imgproc/imgproc.hpp>
 
 #include <folly/dynamic.h>
@@ -119,7 +120,7 @@ inline cv::Mat_<T> computeScoreMap(
 }
 
 inline std::string formatResults(const cv::Scalar& scoreAvg) {
-  return folly::sformat(
+  return fmt::format(
       "R {:.2f}%, G {:.2f}%, B {:.2f}%",
       100 * scoreAvg.val[2],
       100 * scoreAvg.val[1],

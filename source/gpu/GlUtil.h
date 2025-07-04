@@ -43,6 +43,7 @@
 
 #define __gl_h_ // block older GL
 
+#include <fmt/format.h>
 #include <glog/logging.h>
 #include <Eigen/Core>
 #include <Eigen/Dense>
@@ -100,7 +101,7 @@ inline void attachShader(GLuint program, const GLint type, const std::string& so
     glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &length);
     std::vector<GLchar> log(length);
     glGetShaderInfoLog(shader, length, &length, &log[0]);
-    LOG(FATAL) << folly::sformat("{}\nsource:\n{}", log.data(), source);
+    LOG(FATAL) << fmt::format("{}\nsource:\n{}", log.data(), source);
   }
   glAttachShader(program, shader);
   glDeleteShader(shader); // ok: won't actually be deleted until detached
@@ -118,7 +119,7 @@ inline GLuint createProgram(const std::string& vs, const std::string& fs) {
     glGetProgramiv(program, GL_INFO_LOG_LENGTH, &length);
     std::vector<GLchar> log(length);
     glGetProgramInfoLog(program, length, &length, &log[0]);
-    LOG(FATAL) << folly::sformat("{}\nvs:\n{}\nfs\n{}", log.data(), vs, fs);
+    LOG(FATAL) << fmt::format("{}\nvs:\n{}\nfs\n{}", log.data(), vs, fs);
   }
   glUseProgram(program);
 

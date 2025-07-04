@@ -10,6 +10,7 @@
 
 #include <fstream>
 
+#include <fmt/format.h>
 #include <glog/logging.h>
 
 #define STB_IMAGE_IMPLEMENTATION
@@ -543,7 +544,7 @@ static bool isBC7Supported() {
   for (GLint i = 0; i < count; ++i) {
     const char* ext = reinterpret_cast<const char*>(glGetStringi(GL_EXTENSIONS, i));
     if (strstr(ext, "texture_compression_")) {
-      LOG(INFO) << folly::sformat("- supported: {}", ext);
+      LOG(INFO) << fmt::format("- supported: {}", ext);
     }
   }
   return cache;
@@ -688,7 +689,7 @@ static RigScene::Subframe createMeshSubframe(
     maximum = maximum.cwiseMax(v);
   }
   subframe.size = {maximum.x() + 0.5f, maximum.y() + 0.5f};
-  LOG(INFO) << folly::sformat(
+  LOG(INFO) << fmt::format(
       "loaded {}x{} mesh, {} vertexes, {} faces",
       subframe.size.x(),
       subframe.size.y(),
@@ -817,7 +818,7 @@ std::vector<RigScene::Subframe> RigScene::createFrame(
     const std::string& depths) const {
   std::vector<RigScene::Subframe> subframes(rig.size());
   for (int i = 0; i < int(subframes.size()); ++i) {
-    LOG(INFO) << folly::sformat("load subframe for {}", rig[i].id);
+    LOG(INFO) << fmt::format("load subframe for {}", rig[i].id);
     subframes[i] = createSubframe(rig[i].id, images, depths);
   }
   return subframes;

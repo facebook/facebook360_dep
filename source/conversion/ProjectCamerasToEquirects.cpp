@@ -18,6 +18,7 @@ const char* kUsage = R"(
     --output=/path/to/output
 )";
 
+#include <fmt/format.h>
 #include <gflags/gflags.h>
 #include <glog/logging.h>
 
@@ -84,13 +85,13 @@ class GlOffscreenWindow : GlWindow {
     const int last = std::stoi(FLAGS_last);
     for (int iFrame = first; iFrame <= last; ++iFrame) {
       const std::string frameName = image_util::intToStringZeroPad(iFrame, 6);
-      LOG(INFO) << folly::sformat("Frame {}: Loading colors...", frameName);
+      LOG(INFO) << fmt::format("Frame {}: Loading colors...", frameName);
       const std::vector<cv::Mat_<cv::Vec4f>> colors =
           loadImages<cv::Vec4f>(FLAGS_color, rig, frameName);
       CHECK_EQ(ssize(colors), ssize(rig));
 
       for (ssize_t i = 0; i < ssize(rig); ++i) {
-        LOG(INFO) << folly::sformat("-- Frame {}: Projecting {}...", frameName, rig[i].id);
+        LOG(INFO) << fmt::format("-- Frame {}: Projecting {}...", frameName, rig[i].id);
 
         // Create scene with just this camera
         const CanopyScene sceneColor({rig[i]}, {disparities[i]}, {colors[i]});

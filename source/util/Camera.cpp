@@ -8,6 +8,8 @@
 
 #include "source/util/Camera.h"
 
+#include <fmt/format.h>
+
 #include <unsupported/Eigen/Polynomials>
 
 #include <folly/Format.h>
@@ -283,7 +285,7 @@ const Camera& Camera::findCameraById(const std::string id, const Camera::Rig& ri
       return camera;
     }
   }
-  LOG(FATAL) << folly::sformat("Camera id {} not found", id);
+  LOG(FATAL) << fmt::format("Camera id {} not found", id);
 }
 
 #ifndef SUPPRESS_RIG_IO

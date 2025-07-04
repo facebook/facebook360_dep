@@ -9,6 +9,7 @@
 #include <random>
 
 #include <boost/timer/timer.hpp>
+#include <fmt/format.h>
 #include <glog/logging.h>
 
 #include <folly/Format.h>
@@ -121,15 +122,15 @@ filesystem::path getLevelDisparityDir(const int level) {
 }
 
 filesystem::path getLevelColorDir(const int level) {
-  return folly::sformat("{}/level_{}", FLAGS_color, std::to_string(level));
+  return fmt::format("{}/level_{}", FLAGS_color, std::to_string(level));
 }
 
 filesystem::path getLevelForegroundMasksDir(const int level) {
-  return folly::sformat("{}/level_{}", FLAGS_foreground_masks, std::to_string(level));
+  return fmt::format("{}/level_{}", FLAGS_foreground_masks, std::to_string(level));
 }
 
 filesystem::path getLevelBackgroundDisparityDir(const int level) {
-  return folly::sformat("{}/level_{}", FLAGS_background_disp, std::to_string(level));
+  return fmt::format("{}/level_{}", FLAGS_background_disp, std::to_string(level));
 }
 
 // Verifies that we have all the frames we are asking for
@@ -164,7 +165,7 @@ int getLevelEnd(const std::map<int, cv::Size>& pyramidLevelSizes) {
   }
 
   if (FLAGS_level_end >= 0) {
-    CHECK_GE(FLAGS_level_end, levelEnd) << folly::sformat(
+    CHECK_GE(FLAGS_level_end, levelEnd) << fmt::format(
         "Requested end level {} ({}), which is larger than requested resolution ({})",
         FLAGS_level_end,
         pyramidLevelSizes.at(FLAGS_level_end).width,
@@ -318,10 +319,10 @@ int main(int argc, char* argv[]) {
           FLAGS_threads);
     }
 
-    LOG(INFO) << folly::sformat("-- Elapsed time: {}", matchTimer.format());
+    LOG(INFO) << fmt::format("-- Elapsed time: {}", matchTimer.format());
   }
 
-  LOG(INFO) << folly::sformat("-- TOTAL: {}", matchTimer.format());
+  LOG(INFO) << fmt::format("-- TOTAL: {}", matchTimer.format());
 
   return EXIT_SUCCESS;
 }

@@ -26,6 +26,7 @@ const char* kUsage = R"(
     --frame=000000
 )";
 
+#include <fmt/format.h>
 #include <gflags/gflags.h>
 #include <glog/logging.h>
 #include <fstream>
@@ -65,7 +66,7 @@ void verifyInputs(const Camera::Rig& rig) {
 
 std::vector<WorldColor> getPoints(const Camera& cam) {
   const std::string& camId = cam.id;
-  LOG(INFO) << folly::sformat("Processing camera {}...", camId);
+  LOG(INFO) << fmt::format("Processing camera {}...", camId);
 
   // Load disparity and color, and resize color to size of disparity
   const cv::Mat_<float> disparity = loadImage<float>(FLAGS_disparity, camId, FLAGS_frame);
@@ -193,7 +194,7 @@ int main(int argc, char** argv) {
   const filesystem::path fnOut = filesystem::path(FLAGS_output);
   filesystem::create_directories(fnOut.parent_path());
   std::ofstream file(fnOut.string());
-  CHECK(file.is_open()) << folly::sformat("Cannot open file for writing: {}", fnOut.string());
+  CHECK(file.is_open()) << fmt::format("Cannot open file for writing: {}", fnOut.string());
 
   int lines = 0;
   for (const std::vector<WorldColor>& pointCloud : pointClouds) {

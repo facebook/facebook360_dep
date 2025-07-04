@@ -6,6 +6,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+#include <fmt/format.h>
 #include <gflags/gflags.h>
 #include <glog/logging.h>
 
@@ -99,7 +100,7 @@ int main(int argc, char* argv[]) {
     threadPool.spawn([&, iFrame] {
       const std::string frameName =
           image_util::intToStringZeroPad(iFrame + std::stoi(FLAGS_first), 6);
-      LOG(INFO) << folly::sformat("Processing frame {}...", frameName);
+      LOG(INFO) << fmt::format("Processing frame {}...", frameName);
 
       const int numThreads = 0; // we're multithreading already
       const std::vector<cv::Mat_<PixelType>> frameColors = loadResizedImages<PixelType>(
@@ -118,7 +119,7 @@ int main(int argc, char* argv[]) {
 
       for (ssize_t iCam = 0; iCam < ssize(rig); ++iCam) {
         const std::string fn =
-            folly::sformat("{}/{}/{}.png", FLAGS_foreground_masks, rig[iCam].id, frameName);
+            fmt::format("{}/{}/{}.png", FLAGS_foreground_masks, rig[iCam].id, frameName);
         cv_util::imwriteExceptionOnFail(fn, 255.0f * foregroundMasks[iCam]);
       }
     });

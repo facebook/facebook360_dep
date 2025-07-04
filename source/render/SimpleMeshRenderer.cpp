@@ -40,6 +40,7 @@ const char* kUsage = R"(
 #include <vector>
 
 #include <boost/algorithm/string/join.hpp>
+#include <fmt/format.h>
 #include <gflags/gflags.h>
 #include <glog/logging.h>
 
@@ -105,7 +106,7 @@ DEFINE_string(up, "0.0 0.0 1.0", "up for rendering");
 DEFINE_int32(width, 3072, "width of the rendering (pixels)");
 
 const std::string formatsCsv =
-    folly::sformat("{} (empty = on-screen rendering)", boost::algorithm::join(formats, ", "));
+    fmt::format("{} (empty = on-screen rendering)", boost::algorithm::join(formats, ", "));
 DEFINE_string(format, "", formatsCsv.c_str());
 
 static const float kNearZ = 0.1f; // meters
@@ -156,7 +157,7 @@ static Eigen::Vector3f decodeVector(const std::string& flag) {
 }
 
 static std::string encodeVector(const Eigen::Vector3f& vector) {
-  return folly::sformat("'{} {} {}'", vector.x(), vector.y(), vector.z());
+  return fmt::format("'{} {} {}'", vector.x(), vector.y(), vector.z());
 }
 
 void save(const filesystem::path& path, const cv::Mat_<cv::Vec4f>& result) {
@@ -227,7 +228,7 @@ class SimpleMeshWindow : public GlWindow {
 
  protected:
   void report() {
-    std::cerr << folly::sformat(
+    std::cerr << fmt::format(
                      "--position {} --forward {} --up {} --horizontal_fov {}",
                      encodeVector(transform.inverse().translation()),
                      encodeVector(-transform.linear().row(2)),
@@ -449,7 +450,7 @@ int main(int argc, char* argv[]) {
 
   for (int iFrame = first; iFrame <= last; ++iFrame) {
     const std::string frameName = image_util::intToStringZeroPad(iFrame, 6);
-    LOG(INFO) << folly::sformat("Processing frame {}...", frameName);
+    LOG(INFO) << fmt::format("Processing frame {}...", frameName);
 
     // Load disparities
     const std::vector<cv::Mat_<float>> disparities = loadPfmImages(FLAGS_disparity, rig, frameName);

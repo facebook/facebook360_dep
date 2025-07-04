@@ -23,6 +23,7 @@ const char* kUsage = R"(
 
 #include "source/depth_estimation/UpsampleDisparityLib.h"
 
+#include <fmt/format.h>
 #include <gflags/gflags.h>
 #include <glog/logging.h>
 
@@ -107,7 +108,7 @@ void upsampleFrame(const Camera::Rig& rigSrc, const Camera::Rig& rigDst, const s
   for (ssize_t i = 0; i < ssize(rigDst); ++i) {
     if (!FLAGS_color.empty()) {
       const int radius = getRadius(masks[i].size(), sizeUp);
-      LOG(INFO) << folly::sformat(
+      LOG(INFO) << fmt::format(
           "Applying filter with radius {} to {}x{} disparity to {}...",
           radius,
           sizeUp.width,

@@ -9,6 +9,7 @@
 #include <cmath>
 #include <future>
 
+#include <fmt/format.h>
 #include <gflags/gflags.h>
 #include <glog/logging.h>
 #include <opencv2/opencv.hpp>
@@ -169,7 +170,7 @@ DepthMat computeDepth(
     const std::vector<DepthMat>& depths = {}, // could be same rez as rig, or not
     const std::vector<GLuint>& depthTextures = {}) {
   const Camera& dst = rig[d];
-  LOG(INFO) << folly::sformat("compute depth for {}", dst.id);
+  LOG(INFO) << fmt::format("compute depth for {}", dst.id);
 
   // compute reprojection textures
   std::vector<ReprojectionTexture> reprojections;
@@ -194,7 +195,7 @@ DepthMat computeDepth(
   Volume costs(sliceCount, h, w);
   for (int slice = 0; slice < sliceCount; ++slice) {
     Camera::Real disparity = sliceDisparity(slice, sliceCount);
-    LOG(INFO) << folly::sformat("slice {}/{} ({})", slice, sliceCount, disparity);
+    LOG(INFO) << fmt::format("slice {}/{} ({})", slice, sliceCount, disparity);
 
     // accumulate each source cost into accum
     cv::Mat_<cv::Vec2f> accum(h, w, cv::Vec2f(0, 0));
@@ -291,7 +292,7 @@ bool isPointBad(
 
 DepthMat cleanDepth(const Camera::Rig& rig, const int d, const std::vector<DepthMat>& depths) {
   const Camera& dst = rig[d];
-  LOG(INFO) << folly::sformat("cleaning {}", dst.id);
+  LOG(INFO) << fmt::format("cleaning {}", dst.id);
 
   // NaN out depths that other cameras disagree with
   DepthMat depth = depths[d].clone();
@@ -343,7 +344,7 @@ void processFrame(const std::string& frameName, const Camera::Rig& rig) {
   std::vector<DepthMat> depths(small.size());
   for (int d = 0; d < int(small.size()); ++d) {
     depths[d] = computeDepth(small, d, images, imageTextures);
-    dump(path / folly::sformat("{}_iffy", small[d].id), depths[d]);
+    dump(path / fmt::format("{}_iffy", small[d].id), depths[d]);
   }
 
   // refine depth estimate
@@ -352,7 +353,7 @@ void processFrame(const std::string& frameName, const Camera::Rig& rig) {
     std::vector<DepthMat> cleanDepths;
     for (int d = 0; d < int(small.size()); ++d) {
       cleanDepths.push_back(cleanDepth(small, d, depths));
-      dump(path / folly::sformat("{}_{}_clean", small[d].id, pass), cleanDepths[d]);
+      dump(path / fmt::format("{}_{}_clean", small[d].id, pass), cleanDepths[d]);
     }
     const std::vector<GLuint> cleanDepthTextures =
         createTextures(cleanDepths, GL_R32F, GL_RED, GL_FLOAT);
@@ -360,7 +361,7 @@ void processFrame(const std::string& frameName, const Camera::Rig& rig) {
     // recompute depth using cleaned depths
     for (int d = 0; d < int(small.size()); ++d) {
       depths[d] = computeDepth(small, d, images, imageTextures, cleanDepths, cleanDepthTextures);
-      dump(path / folly::sformat("{}_{}", small[d].id, pass), depths[d]);
+      dump(path / fmt::format("{}_{}", small[d].id, pass), depths[d]);
     }
 
     // restore clean depths
@@ -396,7 +397,7 @@ class OffscreenWindow : public GlWindow {
     for (int iFrame = 0; iFrame < numFrames; ++iFrame) {
       const std::string frameName =
           image_util::intToStringZeroPad(iFrame + std::stoi(FLAGS_first), 6);
-      LOG(INFO) << folly::sformat("Processing frame {}", frameName);
+      LOG(INFO) << fmt::format("Processing frame {}", frameName);
 
       processFrame(frameName, rig);
     }
