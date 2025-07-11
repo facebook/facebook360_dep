@@ -14,8 +14,7 @@
 #include "source/util/CvUtil.h"
 #include "source/util/ImageTypes.h"
 
-namespace fb360_dep {
-namespace depth_estimation {
+namespace fb360_dep::depth_estimation {
 
 using PixelType = cv::Vec3w;
 using PixelTypeFloat = cv::Vec3f; // floating point version of PixelType
@@ -131,5 +130,4 @@ void createLevelOutputDirs(
     const Camera::Rig& rig,
     const bool saveDebugImages);
 
-} // namespace depth_estimation
-} // namespace fb360_dep
+} // namespace fb360_dep::depth_estimation

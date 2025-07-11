@@ -20,8 +20,7 @@
 #include "source/util/ImageUtil.h"
 #include "source/util/SystemUtil.h"
 
-namespace fb360_dep {
-namespace depth_estimation {
+namespace fb360_dep::depth_estimation {
 
 // Cost function
 static const int kSearchWindowRadius = 1;
@@ -161,5 +160,4 @@ std::tuple<float, float> computeCost(
     const int x,
     const int y);
 
-} // namespace depth_estimation
-} // namespace fb360_dep
+} // namespace fb360_dep::depth_estimation

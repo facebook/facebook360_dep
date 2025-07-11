@@ -23,8 +23,7 @@
 using namespace fb360_dep::cv_util;
 using namespace fb360_dep::image_util;
 
-namespace fb360_dep {
-namespace depth_estimation {
+namespace fb360_dep::depth_estimation {
 
 void plotMatches(
     const PyramidLevel<PixelType>& pyramidLevel,
@@ -1034,5 +1033,4 @@ void processLevel(
   saveResults(pyramidLevel, saveDebugImages, outputFormats);
 }
 
-} // namespace depth_estimation
-} // namespace fb360_dep
+} // namespace fb360_dep::depth_estimation

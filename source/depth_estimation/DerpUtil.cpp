@@ -13,8 +13,7 @@
 #include <queue>
 #include <vector>
 
-namespace fb360_dep {
-namespace depth_estimation {
+namespace fb360_dep::depth_estimation {
 
 class PointDistance {
  public:
@@ -330,5 +329,4 @@ void createLevelOutputDirs(
   }
 }
 
-} // namespace depth_estimation
-} // namespace fb360_dep
+} // namespace fb360_dep::depth_estimation
