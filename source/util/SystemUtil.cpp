@@ -21,8 +21,7 @@
 DECLARE_bool(help);
 DECLARE_bool(helpshort);
 
-namespace fb360_dep {
-namespace system_util {
+namespace fb360_dep::system_util {
 
 void terminateHandler() {
   std::exception_ptr exptr = std::current_exception();
@@ -159,5 +158,4 @@ void initDep(int& argc, char**& argv, const std::string kUsageMessage) {
 #endif
 }
 
-} // namespace system_util
-} // namespace fb360_dep
+} // namespace fb360_dep::system_util
