@@ -25,7 +25,7 @@ namespace fb360_dep::system_util {
 
 void terminateHandler() {
   std::exception_ptr exptr = std::current_exception();
-  if (exptr != 0) {
+  if (exptr != nullptr) {
     try {
       rethrow_exception(exptr);
     } catch (std::exception& ex) {
@@ -72,7 +72,7 @@ void sigHandler(int signal) {
 }
 
 bool isSubstring(const std::string& haystack, const std::string& needle) {
-  return strstr(haystack.c_str(), needle.c_str()) != NULL;
+  return strstr(haystack.c_str(), needle.c_str()) != nullptr;
 }
 
 void logFlags() {
