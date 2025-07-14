@@ -12,8 +12,7 @@
 
 #include "source/util/MathUtil.h"
 
-namespace fb360_dep {
-namespace color {
+namespace fb360_dep::color {
 
 static float kRgb2yuvData[9] =
     {0.299f, 0.587f, 0.114f, -0.14713f, -0.28886f, 0.436f, 0.615f, -0.51499f, -0.10001f};
@@ -25,5 +24,4 @@ static float kYuv2rgbData[9] =
 
 static cv::Mat_<float> yuv2rgb(3, 3, kYuv2rgbData);
 
-} // end namespace color
-} // end namespace fb360_dep
+} // namespace fb360_dep::color
