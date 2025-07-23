@@ -226,8 +226,9 @@ struct Camera {
 
   template <typename T>
   static void perturb(T& v, Camera::Real amount) {
-    for (int i = 0; i < v.size(); ++i)
+    for (int i = 0; i < v.size(); ++i) {
       perturbScalar(v[i], amount);
+    }
   }
 
   Vector3 backward() const {
