@@ -65,7 +65,7 @@ void verifyInputs() {
 void upsampleFrame(const Camera::Rig& rigSrc, const Camera::Rig& rigDst, const std::string& frame) {
   const std::string exts = FLAGS_output_formats.empty() ? "pfm" : FLAGS_output_formats;
   std::vector<std::string> outputFormats;
-  folly::split(",", exts, outputFormats);
+  folly::split(',', exts, outputFormats);
   const std::vector<cv::Mat_<float>> disps =
       image_util::loadImages<float>(FLAGS_disparity, rigDst, frame, FLAGS_threads);
   CHECK_GT(disps.size(), 0);

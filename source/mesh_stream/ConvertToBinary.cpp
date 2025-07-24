@@ -354,7 +354,7 @@ int main(int argc, char** argv) {
   }
 
   std::vector<std::string> outputFormats;
-  folly::split(",", FLAGS_output_formats, outputFormats);
+  folly::split(',', FLAGS_output_formats, outputFormats);
   verifyInputs(rig, outputFormats);
 
   if (FLAGS_run_conversion) {

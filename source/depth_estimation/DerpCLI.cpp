@@ -107,7 +107,7 @@ void verifyInputs() {
   }
 
   std::vector<std::string> outputFormats;
-  folly::split(",", FLAGS_output_formats, outputFormats);
+  folly::split(',', FLAGS_output_formats, outputFormats);
   for (std::string& outputFormat : outputFormats) {
     // We allow size 0 inputs to ensure stray commas are ignored, i.e. exr,,png is fine
     CHECK(

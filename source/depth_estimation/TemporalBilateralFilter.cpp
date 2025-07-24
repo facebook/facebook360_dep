@@ -65,7 +65,7 @@ void saveDisparity(
     const int frameIdx) {
   std::string outputFormatsStr = "pfm," + outputFormatsIn; // always save PFM
   std::vector<std::string> outputFormatsVec;
-  folly::split(",", outputFormatsStr, outputFormatsVec);
+  folly::split(',', outputFormatsStr, outputFormatsVec);
   std::unordered_set<std::string> outputFormats(outputFormatsVec.begin(), outputFormatsVec.end());
   for (const std::string& outputFormat : outputFormats) {
     if (outputFormat != "exr" && outputFormat != "pfm" && outputFormat != "png") {
