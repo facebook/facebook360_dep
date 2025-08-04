@@ -52,6 +52,8 @@ inline T lerp(const T x0, const T x1, const T alpha) {
   return x0 * (T(1) - alpha) + x1 * alpha;
 }
 
+namespace {
+
 template <typename T, typename V>
 class BezierCurve {
  protected:
@@ -82,6 +84,8 @@ class BezierCurve {
     return (*this)(0, points_.size() - 1, t);
   }
 };
+
+} // anonymous namespace
 
 void initGflags(int& argc, char**& argv) {
   static const bool kRemoveFlags = true;
