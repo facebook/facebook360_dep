@@ -52,6 +52,8 @@ static const float kEffectMax = 15; // meters
 static const Eigen::Matrix4f kPermutationMatrix(
     (Eigen::Matrix4f() << 1, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 0, 0, 1).finished());
 
+namespace {
+
 class GlViewer : public GlWindow {
  private:
  public:
@@ -159,6 +161,8 @@ class GlViewer : public GlWindow {
     }
   }
 };
+
+} // anonymous namespace
 
 int main(int argc, char* argv[]) {
   FLAGS_stderrthreshold = 0;
