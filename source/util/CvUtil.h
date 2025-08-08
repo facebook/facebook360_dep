@@ -370,7 +370,7 @@ inline cv::Mat_<float> maskedMedianBlur(
         }
       }
 
-      if (values.size() != 0) {
+      if (!values.empty()) {
         const size_t n = values.size() / 2;
         std::partial_sort(values.begin(), values.begin() + n + 1, values.end());
         if (values.size() % 2 == 1) {

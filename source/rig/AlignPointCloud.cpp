@@ -172,7 +172,7 @@ std::vector<FeatureList> generateFeatures(const Camera::Rig& rig, const PointClo
   const std::vector<PointCloudProjection>& projectedPointClouds =
       generateProjectedImages(pointCloud, rig);
 
-  if (FLAGS_debug_dir != "") {
+  if (!FLAGS_debug_dir.empty()) {
     const filesystem::path initialProjectionDir =
         filesystem::path(FLAGS_debug_dir) / "initial_projections";
     saveDebugImages(rig, projectedPointClouds, initialProjectionDir);
@@ -373,7 +373,7 @@ int main(int argc, char* argv[]) {
 
   std::vector<FeatureList> allFeatures = generateFeatures(rig, pointCloud);
 
-  if (FLAGS_debug_dir != "") {
+  if (!FLAGS_debug_dir.empty()) {
     const filesystem::path matchesDir = filesystem::path(FLAGS_debug_dir) / "matches";
     saveLidarMatches(rig, allFeatures, matchesDir);
     const filesystem::path initialReprojectionDir =
@@ -389,7 +389,7 @@ int main(int argc, char* argv[]) {
       FLAGS_lock_translation,
       FLAGS_lock_scale);
 
-  if (FLAGS_debug_dir != "") {
+  if (!FLAGS_debug_dir.empty()) {
     const filesystem::path finalReprojectionDir =
         filesystem::path(FLAGS_debug_dir) / "final_reprojections";
     renderReprojections(transformedRig, allFeatures, finalReprojectionDir);

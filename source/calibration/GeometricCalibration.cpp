@@ -667,7 +667,7 @@ cv::Mat_<cv::Vec3w> renderReprojections(
     }
   }
 
-  if (FLAGS_errors_dir != "") {
+  if (!FLAGS_errors_dir.empty()) {
     filesystem::create_directories(FLAGS_errors_dir);
     std::string errorsFile = fmt::format("{}/{}.exr", FLAGS_errors_dir, getCameraId(image));
     cv_util::imwriteExceptionOnFail(errorsFile, errors);
@@ -1185,10 +1185,10 @@ double refine(
 
   reportReprojectionErrors(overlaps, featureMap, traces, cameras);
 
-  if (FLAGS_points_file != "" && pass == FLAGS_pass_count - 1) {
+  if (!FLAGS_points_file.empty() && pass == FLAGS_pass_count - 1) {
     savePointsFile(featureMap, traces);
   }
-  if (FLAGS_points_file_json != "" && pass == FLAGS_pass_count - 1) {
+  if (!FLAGS_points_file_json.empty() && pass == FLAGS_pass_count - 1) {
     savePointsFileJson(featureMap, traces);
   }
 

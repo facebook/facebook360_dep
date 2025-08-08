@@ -930,7 +930,7 @@ void saveResults(
 
   // Always saving outputs at finest level. Forcing PFM if no format chosen
   std::string outputFormats = outputFormatsIn;
-  if (outputFormats == "") {
+  if (outputFormats.empty()) {
     LOG(WARNING) << "No explicit output formats specified. Forcing PFM...";
     outputFormats = "pfm";
   }

@@ -589,23 +589,23 @@ int main(int argc, char* argv[]) {
   }
 
   // Write the cameras
-  if (FLAGS_output_rig != "") {
+  if (!FLAGS_output_rig.empty()) {
     Camera::saveRig(FLAGS_output_rig, rig, {"command line:", gflags::GetArgv()});
   }
 
-  if (FLAGS_output_obj != "") {
+  if (!FLAGS_output_obj.empty()) {
     saveRigObj(FLAGS_output_obj, rig);
   }
 
-  if (FLAGS_output_equirect != "") {
+  if (!FLAGS_output_equirect.empty()) {
     saveEquirect(FLAGS_output_equirect, rig);
   }
 
-  if (FLAGS_output_camera != "" && FLAGS_output_camera_id != "") {
+  if (!FLAGS_output_camera.empty() && !FLAGS_output_camera_id.empty()) {
     saveCamera(FLAGS_output_camera, FLAGS_output_camera_id, rig);
   }
 
-  if (FLAGS_output_cross_section != "") {
+  if (!FLAGS_output_cross_section.empty()) {
     saveCrossSection(FLAGS_output_cross_section, rig);
   }
 

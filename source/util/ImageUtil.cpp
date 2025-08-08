@@ -28,7 +28,7 @@ static inline const std::vector<filesystem::path> checkAndGetSortedFiles(
 
 // Get first lexical frame if flag isn't filled in and validate the frame
 int getSingleFrame(const filesystem::path& imageDir, const Camera::Rig& rig, std::string frame) {
-  if (frame == "") {
+  if (frame.empty()) {
     const std::vector<filesystem::path>& sortedFiles = checkAndGetSortedFiles(imageDir, rig);
     frame = sortedFiles.front().stem().string();
   }
@@ -43,12 +43,12 @@ std::pair<int, int> getFrameRange(
     const Camera::Rig& rig,
     std::string firstFrame,
     std::string lastFrame) {
-  if (firstFrame == "" || lastFrame == "") {
+  if (firstFrame.empty() || lastFrame.empty()) {
     const std::vector<filesystem::path>& sortedFiles = checkAndGetSortedFiles(imageDir, rig);
-    if (firstFrame == "") {
+    if (firstFrame.empty()) {
       firstFrame = sortedFiles.front().stem().string();
     }
-    if (lastFrame == "") {
+    if (lastFrame.empty()) {
       lastFrame = sortedFiles.back().stem().string();
     }
   }

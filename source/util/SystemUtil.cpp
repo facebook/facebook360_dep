@@ -97,7 +97,7 @@ void logFlags() {
 }
 
 void initDep(int& argc, char**& argv, const std::string kUsageMessage) {
-  if (kUsageMessage != "") {
+  if (!kUsageMessage.empty()) {
     gflags::SetUsageMessage(kUsageMessage);
   }
 
@@ -110,7 +110,7 @@ void initDep(int& argc, char**& argv, const std::string kUsageMessage) {
   FLAGS_help = false;
   gflags::HandleCommandLineHelpFlags();
 
-  if (FLAGS_log_dir != "") {
+  if (!FLAGS_log_dir.empty()) {
     ::filesystem::create_directories(FLAGS_log_dir);
   }
 

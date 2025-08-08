@@ -135,7 +135,7 @@ class OffscreenWindow : public GlWindow {
       }
       for (ssize_t i = 0; i < ssize(rig); ++i) {
         const std::string camId = rig[i].id;
-        if (cameras.size() > 0) {
+        if (!cameras.empty()) {
           if (std::find(cameras.begin(), cameras.end(), camId) == cameras.end()) {
             continue;
           }
@@ -176,7 +176,7 @@ class OffscreenWindow : public GlWindow {
         cv_util::imwriteExceptionOnFail(filename, plot);
       }
 
-      const int n = cameras.size() > 0 ? cameras.size() : rig.size();
+      const int n = !cameras.empty() ? cameras.size() : rig.size();
       frameScore.val[0] /= n;
       frameScore.val[1] /= n;
       frameScore.val[2] /= n;
