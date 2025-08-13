@@ -61,6 +61,8 @@ using namespace fb360_dep::image_util;
 using namespace fb360_dep::cv_util;
 using namespace fb360_dep::depth_estimation;
 
+namespace {
+
 // Keep the list below in alphabetical order
 #define Format(X)           \
   X(cubecolor, "cubecolor") \
@@ -430,6 +432,8 @@ class SimpleMeshWindow : public GlWindow {
     return cv_util::stackVertical<cv::Vec4f>({color, disparity});
   }
 };
+
+} // anonymous namespace
 
 int main(int argc, char* argv[]) {
   gflags::SetUsageMessage(kUsage);
