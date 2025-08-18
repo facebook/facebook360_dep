@@ -774,7 +774,9 @@ RigScene::Subframe RigScene::createSubframe(
         w,
         h,
         GL_COMPRESSED_SRGB_ALPHA_BPTC_UNORM,
-        (GLvoid*)(layout[".bc7"]["offset"].getInt() - offset),
+        reinterpret_cast<GLvoid*>( // NOLINT(performance-no-int-to-ptr): OpenGL API requires void*
+                                   // for buffer offsets
+            layout[".bc7"]["offset"].getInt() - offset),
         w * h); // bc7 is 1 byte/pixel
   } else {
     subframe.colorTexture = linearTexture2D(
@@ -783,19 +785,30 @@ RigScene::Subframe RigScene::createSubframe(
         GL_SRGB8_ALPHA8,
         GL_RGBA,
         GL_UNSIGNED_BYTE,
-        (GLvoid*)(layout[".rgba"]["offset"].getInt() - offset));
+        reinterpret_cast<GLvoid*>( // NOLINT(performance-no-int-to-ptr): OpenGL API requires void*
+                                   // for buffer offsets
+            layout[".rgba"]["offset"].getInt() - offset));
   }
   glBindBuffer(GL_PIXEL_UNPACK_BUFFER, 0);
   // VBO for vertexes
   glBindBuffer(GL_ARRAY_BUFFER, buffer);
   GLint location = getAttribLocation(cameraMeshProgram, "abc");
   glVertexAttribPointer(
-      location, 3, GL_FLOAT, GL_TRUE, 0, (GLvoid*)(layout[".vtx"]["offset"].getInt() - offset));
+      location,
+      3,
+      GL_FLOAT,
+      GL_TRUE,
+      0,
+      reinterpret_cast<GLvoid*>( // NOLINT(performance-no-int-to-ptr): OpenGL API requires void* for
+                                 // buffer offsets
+          layout[".vtx"]["offset"].getInt() - offset));
   glEnableVertexAttribArray(location);
   // IBO for indexes
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffer);
   subframe.indexCount = static_cast<GLsizei>(layout[".idx"]["size"].getInt() / sizeof(uint32_t));
-  subframe.indexOffset = (GLvoid*)(layout[".idx"]["offset"].getInt() - offset);
+  subframe.indexOffset = reinterpret_cast<GLvoid*>( // NOLINT(performance-no-int-to-ptr): OpenGL API
+                                                    // requires void* for buffer offsets
+      layout[".idx"]["offset"].getInt() - offset);
   subframe.size = {w, h};
   // unbind vertex array before deleting buffer so vertex array keeps it alive
   glBindVertexArray(0);
