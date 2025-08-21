@@ -111,7 +111,7 @@ const std::string formatsCsv =
     fmt::format("{} (empty = on-screen rendering)", boost::algorithm::join(formats, ", "));
 DEFINE_string(format, "", formatsCsv.c_str());
 
-static const float kNearZ = 0.1f; // meters
+const float kNearZ = 0.1f; // meters
 void verifyInputs(const Camera::Rig& rig) {
   CHECK_NE(FLAGS_disparity, "");
   CHECK_NE(FLAGS_first, "");
@@ -150,7 +150,7 @@ void verifyInputs(const Camera::Rig& rig) {
   }
 }
 
-static Eigen::Vector3f decodeVector(const std::string& flag) {
+Eigen::Vector3f decodeVector(const std::string& flag) {
   Eigen::Vector3f result;
   std::istringstream s(flag);
   s >> result.x() >> result.y() >> result.z();
@@ -158,7 +158,7 @@ static Eigen::Vector3f decodeVector(const std::string& flag) {
   return result;
 }
 
-static std::string encodeVector(const Eigen::Vector3f& vector) {
+std::string encodeVector(const Eigen::Vector3f& vector) {
   return fmt::format("'{} {} {}'", vector.x(), vector.y(), vector.z());
 }
 
