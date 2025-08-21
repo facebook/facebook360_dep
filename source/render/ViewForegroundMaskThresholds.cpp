@@ -43,6 +43,8 @@ const std::string blurFlag = "--blur_radius";
 const std::string threshFlag = "--threshold";
 const std::string closingFlag = "--morph_closing_size";
 
+namespace {
+
 class TrackVar {
   const std::string winName = "Foreground mask thresholds";
   const PixelType green = cv_util::createBGR<PixelType>(0, 1, 0);
@@ -123,6 +125,8 @@ class TrackVar {
     return closing;
   }
 };
+
+} // namespace
 
 int main(int argc, char* argv[]) {
   gflags::SetUsageMessage(kUsage);
