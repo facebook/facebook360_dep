@@ -187,25 +187,29 @@ def depth_estimation_callback(msg):
 
     ran_download = False
     msg_cp = copy(msg)
-    if msg["image_type"] == "disparity":
-        image_types_to_level = [("color", msg["level_start"])]
-        if msg["use_foreground_masks"]:
-            ran_download |= download_image_type(
-                msg, "background_disp", [msg["background_frame"]], msg["level_start"]
-            )
-            image_types_to_level.append(("foreground_masks", msg["level_start"]))
+    # Support multi-level runs when a range is provided
+    level_start = int(msg.get("level_start", msg.get("level", 0)))
+    level_end = int(msg.get("level_end", level_start))
 
-        if msg["level_start"] < msg["num_levels"] - 1:
-            image_types_to_level.append(("disparity", msg["level_start"] + 1))
-            if msg["use_foreground_masks"]:
-                image_types_to_level.append(
-                    ("foreground_masks", msg["level_start"] + 1)
-                )
+    if msg["image_type"] == "disparity":
+        # Always need color at starting level
+        image_types_to_level = [("color", level_start)]
+        if msg.get("use_foreground_masks", False):
+            ran_download |= download_image_type(
+                msg, "background_disp", [msg["background_frame"]], level_start
+            )
+            image_types_to_level.append(("foreground_masks", level_start))
+
+        # If running multiple levels, also prefetch next-level disparities/masks as needed
+        if level_start < msg["num_levels"] - 1:
+            image_types_to_level.append(("disparity", level_start + 1))
+            if msg.get("use_foreground_masks", False):
+                image_types_to_level.append(("foreground_masks", level_start + 1))
 
     else:
-        image_types_to_level = [("background_color", msg["level_start"])]
-        if msg["level_start"] < msg["num_levels"] - 1:
-            image_types_to_level.append(("background_disp", msg["level_start"] + 1))
+        image_types_to_level = [("background_color", level_start)]
+        if level_start < msg["num_levels"] - 1:
+            image_types_to_level.append(("background_disp", level_start + 1))
 
         msg_cp["color"] = local_image_type_path(msg, "background_color_levels")
         msg_cp["output_root"] = os.path.join(msg["input_root"], "background")
@@ -214,7 +218,14 @@ def depth_estimation_callback(msg):
     ran_download |= download_image_types(msg, image_types_to_level)
 
     _run_bin(msg_cp)
-    ran_upload = upload_image_type(msg, msg["image_type"], level=msg["level_end"])
+
+    # Upload results for one or multiple levels
+    if level_start == level_end:
+        ran_upload = upload_image_type(msg, msg["image_type"], level=level_end)
+    else:
+        ran_upload = False
+        for lvl in range(level_start, level_end - 1, -1):
+            ran_upload |= upload_image_type(msg, msg["image_type"], level=lvl)
     _clean_worker(ran_download, ran_upload)
 
 
