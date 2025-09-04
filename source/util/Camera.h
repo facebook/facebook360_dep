@@ -178,7 +178,7 @@ struct Camera {
   }
 
   bool isOutsideSensor(const Vector2& pix) const {
-    return !(0 <= pix.x() && pix.x() < resolution.x() && 0 <= pix.y() && pix.y() < resolution.y());
+    return 0 > pix.x() || pix.x() >= resolution.x() || 0 > pix.y() || pix.y() >= resolution.y();
   }
 
   bool sees(const Vector3& rig, Vector2& pix) const {

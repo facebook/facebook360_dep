@@ -106,11 +106,7 @@ bool rayIntersectSphereYesNo(const Ray& ray, const Sphere& sphere) {
   const float halfCord2 =
       sphere.radius * sphere.radius + closestApproach * closestApproach - lengthRTSC2;
 
-  if (halfCord2 < 0.0f) {
-    return false;
-  }
-
-  return true;
+  return halfCord2 >= 0.0f;
 }
 
 }; // end namespace render
