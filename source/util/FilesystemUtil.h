@@ -88,7 +88,7 @@ inline std::vector<path> getDirectoriesSorted(const path& dir) {
 }
 
 // Obtains file extension from first file inside given directory
-inline const std::string getFirstExtension(const filesystem::path& dir) {
+inline std::string getFirstExtension(const filesystem::path& dir) {
   const std::vector<filesystem::path> paths = getVisibleFilesSorted(dir);
   CHECK_GT(paths.size(), 0) << "no visible files in " << dir;
   return paths[0].extension().string();

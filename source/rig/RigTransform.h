@@ -10,7 +10,7 @@
 
 namespace fb360_dep {
 
-const Eigen::Transform<double, 3, Eigen::Affine> generateTransform(
+Eigen::Transform<double, 3, Eigen::Affine> generateTransform(
     const Camera::Vector3& rotation,
     const Camera::Vector3& translation,
     const Eigen::UniformScaling<double>& scale,
@@ -32,7 +32,7 @@ const Eigen::Transform<double, 3, Eigen::Affine> generateTransform(
   return xform;
 }
 
-const Eigen::Transform<double, 3, Eigen::Affine> generateTransform(
+Eigen::Transform<double, 3, Eigen::Affine> generateTransform(
     double const* const rotation,
     double const* const translation,
     double const* const scale,

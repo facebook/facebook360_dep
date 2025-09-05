@@ -45,7 +45,7 @@ inline std::string intToStringZeroPad(const int x, const int padlen = 6) {
   return ss.str();
 }
 
-inline const filesystem::path imagePath(
+inline filesystem::path imagePath(
     const filesystem::path& dir,
     const std::string& camId,
     const std::string& frameName,

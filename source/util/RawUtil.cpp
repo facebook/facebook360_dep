@@ -21,7 +21,7 @@ namespace fb360_dep {
 
 const DemosaicFilter kDefaultDemosaicFilterForRawToRgb = DemosaicFilter::BILINEAR;
 
-static const filesystem::path defaultCameraIspConfigFilenameForImageFilename(
+static filesystem::path defaultCameraIspConfigFilenameForImageFilename(
     const filesystem::path& rawImageFilename) {
   CHECK(rawImageFilename.has_filename());
   return rawImageFilename.parent_path() / kDefaultIspConfigFilename;

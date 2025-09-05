@@ -189,7 +189,7 @@ loadColors(const Camera::Rig& rig, const std::string& frameName, const cv::Size&
   return colors;
 }
 
-const std::vector<cv::Mat_<cv::Vec4f>> loadDisparitiesAsColors(
+std::vector<cv::Mat_<cv::Vec4f>> loadDisparitiesAsColors(
     const Camera::Rig& rig,
     const std::vector<cv::Mat_<float>>& disparities,
     bool& needDisparitiesAsColors) {

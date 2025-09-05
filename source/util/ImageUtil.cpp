@@ -13,7 +13,7 @@
 
 namespace fb360_dep::image_util {
 
-static inline const std::vector<filesystem::path> checkAndGetSortedFiles(
+static inline std::vector<filesystem::path> checkAndGetSortedFiles(
     const filesystem::path& imageDir,
     const Camera::Rig& rig) {
   CHECK_GT(rig.size(), 0);
