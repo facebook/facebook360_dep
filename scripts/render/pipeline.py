@@ -361,12 +361,106 @@ class Pipeline:
             for frame_chunk in self.frame_chunks
         ]
 
+        # Optionally batch coarsest N levels in one job to reduce S3 traffic
+        coarsest_batch = int(self.base_params.get("coarsest_batch_levels", 0))
+        if coarsest_batch > 0:
+            # Coarsest is start_level; define batched range [batch_start .. batch_end]
+            batch_start = start_level
+            batch_end = max(end_level, start_level - coarsest_batch + 1)
+            if batch_end <= batch_start:
+                batched_params = copy(post_resize_params)
+                batched_params["output_formats"] = "pfm"
+                batched_params.update(
+                    {
+                        "app": f"DerpCLI: Levels {batch_start}-{batch_end}",
+                        "level_start": batch_start,
+                        "level_end": batch_end,
+                        "image_type": batched_params["disparity_type"],
+                        "dst_level": list(range(batch_end, batch_start + 1)),
+                        "dst_image_type": batched_params["disparity_type"],
+                    }
+                )
+                # Run one message per frame chunk covering the whole level range
+                self.run_halted_queue(batched_params, self.frame_chunks)
+                # Skip temporal filtering for batched levels as per feature spec
+                # After batching, continue remaining finer levels individually below
+                start_level = batch_end - 1
+
+        # Continue remaining levels normally (if any left after batching)
         for level in range(start_level, end_level - 1, -1):
             depth_params = copy(post_resize_params)
             if level != end_level:
-                depth_params["output_formats"] = (
-                    "pfm"  # Force only PFM at non-finest levels
+                depth_params["output_formats"] = "pfm"
+            depth_params.update(
+                {
+                    "app": f"DerpCLI: Level {level}",
+                    "level_start": level,
+                    "level_end": level,
+                    "image_type": depth_params["disparity_type"],
+                    "dst_level": level,
+                    "dst_image_type": depth_params["disparity_type"],
+                }
+            )
+            self.run_halted_queue(depth_params, self.frame_chunks)
+
+            if post_resize_params["do_temporal_filter"]:
+                filter_params = copy(post_resize_params)
+                filter_params.update(
+                    {
+                        "app": "TemporalBilateralFilter",
+                        "level": level,
+                        "use_foreground_masks": post_resize_params[
+                            "do_temporal_masking"
+                        ],
+                        "dst_level": level,
+                        "dst_image_type": "disparity_time_filtered",
+                    }
                 )
+                self.run_halted_queue(filter_params, filter_ranges)
+
+                transfer_params = copy(post_resize_params)
+                transfer_params.update(
+                    {
+                        "app": "Transfer",
+                        "src_level": level,
+                        "src_image_type": "disparity_time_filtered",
+                        "dst_level": level,
+                        "dst_image_type": "disparity",
+                        "force_recompute": True,
+                    }
+                )
+                self.run_halted_queue(transfer_params, self.frame_chunks)
+
+        # Optionally batch coarsest N levels in one job to reduce S3 traffic
+        coarsest_batch = int(self.base_params.get("coarsest_batch_levels", 0))
+        if coarsest_batch > 0:
+            # Coarsest is start_level; define batched range [batch_start .. batch_end]
+            batch_start = start_level
+            batch_end = max(end_level, start_level - coarsest_batch + 1)
+            if batch_end <= batch_start:
+                batched_params = copy(post_resize_params)
+                batched_params["output_formats"] = "pfm"
+                batched_params.update(
+                    {
+                        "app": f"DerpCLI: Levels {batch_start}-{batch_end}",
+                        "level_start": batch_start,
+                        "level_end": batch_end,
+                        "image_type": batched_params["disparity_type"],
+                        "dst_level": list(range(batch_end, batch_start + 1)),
+                        "dst_image_type": batched_params["disparity_type"],
+                    }
+                )
+                # Run one message per frame chunk covering the whole level range
+                self.run_halted_queue(batched_params, self.frame_chunks)
+                # Skip temporal filtering for batched levels as per feature spec
+                # After batching, continue remaining finer levels individually below
+                start_level = batch_end - 1
+
+        # Continue remaining levels normally (if any left after batching)
+        for level in range(start_level, end_level - 1, -1):
+            depth_params = copy(post_resize_params)
+            if level != end_level:
+                depth_params["output_formats"] = "pfm"
             depth_params.update(
                 {
                     "app": f"DerpCLI: Level {level}",

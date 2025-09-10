@@ -91,6 +91,14 @@ class DerpCLITest(DepTest):
         }
         self.check_metrics(record)
 
+    def test_run_multi_level_range(self):
+        """Run DerpCLI over a range of levels to ensure multi-level invocation works."""
+        # Build a minimal args string overriding level range; reuse flagfile defaults
+        args = self.gen_args_flagfile("DerpCLI")
+        # Force a small level range: start at level 3 end at level 2 if present
+        args = args + " --level_start=3 --level_end=2 --output_formats=pfm"
+        self.run_app("DerpCLI", args=args)
+
 
 if __name__ == "__main__":
     generic_main([DerpCLITest])
