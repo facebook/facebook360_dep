@@ -354,7 +354,7 @@ class CameraIsp {
   }
 
   // Used to build up the low and high key parts of the tone curve
-  inline float bezier(float a, float b, float c, float d, float t) {
+  static inline float bezier(float a, float b, float c, float d, float t) {
     // Four point DeCasteljau's Algorithm
     return math_util::lerp(
         math_util::lerp(math_util::lerp(a, b, t), math_util::lerp(b, c, t), t),
@@ -362,7 +362,7 @@ class CameraIsp {
         t);
   }
 
-  inline float highKey(float highKeyBoost, float x) {
+  static inline float highKey(float highKeyBoost, float x) {
     const float a = 0.5f;
     const float b = math_util::clamp(0.6666f, 0.0f, 1.0f);
     const float c = math_util::clamp(0.8333f + highKeyBoost, 0.0f, 1.0f);
@@ -370,7 +370,7 @@ class CameraIsp {
     return x > 0.5f ? bezier(a, b, c, d, (x - 0.5f) * 2.0f) : 0;
   }
 
-  inline float lowKey(float lowKeyBoost, float x) {
+  static inline float lowKey(float lowKeyBoost, float x) {
     const float a = 0.0f;
     const float b = math_util::clamp(0.1666f + lowKeyBoost, 0.0f, 1.0f);
     const float c = math_util::clamp(0.3333f, 0.0f, 1.0f);
@@ -415,7 +415,7 @@ class CameraIsp {
     }
   }
 
-  void getPoint(folly::dynamic& f, cv::Point3f& p) const {
+  static void getPoint(folly::dynamic& f, cv::Point3f& p) {
     if (f.isNull()) {
       return;
     }
@@ -440,7 +440,7 @@ class CameraIsp {
     }
   }
 
-  void getCoordList(folly::dynamic& list, std::vector<cv::Point3f>& coords) const {
+  static void getCoordList(folly::dynamic& list, std::vector<cv::Point3f>& coords) {
     if (list.isNull()) {
       return;
     }
@@ -453,7 +453,7 @@ class CameraIsp {
     }
   }
 
-  void getMatrix(folly::dynamic& list, cv::Mat_<float>& m) const {
+  static void getMatrix(folly::dynamic& list, cv::Mat_<float>& m) {
     if (list.isNull()) {
       return;
     }
@@ -1104,7 +1104,7 @@ class CameraIsp {
     }
   }
 
-  uint32_t nextPowerOf2(const uint32_t i) {
+  static uint32_t nextPowerOf2(const uint32_t i) {
     uint32_t p = 1;
     while (i > p) {
       p <<= 1;

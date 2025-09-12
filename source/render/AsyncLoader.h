@@ -178,7 +178,7 @@ struct AsyncLoader {
 
 #else
 
-  void beginBatch(
+  static void beginBatch(
       std::vector<char*>& /*buffers*/,
       const std::vector<std::string>& /*filenames*/,
       const std::vector<size_t>& /*sizes*/) {

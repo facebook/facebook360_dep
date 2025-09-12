@@ -858,7 +858,7 @@ RigScene::Subframe RigScene::createPointCloudSubframeFromData(
   return createPointCloudSubframeFromMemory(colorTexture, depthMatrix, cameraProgram);
 }
 
-void RigScene::destroyFrame(std::vector<Subframe>& subframes) const {
+void RigScene::destroyFrame(std::vector<Subframe>& subframes) {
   for (Subframe& subframe : subframes) {
     recycleTexture(subframe.colorTexture);
     glDeleteVertexArrays(1, &subframe.vertexArray);

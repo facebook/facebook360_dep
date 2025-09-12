@@ -240,7 +240,7 @@ class SimpleMeshWindow : public GlWindow {
   }
 
   // forward and up assumed to be orthogonal and normalized
-  Eigen::Affine3f forwardUp(const Eigen::Vector3f& forward, const Eigen::Vector3f& up) {
+  static Eigen::Affine3f forwardUp(const Eigen::Vector3f& forward, const Eigen::Vector3f& up) {
     Eigen::Affine3f result;
     result.linear().row(2) = -forward;
     result.linear().row(1) = up;
@@ -252,7 +252,7 @@ class SimpleMeshWindow : public GlWindow {
   }
 
   // forward and up just have to be non-parallel
-  Eigen::Affine3f posForwardUp(
+  static Eigen::Affine3f posForwardUp(
       const Eigen::Vector3f& position,
       const Eigen::Vector3f& forward,
       const Eigen::Vector3f& up) {
@@ -262,7 +262,9 @@ class SimpleMeshWindow : public GlWindow {
     return result;
   }
 
-  cv::Mat_<cv::Vec4f> alphaBlend(const cv::Mat_<cv::Vec4f>& fore, const cv::Mat_<cv::Vec4f>& back) {
+  static cv::Mat_<cv::Vec4f> alphaBlend(
+      const cv::Mat_<cv::Vec4f>& fore,
+      const cv::Mat_<cv::Vec4f>& back) {
     CHECK_EQ(fore.rows, back.rows);
     CHECK_EQ(fore.cols, back.cols);
     cv::Mat_<cv::Vec4f> result(fore.rows, fore.cols);

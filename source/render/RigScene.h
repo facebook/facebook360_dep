@@ -119,7 +119,7 @@ struct RigScene {
       const int depthHeight,
       const float depthScale) const;
   std::vector<Subframe> createFrame(const std::string& imageDir, const std::string& depthDir) const;
-  void destroyFrame(std::vector<Subframe>& subframes) const;
+  static void destroyFrame(std::vector<Subframe>& subframes);
 
   // render a fullscreen triangle
   static void fullscreen(GLuint program, GLuint texture, GLuint target = GL_TEXTURE_2D);
