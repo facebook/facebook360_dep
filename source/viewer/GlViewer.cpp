@@ -166,7 +166,7 @@ class GlViewer : public GlWindow {
 
 int main(int argc, char* argv[]) {
   FLAGS_stderrthreshold = 0;
-  FLAGS_logtostderr = 0;
+  FLAGS_logtostderr = false;
 
   system_util::initDep(argc, argv, kUsageMessage);
 
