@@ -878,7 +878,7 @@ GLuint RigScene::createDirection(const Camera& camera) {
         Camera::Real factor = -camera.pixelToCamera(pixel).z();
         direction /= factor;
       }
-      directions.push_back(direction.cast<float>());
+      directions.emplace_back(direction.cast<float>());
     }
   }
   return linearTexture2D(kDirections, kDirections, GL_RGB32F, GL_RGB, GL_FLOAT, directions.data());

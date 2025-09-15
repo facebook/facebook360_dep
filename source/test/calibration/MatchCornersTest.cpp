@@ -74,7 +74,7 @@ std::vector<Camera::Vector2> loadCorners(const std::string& path) {
   std::vector<Camera::Vector2> corners;
   for (const auto& image : parsed["images"].items()) {
     for (const auto& corner : image.second) {
-      corners.push_back(Camera::Vector2(corner["x"].asDouble(), corner["y"].asDouble()));
+      corners.emplace_back(corner["x"].asDouble(), corner["y"].asDouble());
     }
   }
   return corners;

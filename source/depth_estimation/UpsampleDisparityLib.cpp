@@ -36,7 +36,7 @@ static std::vector<std::pair<int, int>> spiral(const int w) {
     const bool isValidX = (-w / 2 <= x) && (x <= w / 2);
     const bool isValidY = (-w / 2 <= y) && (y <= w / 2);
     if (isValidX && isValidY) {
-      locs.push_back(std::make_pair(x, y));
+      locs.emplace_back(x, y);
     }
     const bool isCorner = x == y;
     const bool isEdgeLeftX = (x < 0) && (x == -y);

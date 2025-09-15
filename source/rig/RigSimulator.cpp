@@ -162,8 +162,7 @@ void makeIcosahedron(
     const cv::Vec3f v3(
         icosahedronVertex[v3i][0], icosahedronVertex[v3i][1], icosahedronVertex[v3i][2]);
 
-    triangles.push_back(
-        Triangle(v1 * radius + center, v2 * radius + center, v3 * radius + center, color));
+    triangles.emplace_back(v1 * radius + center, v2 * radius + center, v3 * radius + center, color);
   }
 }
 
@@ -281,11 +280,11 @@ void makeIcosahedronScene(std::vector<Triangle>& triangles) {
   if (FLAGS_red_triangle) {
     float kDepth = FLAGS_min_icosahedron_dist;
     float kSide = 0.1f * kDepth;
-    triangles.push_back(Triangle(
+    triangles.emplace_back(
         cv::Vec3f(kDepth, 0, 0),
         cv::Vec3f(kDepth, 0, kSide),
         cv::Vec3f(kDepth, kSide, 0),
-        cv::Vec3f(0, 0, 1)));
+        cv::Vec3f(0, 0, 1));
   }
 }
 
@@ -334,11 +333,11 @@ void makeCubesScene(std::vector<Triangle>& triangles) {
     CHECK_EQ(numCubes, int(kOffsets.size()));
     CHECK_EQ(numCubes, int(kColors.size()));
     for (int cube = 0; cube < numCubes; ++cube) {
-      triangles.push_back(Triangle(
+      triangles.emplace_back(
           kScales[cube] * (vertices[0] + kCenterShift) + kOffsets[cube],
           kScales[cube] * (vertices[1] + kCenterShift) + kOffsets[cube],
           kScales[cube] * (vertices[2] + kCenterShift) + kOffsets[cube],
-          kColors[cube][triangle / 2]));
+          kColors[cube][triangle / 2]);
     }
   }
 }
@@ -354,8 +353,8 @@ void makeGroundPlaneScene(std::vector<Triangle>& triangles) {
   };
 
   const cv::Vec3f red(0, 0, 1);
-  triangles.push_back(Triangle(vertices[0], vertices[1], vertices[2], red));
-  triangles.push_back(Triangle(vertices[3], vertices[0], vertices[2], red));
+  triangles.emplace_back(vertices[0], vertices[1], vertices[2], red);
+  triangles.emplace_back(vertices[3], vertices[0], vertices[2], red);
 }
 
 std::vector<Camera> ringOfClones(const Camera& camera, int count, double radius) {

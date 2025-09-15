@@ -375,7 +375,7 @@ std::vector<ReprojectionErrorOutlier> getReprojectionErrorOutliers(
     double originalError;
     double weightedError;
     if (reprojectionErrorOutlier(problem, id, originalError, weightedError)) {
-      result.push_back(std::make_pair(originalError, weightedError));
+      result.emplace_back(originalError, weightedError);
     }
   }
   return result;

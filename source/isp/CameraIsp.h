@@ -393,7 +393,7 @@ class CameraIsp {
       if (!toneCurveEnabled) {
         // Just a linear ramp ==> no-op
         const float y = x;
-        toneCurveLut.push_back(cv::Vec3f(y, y, y));
+        toneCurveLut.emplace_back(y, y, y);
       } else {
         // Apply gamma correction
         float r = powf(x, gamma.x);
@@ -410,7 +410,7 @@ class CameraIsp {
         b = math_util::clamp((slope * b + bias), 0.0f, 1.0f);
 
         // Place it in the table.
-        toneCurveLut.push_back(cv::Vec3f(r, g, b));
+        toneCurveLut.emplace_back(r, g, b);
       }
     }
   }
@@ -488,16 +488,16 @@ class CameraIsp {
         maxD(0),
         sqrtMaxD(0) {
     // Set the default values and override them from the json file
-    compandingLut.push_back(cv::Point3f(0.0f, 0.0f, 0.0f));
-    compandingLut.push_back(cv::Point3f(1.0f, 1.0f, 1.0f));
+    compandingLut.emplace_back(0.0f, 0.0f, 0.0f);
+    compandingLut.emplace_back(1.0f, 1.0f, 1.0f);
     blackLevel = cv::Point3f(0.0f, 0.0f, 0.0f);
     clampMin = cv::Point3f(0.0f, 0.0f, 0.0f);
     clampMax = cv::Point3f(1.0f, 1.0f, 1.0f);
     stuckPixelThreshold = 0;
     stuckPixelDarknessThreshold = 0;
     stuckPixelRadius = 0;
-    vignetteRollOffH.push_back(cv::Vec3f(1.0f, 1.0f, 1.0f));
-    vignetteRollOffV.push_back(cv::Vec3f(1.0f, 1.0f, 1.0f));
+    vignetteRollOffH.emplace_back(cv::Vec3f(1.0f, 1.0f, 1.0f));
+    vignetteRollOffV.emplace_back(cv::Vec3f(1.0f, 1.0f, 1.0f));
     whiteBalanceGain = cv::Point3f(1.0f, 1.0f, 1.0f);
     ccm = cv::Mat::eye(3, 3, CV_32F);
     saturation = 1.0f;
