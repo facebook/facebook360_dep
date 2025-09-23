@@ -50,6 +50,11 @@ struct RigScene {
 
   ~RigScene();
 
+  RigScene(const RigScene&) = delete;
+  RigScene& operator=(const RigScene&) = delete;
+  RigScene(RigScene&&) = delete;
+  RigScene& operator=(RigScene&&) = delete;
+
   const bool useMesh;
   const bool isDepthZCoord;
 
