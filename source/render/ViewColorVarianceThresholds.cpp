@@ -61,7 +61,7 @@ class TrackVar {
 
   float scaleVar;
 
-  static void onChange(int, void* object) {
+  static void onChange(int /*unused*/, void* object) {
     reinterpret_cast<TrackVar*>(object)->update();
   }
 

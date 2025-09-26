@@ -187,16 +187,16 @@ GLuint createBuffer(GLenum target, const T& v) {
   return createBuffer(target, &v[0], v.size());
 }
 
-inline GLenum getType(const uint8_t&) {
+inline GLenum getType(const uint8_t& /*unused*/) {
   return GL_UNSIGNED_BYTE;
 }
-inline GLenum getType(const GLushort&) {
+inline GLenum getType(const GLushort& /*unused*/) {
   return GL_UNSIGNED_SHORT;
 }
-inline GLenum getType(const GLuint&) {
+inline GLenum getType(const GLuint& /*unused*/) {
   return GL_UNSIGNED_INT;
 }
-inline GLenum getType(const float&) {
+inline GLenum getType(const float& /*unused*/) {
   return GL_FLOAT;
 }
 

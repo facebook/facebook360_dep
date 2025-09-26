@@ -144,13 +144,13 @@ struct RigScene {
       const bool doCulling = true,
       const bool wireframe = false);
 
-  static GLenum getInternalRGBAFormat(const uint8_t&) {
+  static GLenum getInternalRGBAFormat(const uint8_t& /*unused*/) {
     return GL_SRGB8_ALPHA8;
   }
-  static GLenum getInternalRGBAFormat(const uint16_t&) {
+  static GLenum getInternalRGBAFormat(const uint16_t& /*unused*/) {
     return GL_RGBA16;
   }
-  static GLenum getInternalRGBAFormat(const float&) {
+  static GLenum getInternalRGBAFormat(const float& /*unused*/) {
     return GL_RGBA32F;
   }
 
