@@ -566,14 +566,14 @@ int main(int argc, char* argv[]) {
 
     // Compute coverage for each sample
     Eigen::VectorXd coverages(samples.size());
-    for (int i = 0; i < int(samples.size()); ++i) {
+    for (int j = 0; j < int(samples.size()); ++j) {
       int coverage = 0;
       for (const Camera& camera : rig) {
-        if (camera.sees(distance * samples[i])) {
+        if (camera.sees(distance * samples[j])) {
           ++coverage;
         }
       }
-      coverages[i] = coverage;
+      coverages[j] = coverage;
     }
 
     // Report results
