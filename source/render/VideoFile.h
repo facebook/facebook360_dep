@@ -140,9 +140,10 @@ struct VideoFile {
   static folly::dynamic parseCatalog(const std::string& fileName) {
     CHECK(boost::filesystem::exists(boost::filesystem::path(fileName)));
     std::ifstream file(fileName, std::ios::binary);
-    folly::dynamic catalog = folly::parseJson(std::string(
-        (std::istreambuf_iterator<char>(file)), // most vexing parse
-        (std::istreambuf_iterator<char>())));
+    folly::dynamic catalog = folly::parseJson(
+        std::string(
+            (std::istreambuf_iterator<char>(file)), // most vexing parse
+            (std::istreambuf_iterator<char>())));
 
     // Update legacy files without (both) metadata and frames entries
     if (catalog.find("metadata") == catalog.items().end()) {

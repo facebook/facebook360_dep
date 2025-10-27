@@ -331,15 +331,16 @@ std::vector<Overlap> findAllMatches(
       if (rig[c1].overlap(rig[c2]) < FLAGS_overlap_threshold) {
         continue;
       }
-      overlapFutures.push(std::async(
-          threadCount == 0 ? std::launch::deferred : std::launch::async,
-          &findMatches,
-          std::cref(images[c1]),
-          std::cref(allCorners.at(rig[c1].id)),
-          std::cref(rig[c1]),
-          std::cref(images[c2]),
-          std::cref(allCorners.at(rig[c2].id)),
-          std::cref(rig[c2])));
+      overlapFutures.push(
+          std::async(
+              threadCount == 0 ? std::launch::deferred : std::launch::async,
+              &findMatches,
+              std::cref(images[c1]),
+              std::cref(allCorners.at(rig[c1].id)),
+              std::cref(rig[c1]),
+              std::cref(images[c2]),
+              std::cref(allCorners.at(rig[c2].id)),
+              std::cref(rig[c2])));
       if (ssize(overlapFutures) >= threadCount && !overlapFutures.empty()) {
         overlaps.emplace_back(overlapFutures.front().get());
         overlapFutures.pop();

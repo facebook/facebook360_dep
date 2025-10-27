@@ -221,9 +221,10 @@ cv::Vec4f traceRayToGetColor(
 
   // if nothing else was hit, intersect with sky equirect
   if (!intersectionResult.hit) {
-    const float phi = acos(math_util::clamp(
-        ray.dir[2], -1.0f, 1.0f)); // the min here is to avoid a nan.. other numerics can result in
-                                   // a value that is epsilon > 1.0 being passed here
+    const float phi = acos(
+        math_util::clamp(
+            ray.dir[2], -1.0f, 1.0f)); // the min here is to avoid a nan.. other numerics can result
+                                       // in a value that is epsilon > 1.0 being passed here
     const float theta = M_PI + atan2(ray.dir[1], ray.dir[0]);
     const float sampleX = (theta / (2.0 * M_PI)) * skybox.cols;
     const float sampleY = (phi / M_PI) * skybox.rows;
@@ -246,10 +247,11 @@ cv::Vec4f traceRayToGetColor(
   if (FLAGS_marble) {
     baseColor *= 0.7f +
         0.3f *
-            std::fabs(perlin_noise::pnoise(
-                FLAGS_marble_scale * intersectionPoint[0],
-                FLAGS_marble_scale * intersectionPoint[1],
-                FLAGS_marble_scale * intersectionPoint[2]));
+            std::fabs(
+                perlin_noise::pnoise(
+                    FLAGS_marble_scale * intersectionPoint[0],
+                    FLAGS_marble_scale * intersectionPoint[1],
+                    FLAGS_marble_scale * intersectionPoint[2]));
   }
 
   const static cv::Vec3f kLightPos(2.0f, 1.0f, 5.2f);
@@ -444,7 +446,7 @@ Camera makeFThetaCameraOnSphere(
 }
 
 Camera::Vector3 icosaVert(const int index) {
-  const float(&v)[3] = icosahedron_data::icosahedronVertex[index];
+  const float (&v)[3] = icosahedron_data::icosahedronVertex[index];
   return Eigen::Map<const Eigen::Vector3f>(v).cast<Camera::Real>();
 }
 

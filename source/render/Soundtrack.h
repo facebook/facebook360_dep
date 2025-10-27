@@ -102,8 +102,9 @@ struct Soundtrack {
     }
     audioEngine->setListenerPosition(
         TBE::TBVector(pose.Position.x, pose.Position.y, -pose.Position.z));
-    audioEngine->setListenerRotation(TBE::TBQuat(
-        pose.Orientation.x, pose.Orientation.y, -pose.Orientation.z, pose.Orientation.w));
+    audioEngine->setListenerRotation(
+        TBE::TBQuat(
+            pose.Orientation.x, pose.Orientation.y, -pose.Orientation.z, pose.Orientation.w));
   }
 
   ~Soundtrack() {
