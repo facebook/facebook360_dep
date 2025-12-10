@@ -78,7 +78,7 @@ struct BestMatch {
   // or if 2 (or more) highest match scores are close together (within
   // zncc_delta_threshold). Weak corners are rejected since the potiential matches
   // are nearly indistiguishable.
-  bool isWeakCorner() const {
+  [[nodiscard]] bool isWeakCorner() const {
     return bestScore < FLAGS_match_score_threshold ||
         bestScore - secondBestScore < FLAGS_zncc_delta_threshold;
   }

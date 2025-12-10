@@ -83,7 +83,7 @@ struct RigScene {
   struct Subframe {
     Subframe() : colorTexture(0) {}
 
-    bool isValid() const {
+    [[nodiscard]] bool isValid() const {
       return colorTexture != 0;
     }
 

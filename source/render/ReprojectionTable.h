@@ -85,7 +85,7 @@ class ReprojectionTable {
   const Camera::Vector2 margin;
   std::vector<Entry> values;
 
-  Eigen::Array3f getScale() const {
+  [[nodiscard]] Eigen::Array3f getScale() const {
     // input range
     Eigen::Array3f input(1 + 2 * margin.x(), 1 + 2 * margin.y(), maxDisparity() - minDisparity());
     // output range
@@ -93,7 +93,7 @@ class ReprojectionTable {
     return output / input;
   }
 
-  Eigen::Array3f getOffset() const {
+  [[nodiscard]] Eigen::Array3f getOffset() const {
     // input
     Eigen::Array3f input(-margin.x(), -margin.y(), minDisparity());
     // output
@@ -104,7 +104,7 @@ class ReprojectionTable {
 
   // do a trilinear lookup in the table
   // note: this is slow. use a GPU, that is what they are for
-  Entry lookup(const Entry& xy, const float disparity) const {
+  [[nodiscard]] Entry lookup(const Entry& xy, const float disparity) const {
     Eigen::Array3f texcoor = getScale() * Eigen::Array3f(xy.x(), xy.y(), disparity) + getOffset();
     Eigen::Array3f unnorm = texcoor * shape.cast<float>();
 
@@ -126,7 +126,7 @@ class ReprojectionTable {
     return result;
   }
 
-  std::string toString(const int kRes = 10) const {
+  [[nodiscard]] std::string toString(const int kRes = 10) const {
     std::string result;
     result += "[";
     for (float z = 0; z < kRes; ++z) {

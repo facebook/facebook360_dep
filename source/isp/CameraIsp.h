@@ -343,7 +343,7 @@ class CameraIsp {
     }
   }
 
-  std::array<int, 4> getPlaneOrderToBayerOrder() const {
+  [[nodiscard]] std::array<int, 4> getPlaneOrderToBayerOrder() const {
     bool foundFirstG = false;
     std::array<int, 4> map;
     for (int i = 0; i < 4; ++i) {
@@ -649,15 +649,15 @@ class CameraIsp {
   }
 
   // Helper functions
-  inline bool redPixel(const int i, const int j) const {
+  [[nodiscard]] inline bool redPixel(const int i, const int j) const {
     return redBayerPixel[i % 2][j % 2];
   }
 
-  inline bool greenPixel(const int i, const int j) const {
+  [[nodiscard]] inline bool greenPixel(const int i, const int j) const {
     return greenBayerPixel[i % 2][j % 2];
   }
 
-  inline bool bluePixel(const int i, const int j) const {
+  [[nodiscard]] inline bool bluePixel(const int i, const int j) const {
     return !(greenBayerPixel[i % 2][j % 2] || redBayerPixel[i % 2][j % 2]);
   }
 
@@ -861,7 +861,7 @@ class CameraIsp {
     this->demosaicedImage = demosaicedImage;
   }
 
-  cv::Mat_<cv::Vec3f> getDemosaicedImage() const {
+  [[nodiscard]] cv::Mat_<cv::Vec3f> getDemosaicedImage() const {
     return demosaicedImage;
   }
 
@@ -875,7 +875,7 @@ class CameraIsp {
     this->blackLevel = blackLevel;
   }
 
-  cv::Point3f getBlackLevel() const {
+  [[nodiscard]] cv::Point3f getBlackLevel() const {
     return blackLevel;
   }
 
@@ -883,7 +883,7 @@ class CameraIsp {
     this->clampMin = clampMin;
   }
 
-  cv::Point3f getClampMin() const {
+  [[nodiscard]] cv::Point3f getClampMin() const {
     return clampMin;
   }
 
@@ -891,7 +891,7 @@ class CameraIsp {
     this->clampMax = clampMax;
   }
 
-  cv::Point3f getClampMax() const {
+  [[nodiscard]] cv::Point3f getClampMax() const {
     return clampMax;
   }
 
@@ -899,7 +899,7 @@ class CameraIsp {
     this->vignetteRollOffH = vignetteRollOffH;
   }
 
-  std::vector<cv::Point3f> getVignetteRollOffH() const {
+  [[nodiscard]] std::vector<cv::Point3f> getVignetteRollOffH() const {
     return vignetteRollOffH;
   }
 
@@ -907,7 +907,7 @@ class CameraIsp {
     this->vignetteRollOffV = vignetteRollOffV;
   }
 
-  std::vector<cv::Point3f> getVignetteRollOffV() const {
+  [[nodiscard]] std::vector<cv::Point3f> getVignetteRollOffV() const {
     return vignetteRollOffV;
   }
 
@@ -915,11 +915,11 @@ class CameraIsp {
     this->ccm = ccm;
   }
 
-  cv::Mat_<float> getCCM() const {
+  [[nodiscard]] cv::Mat_<float> getCCM() const {
     return ccm;
   }
 
-  uint32_t getFilters() const {
+  [[nodiscard]] uint32_t getFilters() const {
     return filters;
   }
 
@@ -927,7 +927,7 @@ class CameraIsp {
     this->whiteBalanceGain = whiteBalanceGain;
   }
 
-  cv::Point3f getWhiteBalanceGain() const {
+  [[nodiscard]] cv::Point3f getWhiteBalanceGain() const {
     return whiteBalanceGain;
   }
 
@@ -935,7 +935,7 @@ class CameraIsp {
     this->gamma = gamma;
   }
 
-  cv::Point3f getGamma() const {
+  [[nodiscard]] cv::Point3f getGamma() const {
     return gamma;
   }
 
@@ -1245,23 +1245,23 @@ class CameraIsp {
   }
 
  public:
-  int getOutputWidth() const {
+  [[nodiscard]] int getOutputWidth() const {
     return width;
   }
 
-  int getOutputHeight() const {
+  [[nodiscard]] int getOutputHeight() const {
     return height;
   }
 
-  int getSensorWidth() const {
+  [[nodiscard]] int getSensorWidth() const {
     return sensorWidth;
   }
 
-  int getSensorHeight() const {
+  [[nodiscard]] int getSensorHeight() const {
     return sensorHeight;
   }
 
-  int getSensorBitsPerPixel() const {
+  [[nodiscard]] int getSensorBitsPerPixel() const {
     return sensorBitsPerPixel;
   }
 

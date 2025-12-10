@@ -63,7 +63,7 @@ struct Camera {
   // construction and de/serialization
   Camera(const Type type, const Vector2& resolution, const Vector2& focal);
   explicit Camera(const folly::dynamic& json);
-  folly::dynamic serialize() const;
+  [[nodiscard]] folly::dynamic serialize() const;
   static Rig loadRig(const filesystem::path& filename);
   static Rig loadRigFromJsonString(const std::string& json);
   static void saveRig(
@@ -73,52 +73,52 @@ struct Camera {
       const int doubleNumDigits = -1);
 
   // access rotation as forward/up/right vectors
-  Vector3 forward() const {
+  [[nodiscard]] Vector3 forward() const {
     return -backward();
   }
-  Vector3 up() const {
+  [[nodiscard]] Vector3 up() const {
     return rotation.row(1);
   }
-  Vector3 right() const {
+  [[nodiscard]] Vector3 right() const {
     return rotation.row(0);
   }
   void setRotation(const Vector3& forward, const Vector3& up, const Vector3& right);
   void setRotation(const Vector3& forward, const Vector3& up);
 
   // access rotation as angle * axis
-  Vector3 getRotation() const;
+  [[nodiscard]] Vector3 getRotation() const;
   void setRotation(const Vector3& angleAxis);
 
   // set distortion
   void setDefaultDistortion();
   void setDistortion(const Distortion& distortion);
-  const Distortion& getDistortion() const {
+  [[nodiscard]] const Distortion& getDistortion() const {
     return distortion_;
   }
 
   // access distortionMax
-  Real getDistortionMax() const {
+  [[nodiscard]] Real getDistortionMax() const {
     return distortionMax_;
   }
 
   // access focal as a scalar (x right, y down, square pixels)
   void setScalarFocal(const Real& scalar);
-  Real getScalarFocal() const;
+  [[nodiscard]] Real getScalarFocal() const;
 
   // access fov (measured in radians from optical axis)
   void setFov(const Real& radians);
-  Real getFov() const;
+  [[nodiscard]] Real getFov() const;
   void setDefaultFov();
   static Real getDefaultCosFov(Type type);
-  bool isDefaultFov() const;
+  [[nodiscard]] bool isDefaultFov() const;
 
-  Camera rescale(const Vector2& newResolution = {1, 1}) const;
+  [[nodiscard]] Camera rescale(const Vector2& newResolution = {1, 1}) const;
   void normalize();
-  bool isNormalized() const;
+  [[nodiscard]] bool isNormalized() const;
   static void normalizeRig(Camera::Rig& rig);
 
   // compute pixel coordinates
-  Vector2 pixel(const Vector3& rig) const {
+  [[nodiscard]] Vector2 pixel(const Vector3& rig) const {
     // transform from rig to camera space
     Vector3 camera = rotation * (rig - position);
     // transform from camera to distorted sensor coordinates
@@ -128,7 +128,7 @@ struct Camera {
   }
 
   // compute rig coordinates, returns a ray, inverse of pixel()
-  Ray rig(const Vector2& pixel) const {
+  [[nodiscard]] Ray rig(const Vector2& pixel) const {
     // transform from pixel to distorted sensor coordinates
     Vector2 sensor = (pixel - principal).cwiseQuotient(focal);
     // transform from distorted sensor coordinates to unit camera vector
@@ -138,20 +138,20 @@ struct Camera {
   }
 
   // compute rig coordinates for point at a particular depth
-  Vector3 rig(const Vector2& pixel, const Real depth) const {
+  [[nodiscard]] Vector3 rig(const Vector2& pixel, const Real depth) const {
     return rig(pixel).pointAt(depth);
   }
 
   // compute rig coordinates for point near infinity, inverse of pixel()
-  Vector3 rigNearInfinity(const Vector2& pixel) const {
+  [[nodiscard]] Vector3 rigNearInfinity(const Vector2& pixel) const {
     return rig(pixel, kNearInfinity);
   }
 
-  bool isBehind(const Vector3& rig) const {
+  [[nodiscard]] bool isBehind(const Vector3& rig) const {
     return backward().dot(rig - position) >= 0;
   }
 
-  bool isOutsideFov(const Vector3& rig) const {
+  [[nodiscard]] bool isOutsideFov(const Vector3& rig) const {
     if (cosFov == -1) {
       return false;
     }
@@ -163,7 +163,7 @@ struct Camera {
     return dot * std::abs(dot) <= cosFov * std::abs(cosFov) * v.squaredNorm();
   }
 
-  bool isOutsideImageCircle(const Vector2& pix) const {
+  [[nodiscard]] bool isOutsideImageCircle(const Vector2& pix) const {
     if (isDefaultFov()) {
       return false;
     }
@@ -177,7 +177,7 @@ struct Camera {
     return sensor.squaredNorm() >= edge.squaredNorm();
   }
 
-  bool isOutsideSensor(const Vector2& pix) const {
+  [[nodiscard]] bool isOutsideSensor(const Vector2& pix) const {
     return 0 > pix.x() || pix.x() >= resolution.x() || 0 > pix.y() || pix.y() >= resolution.y();
   }
 
@@ -189,13 +189,13 @@ struct Camera {
     return !isOutsideSensor(pix);
   }
 
-  bool sees(const Vector3& rig) const {
+  [[nodiscard]] bool sees(const Vector3& rig) const {
     Vector2 ignored;
     return sees(rig, ignored);
   }
 
   // estimate the fraction of the frame that is covered by the other camera
-  Real overlap(const Camera& other) const {
+  [[nodiscard]] Real overlap(const Camera& other) const {
     // just brute force probeCount x probeCount points
     const int kProbeCount = 10;
     int inside = 0;
@@ -231,11 +231,11 @@ struct Camera {
     }
   }
 
-  Vector3 backward() const {
+  [[nodiscard]] Vector3 backward() const {
     return rotation.row(2);
   }
 
-  Real distortFactor(Real rSquared) const {
+  [[nodiscard]] Real distortFactor(Real rSquared) const {
     Eigen::Index i = getDistortion().size();
     Real result = getDistortion()[--i];
     while (i > 0) {
@@ -247,12 +247,12 @@ struct Camera {
  public:
   // distortion is modeled in pixel space as:
   //   distort(r) = r + d0 * r^3 + d1 * r^5
-  Real distort(Real r) const {
+  [[nodiscard]] Real distort(Real r) const {
     r = std::min(r, distortionMax_);
     return distortFactor(r * r) * r;
   }
 
-  Real undistort(const Real y) const {
+  [[nodiscard]] Real undistort(const Real y) const {
     if (getDistortion().isZero()) {
       return y; // short circuit common case
     }
@@ -283,14 +283,14 @@ struct Camera {
     return x0; // this should not happen
   }
 
-  Vector3 pixelToCamera(const Vector2& pixel) const {
+  [[nodiscard]] Vector3 pixelToCamera(const Vector2& pixel) const {
     // transform from pixel to distorted sensor coordinates
     Vector2 sensor = (pixel - principal).cwiseQuotient(focal);
     // transform from distorted sensor coordinates to unit camera vector
     return sensorToCamera(sensor);
   }
 
-  Vector2 cameraToPixel(const Vector3& camera) const {
+  [[nodiscard]] Vector2 cameraToPixel(const Vector3& camera) const {
     // transform from unit camera vector to distorted sensor coordinates
     Vector2 sensor = cameraToSensor(camera);
     // transform from distorted sensor coordinates to pixel
@@ -298,7 +298,7 @@ struct Camera {
   }
 
  private:
-  Vector2 cameraToSensor(const Vector3& camera) const {
+  [[nodiscard]] Vector2 cameraToSensor(const Vector3& camera) const {
     // FTHETA: r = theta
     // RECTILINEAR: r = tan(theta)
     // EQUISOLID: r = 2 sin(theta / 2)
@@ -341,7 +341,7 @@ struct Camera {
   }
 
   // compute unit vector in camera coors from normalized sensor coors
-  Vector3 sensorToCamera(const Vector2& sensor) const {
+  [[nodiscard]] Vector3 sensorToCamera(const Vector2& sensor) const {
     // FTHETA: r = theta
     // RECTILINEAR: r = tan(theta)
     // EQUISOLID: r = 2 sin(theta / 2)

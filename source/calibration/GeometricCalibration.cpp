@@ -188,7 +188,7 @@ struct Overlap {
     images[1] = image1;
   }
 
-  bool isIntraFrame() const {
+  [[nodiscard]] bool isIntraFrame() const {
     return getFrameIndex(images[0]) == getFrameIndex(images[1]);
   }
 };

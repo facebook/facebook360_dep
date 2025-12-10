@@ -51,7 +51,7 @@ struct Keypoint {
     initializeAvgStd();
   }
 
-  folly::dynamic serialize() const {
+  [[nodiscard]] folly::dynamic serialize() const {
     return folly::dynamic::object("x", coords.x())("y", coords.y());
   }
 
@@ -94,7 +94,7 @@ struct Match {
     corners[1] = corner1;
   }
 
-  folly::dynamic serialize() const {
+  [[nodiscard]] folly::dynamic serialize() const {
     folly::dynamic result =
         folly::dynamic::object("idx1", corners[0])("idx2", corners[1])("score", score);
     return result;
@@ -110,7 +110,8 @@ struct Overlap {
     images[1] = image1;
   }
 
-  folly::dynamic serialize(const std::string& frame, const std::string& imageExt) const {
+  [[nodiscard]] folly::dynamic serialize(const std::string& frame, const std::string& imageExt)
+      const {
     folly::dynamic overlapData = folly::dynamic::object;
     overlapData["image1"] = getImageFilename(images[0], frame, imageExt);
     overlapData["image2"] = getImageFilename(images[1], frame, imageExt);

@@ -27,7 +27,7 @@ class MonotonicTable {
   virtual ~MonotonicTable() = default;
 
   // Function that is used to compute the table
-  virtual T f(const T x) const = 0;
+  [[nodiscard]] virtual T f(const T x) const = 0;
 
  public:
   MonotonicTable(const T minX_, const T maxX_, const int size_)
@@ -44,7 +44,7 @@ class MonotonicTable {
     }
   }
 
-  inline int getSize() const {
+  [[nodiscard]] inline int getSize() const {
     return size;
   }
 
@@ -60,7 +60,7 @@ class Butterworth : public MonotonicTable<float> {
   const float cutoffFreq_;
 
  protected:
-  float f(const float x) const {
+  [[nodiscard]] float f(const float x) const {
     return 1.0f / (1.0f + powf(x / cutoffFreq_, 2.0f * order_));
   }
 

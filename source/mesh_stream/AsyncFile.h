@@ -154,7 +154,7 @@ struct AsyncFile {
     ::close(handle);
   }
 
-  ssize_t readSegments(const std::vector<Segment>& segments, uint64_t offset) const {
+  [[nodiscard]] ssize_t readSegments(const std::vector<Segment>& segments, uint64_t offset) const {
     ssize_t total = 0;
     for (const Segment& segment : segments) {
       ssize_t result = pread(handle, segment.iov_base, segment.iov_len, offset + total);

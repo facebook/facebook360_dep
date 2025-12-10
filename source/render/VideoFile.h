@@ -44,7 +44,7 @@ struct VideoFile {
     LOG(INFO) << fmt::format("{} frames found", frames.size());
   }
 
-  int getFront() const {
+  [[nodiscard]] int getFront() const {
     return static_cast<int>((current - pending.size() + frames.size()) % frames.size());
   }
 

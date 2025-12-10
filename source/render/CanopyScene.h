@@ -51,14 +51,14 @@ struct CanopyScene {
       const bool alphaBlend = true) const;
 
   // render scene from position as a cubemap with edge x edge pixel faces, stacked vertically
-  cv::Mat_<cv::Vec4f> cubemap(
+  [[nodiscard]] cv::Mat_<cv::Vec4f> cubemap(
       int edge,
       const Eigen::Vector3f& position = {0, 0, 0},
       const float ipd = 0.0f,
       const bool alphaBlend = true) const;
 
   // render scene from position as an equirect that is height pixels tall and twice as wide
-  cv::Mat_<cv::Vec4f> equirect(
+  [[nodiscard]] cv::Mat_<cv::Vec4f> equirect(
       int height,
       const Eigen::Vector3f& position = {0, 0, 0},
       const float ipd = 0.0f,
