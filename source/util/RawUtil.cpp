@@ -294,14 +294,12 @@ bool writeDng(
 
   std::vector<uint16_t> stripCnt;
   int nRowsLeft = height;
-  uint32_t t = 0;
   while (nRowsLeft > 0) {
     if ((unsigned)nRowsLeft > rowsPerStrip) {
       stripCnt.push_back(rowsPerStrip * width * 2);
     } else {
       stripCnt.push_back(nRowsLeft * width * 2);
     }
-    ++t;
     nRowsLeft -= rowsPerStrip;
   }
 
