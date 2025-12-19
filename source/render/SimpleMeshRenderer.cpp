@@ -494,7 +494,7 @@ int main(int argc, char* argv[]) {
     window.sceneColor = sceneColor;
     window.sceneDisp = sceneDisp;
 
-    auto it = std::find(formats.begin(), formats.end(), FLAGS_format);
+    auto it = formats.find(FLAGS_format);
     const int formatIdx = std::distance(formats.begin(), it);
 
     cv::Mat_<cv::Vec4f> outputImage;
