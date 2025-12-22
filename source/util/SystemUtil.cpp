@@ -8,7 +8,7 @@
 
 #include "source/util/SystemUtil.h"
 
-#include <signal.h>
+#include <csignal>
 #include <exception>
 #include <stdexcept>
 

@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include <assert.h>
+#include <cassert>
 #ifdef WIN32
 #ifndef NOMINMAX
 #define NOMINMAX
@@ -17,7 +17,7 @@
 #else
 #include <dirent.h>
 #endif
-#include <math.h>
+#include <cmath>
 
 #include <glog/logging.h>
 #include <chrono>
