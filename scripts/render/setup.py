@@ -343,8 +343,11 @@ def docker_run_cmd(ip, docker_img=config.DOCKER_IMAGE):
     if Address(FLAGS.input_root).protocol == "smb":
         return f"""docker run --privileged \
             -t -d {docker_img}:latest \
-            /bin/bash -c "mkdir {config.DOCKER_INPUT_ROOT} && mkdir {config.DOCKER_OUTPUT_ROOT} && {" && ".join(
-            mounts)} && python3 {config.DOCKER_SCRIPTS_ROOT}/render/worker.py --master {master}" """
+            /bin/bash -c "mkdir {config.DOCKER_INPUT_ROOT} && mkdir {
+            config.DOCKER_OUTPUT_ROOT
+        } && {" && ".join(mounts)} && python3 {
+            config.DOCKER_SCRIPTS_ROOT
+        }/render/worker.py --master {master}" """
 
     else:
         mount_cmds = "\n".join(mounts)
