@@ -246,6 +246,11 @@ def define_flags():
         "username", "", "username for NFS (only relevant for SMB mounts)"
     )
     flags.DEFINE_string("workers", config.LOCALHOST, "ip addresses of workers")
+    flags.DEFINE_integer(
+        "coarsest_batch_levels",
+        0,
+        "if > 0, process this many coarsest pyramid levels in a single worker job (skips temporal filtering for those levels)",
+    )
 
     flag_names.update(
         {
@@ -268,6 +273,7 @@ def define_flags():
             "skip_setup",
             "username",
             "workers",
+            "coarsest_batch_levels",
         }
     )
 
